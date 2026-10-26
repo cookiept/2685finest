@@ -159,12 +159,22 @@
   -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
   mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
 }
+/* Crumpled and flattened again: a shaded crease texture laid over the whole slip (ink included),
+   plus uneven light so one corner sits a little higher than the rest */
+.receipt::before, .receipt::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.receipt::before { background: url("../images/textures/paper-crumple.webp") 0 0 / 900px; mix-blend-mode: multiply; opacity: .2; }
+.receipt::after {
+  background:
+    radial-gradient(120% 80% at 15% 0%, rgba(255, 255, 255, .5), transparent 55%),
+    linear-gradient(100deg, rgba(60, 55, 40, .05), transparent 30%, transparent 70%, rgba(60, 55, 40, .07));
+  mix-blend-mode: soft-light;
+}
 /* Till-printer type only on the receipt's small print; the prices use the body font so they read easily */
 .receipt__head, .receipt__meta, .receipt__cols, .menu__group-title, .receipt__total, .receipt__end p { font-family: var(--font-mono); }
 .receipt__head { display: grid; justify-items: center; gap: .1rem; text-align: center; text-transform: uppercase; font-size: .85rem; letter-spacing: .04em; }
 .receipt__head img { width: 7rem; height: auto; margin-bottom: .6rem; }
 .receipt__meta, .receipt__cols, .receipt__total { display: flex; justify-content: space-between; gap: 1rem; text-transform: uppercase; }
-.receipt__meta { margin-top: 1.25rem; padding-block: .7rem; border-block: var(--rule); font-size: .82rem; }
+.receipt__meta { justify-content: center; margin-top: 1.25rem; padding-block: .7rem; border-block: var(--rule); font-size: .82rem; text-align: center; }
 .receipt__cols { display: grid; grid-template-columns: minmax(0, 1fr) 6rem 6rem; padding-top: 1rem; font-size: .78rem; font-weight: 700; color: var(--graphite); }
 .receipt__cols span:not(:first-child) { text-align: right; }
 
