@@ -242,14 +242,14 @@
 /* The empty slot in the album: same layout as a real cromo, drawn as an outline */
 .cromo--missing { background: var(--fog); color: var(--graphite); border: 1.5px dashed #b9c6b2; box-shadow: none; }
 .cromo--missing .cromo__top { color: var(--wall); }
-.cromo--missing .cromo__photo { display: grid; place-items: center; background: var(--paper); border: 1.5px dashed #c9d0c5; }
-.cromo--missing .cromo__photo > img.cromo__ghost { width: auto; height: 55%; object-fit: contain; opacity: .3; filter: grayscale(1); transition: opacity .4s, filter .4s; }
+.cromo--missing .cromo__photo { display: grid; place-items: end center; background: var(--moss-wash); border: 1.5px dashed #b9c6b2; }
+.cromo--missing .cromo__photo > img.cromo__ghost { width: 88%; height: 86%; margin-top: 8%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 10px 14px rgba(21, 30, 27, .2)); transition: transform .5s var(--ease); }
 .cromo--missing .cromo__num { background: var(--fog); color: var(--wall); border: 1px dashed #b9c6b2; }
 .cromo--missing .cromo__plate { background: transparent; color: var(--forest); border: 1.5px dashed #b9c6b2; }
 .cromo--missing .cromo__stats dt { color: var(--wall); }
 .cromo--missing .cromo__stats div + div { border-left-color: var(--border); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .barber--missing:hover .cromo__ghost { opacity: .7; filter: none; }
+  .barber--missing:hover .cromo__ghost { transform: translateY(-4px) rotate(-2deg); }
 }
 
 @media (max-width: 1000px) { .team__grid { grid-template-columns: 1fr 1fr; } }

@@ -47,7 +47,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 
 - **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
 - **Novidades card stack**: the news banners fanned out like a hand of cards (adapted from a React CardStack to plain JS/CSS). The active card sits in front, lifted; the others step out to each side with a small angle, pushed back in depth and tilted. Arrows + counter top right, dots below; click a card behind, drag/swipe the front one, or use the keyboard arrows. Springy 0.7s transitions. Autoplay every 5s on all screens, paused on hover/keyboard focus; a manual change restarts the count; none with reduced motion. Banners are drawn from `assets/data/news.js` (`green` or `light` theme, always a frog), or a finished image via the `banner` field.
-- **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Cromo em falta", Nº 03) has the same layout drawn as a dashed outline with a greyed frog, and the text "Podes ser o cromo que nos falta". The three columns use CSS subgrid so cards, texts and links line up at the same height.
+- **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Procura-se", Nº 03) has the same layout drawn as a dashed outline, with the frog holding a CV and pointing at you (`frog-cv`), and the text "Podes ser o cromo que nos falta". The three columns use CSS subgrid so cards, texts and links line up at the same height.
 - **Plants**: hand-drawn SVG plants in the wall-green family. Each one grows from something real on the page, never from empty space: ivy draped over the top of the hero photo; a pothos in a pot hanging on cords from the header line; a Boston fern in a pot hanging from the edge of the Serviços section; eucalyptus sprigs coming in from the screen edge (A casa, Contacto). Still by default. Moving the mouse through a plant pushes nearby leaves in the direction of travel like a breeze; they settle slowly on a damped spring (in `main.js`), and a resting pointer adds nothing. Below 1280px only the ivy on the hero photo stays.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
 - **Featured service cards**; the most popular one has a forest outline and a "★ Mais popular" pill, repeated next to it in the price list.
@@ -62,7 +62,7 @@ The shop's mascot (crown, gold chain with "85"):
 
 1. Hero: `frog-lounging`, resting on the corner of the interior photo.
 2. Novidades: every banner carries a frog (lounging, standing, cigar, the Sacavém sticker).
-3. Barber cromos: `frog-head` as the club crest. "Cromo em falta" slot: `frog-cigar`, greyed.
+3. Barber cromos: `frog-head` as the club crest. "Procura-se" slot: `frog-cv` (holding a CV, pointing at the reader).
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
 5. Banners: the "Sapos a virar príncipes" Sacavém sticker. The gallery itself only shows people.
 

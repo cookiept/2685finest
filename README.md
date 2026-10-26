@@ -20,7 +20,7 @@ Landing page for **2685 Finest Barbearia** (Sacavém, Loures). Static HTML/CSS/J
 │   │   ├── config.js          # WhatsApp number, Booksy & Instagram links
 │   │   └── main.js            # Nav, news card stack, tabs, contact form, plant wind
 │   └── images/
-│       ├── brand/             # logo-light/dark, frog-standing, frog-lounging, frog-cigar,
+│       ├── brand/             # logo-light/dark, frog-standing, frog-lounging, frog-cigar, frog-cv,
 │       │                      # frog-head, sticker-sacavem, favicon-48, apple-touch-icon
 │       ├── team/              # simoes.webp, ricardo.webp
 │       └── gallery/           # interior, exterior, corte-01, corte-02
@@ -77,7 +77,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=14`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=15`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 
