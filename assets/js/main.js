@@ -263,105 +263,49 @@
     fan.closest("section").hidden = true;
   }
 
-  /* ---------- Galeria: 3D coverflow, from assets/data/gallery.js ----------
-     The photo in front faces you with its caption; the others turn away to each side,
-     further back and darker. Arrows, keyboard, a click on a side photo, or a swipe. */
+  /* ---------- Galeria: photo grid, from assets/data/gallery.js ----------
+     A click on a photo opens it bigger in a <dialog>. */
   const gallery = Array.isArray(window.SITE_GALLERY) ? window.SITE_GALLERY : [];
-  const flow = document.querySelector("[data-coverflow]");
+  const grid = document.querySelector("[data-gallery]");
+  const box = document.querySelector("[data-lightbox]");
 
-  if (flow && gallery.length) {
-    const stage = flow.querySelector("[data-coverflow-stage]");
-    const booksy = config.booksy || "#contacto";
-    const total = gallery.length;
-
-    const items = gallery.map((g, i) => {
-      const card = el("figure", "flow-card");
-      card.setAttribute("role", "group");
-      card.setAttribute("aria-roledescription", "slide");
-      card.setAttribute("aria-label", `${i + 1} de ${total}`);
-
+  if (grid && gallery.length) {
+    gallery.forEach((g) => {
+      const item = el("li", "photo-grid__item");
+      const btn = el("button", "photo-grid__btn");
+      btn.type = "button";
+      const frame = el("span", "photo-grid__frame");
       const img = el("img");
       img.src = g.image;
       img.alt = g.alt || "";
-      img.loading = i < 3 ? "eager" : "lazy";
+      img.loading = "lazy";
       img.decoding = "async";
-      img.draggable = false;
-      card.append(img);
-
-      if (g.tag) card.append(el("span", "flow-card__tag", g.tag));
-
-      const cap = el("figcaption", "flow-card__caption");
-      cap.append(el("p", "flow-card__title", g.title));
-      if (g.subtitle) cap.append(el("p", "flow-card__subtitle", "– " + g.subtitle));
-      cap.append(el("span", "flow-card__rule"));
-      if (g.text) cap.append(el("p", "flow-card__text", g.text));
-      const cta = g.cta || { label: "Marcar este corte", href: booksy };
-      const link = el("a", "flow-card__btn", cta.label);
-      link.href = cta.href;
-      if (/^https?:/.test(cta.href)) { link.target = "_blank"; link.rel = "noopener"; }
-      link.insertAdjacentHTML("beforeend", '<svg width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>');
-      cap.append(link);
-      card.append(cap);
-
-      stage.append(card);
-      return card;
-    });
-
-    const wrap = (n) => ((n % total) + total) % total;
-    const offsetOf = (i, a) => {
-      const raw = i - a;
-      const alt = raw > 0 ? raw - total : raw + total;
-      return Math.abs(alt) < Math.abs(raw) ? alt : raw;
-    };
-
-    let active = 0;
-    const layout = () => {
-      const w = items[0].offsetWidth;
-      items.forEach((card, i) => {
-        const off = offsetOf(i, active);
-        const abs = Math.abs(off);
-        const side = Math.sign(off);
-        // first neighbour tucks just behind the front photo; the next one peeks further out
-        const x = abs === 0 ? 0 : side * (w * 0.78 + (abs - 1) * w * 0.55);
-        const rotY = abs === 0 ? 0 : -side * 32;
-        const z = abs === 0 ? 0 : -140 - (abs - 1) * 120;
-        card.style.transform = `translateX(-50%) translate3d(${x}px, 0, ${z}px) rotateY(${rotY}deg)`;
-        card.style.zIndex = String(50 - abs);
-        card.style.setProperty("--shade", abs === 0 ? 0 : Math.min(0.75, 0.35 + abs * 0.2));
-        card.classList.toggle("is-active", abs === 0);
-        card.classList.toggle("is-hidden", abs > 2);
-        card.inert = abs !== 0;
-        card.setAttribute("aria-hidden", abs === 0 ? "false" : "true");
+      frame.append(img);
+      btn.append(frame);
+      if (g.title) {
+        const cap = el("span", "photo-grid__caption");
+        cap.append(el("strong", "", g.title));
+        if (g.subtitle) cap.append(" · " + g.subtitle);
+        btn.append(cap);
+      }
+      btn.addEventListener("click", () => {
+        if (!box || typeof box.showModal !== "function") return;
+        box.querySelector("[data-lightbox-img]").src = g.image;
+        box.querySelector("[data-lightbox-img]").alt = g.alt || "";
+        box.querySelector("[data-lightbox-caption]").textContent = [g.title, g.text].filter(Boolean).join(" · ");
+        box.showModal();
       });
-    };
-    const go = (i) => { active = wrap(i); layout(); };
-
-    flow.querySelector("[data-coverflow-prev]").addEventListener("click", () => go(active - 1));
-    flow.querySelector("[data-coverflow-next]").addEventListener("click", () => go(active + 1));
-    stage.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
-    });
-    stage.addEventListener("click", (e) => {
-      const card = e.target.closest(".flow-card");
-      if (card && !card.classList.contains("is-active")) go(items.indexOf(card));
+      item.append(btn);
+      grid.append(item);
     });
 
-    // Swipe
-    let sx = null;
-    stage.addEventListener("pointerdown", (e) => { sx = e.clientX; });
-    window.addEventListener("pointerup", (e) => {
-      if (sx === null) return;
-      const dx = e.clientX - sx;
-      sx = null;
-      if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1));
-    });
-
-    window.addEventListener("resize", layout);
-    layout();
-    requestAnimationFrame(() => flow.classList.add("is-ready"));
-  } else if (flow) {
-    flow.closest("section").hidden = true;
+    if (box) {
+      box.querySelector("[data-lightbox-close]").addEventListener("click", () => box.close());
+      // a click on the dark backdrop closes it too
+      box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
+    }
+  } else if (grid) {
+    grid.closest("section").hidden = true;
   }
 
   /* ---------- Service tabs (WAI-ARIA tabs pattern) ---------- */

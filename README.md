@@ -43,7 +43,7 @@ To use a banner designed elsewhere (e.g. Canva, about 2400×1000), put the image
 
 ## Updating the gallery
 
-Edit `assets/data/gallery.js`: one entry per photo (image, alt, tag, title, subtitle, text, optional button). Use photos of people, ideally portrait.
+Edit `assets/data/gallery.js`: one entry per photo (image, alt, title, subtitle, text). Use photos of people, ideally portrait, and add them in groups of 4 so the rows stay full.
 
 ## Images
 
@@ -77,7 +77,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=15`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=16`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 

@@ -54,7 +54,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
 - **Inputs**: hairline border that turns forest on focus. No glow.
 
-- **Galeria (3D coverflow)**: the one deep-green room (`#1d2a1b`–`#24331f`, same hue as the wall) with a soft green glow. The front photo stands upright with tag, Antonio title + subtitle, a short line and a pale-green pill button; the photos on each side turn away 32° in 3D, further back and shaded. Arrows on the sides, keyboard, swipe, or click a side photo. Only photos of people, from `assets/data/gallery.js`.
+- **Galeria (grelha simples)**: plain photos on white, 4 per row on desktop and 2 on mobile, 4:5 with rounded corners and a short caption underneath (title in bold, subtitle in grey). Hover zooms the photo slightly; a click opens it bigger in a `<dialog>` with its line of text. Kept deliberately quiet because the news fan, plants and cromos already carry the playful parts. Only photos of people, from `assets/data/gallery.js`.
 
 ## The frog
 
