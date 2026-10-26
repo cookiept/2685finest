@@ -21,12 +21,10 @@
   nav.addEventListener("click", (e) => { if (e.target.closest("a")) setNav(false); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
 
-  /* ---------- Novidades: notice bar + cards from assets/data/news.js ---------- */
+  /* ---------- Novidades: notice bar + headline + list, from assets/data/news.js ---------- */
   const news = Array.isArray(window.SITE_NEWS) ? window.SITE_NEWS : [];
   const notice = document.querySelector("[data-notice]");
-  const track = document.querySelector("[data-news-track]");
-  const prevBtn = document.querySelector("[data-news-prev]");
-  const nextBtn = document.querySelector("[data-news-next]");
+  const newsRoot = document.querySelector("[data-news]");
 
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
@@ -35,61 +33,62 @@
     return node;
   };
 
+  const newsMedia = (item, className) => {
+    const media = el("div", className + (item.fit === "contain" ? " " + className + "--contain" : ""));
+    if (item.image) {
+      const img = el("img");
+      img.src = item.image;
+      img.alt = item.alt || "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      media.append(img);
+    }
+    return media;
+  };
+
+  const newsMeta = (item) => {
+    const meta = el("p", "news__meta");
+    if (item.tag) meta.append(el("span", "news__tag", item.tag));
+    if (item.date) meta.append(el("span", "", item.date));
+    return meta;
+  };
+
+  const newsLink = (item) => {
+    if (!item.cta || !item.cta.href) return null;
+    const link = el("a", "link", item.cta.label);
+    link.href = item.cta.href;
+    if (/^https?:/.test(item.cta.href)) { link.target = "_blank"; link.rel = "noopener"; }
+    link.insertAdjacentHTML("beforeend", '<svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>');
+    return link;
+  };
+
   if (news.length && notice) notice.textContent = news[0].notice || news[0].title;
 
-  if (track && news.length) {
-    news.forEach((item, i) => {
-      const card = el("article", "news-card");
-      card.setAttribute("aria-label", `${i + 1} de ${news.length}: ${item.title}`);
+  if (newsRoot && news.length) {
+    const [first, ...rest] = news;
 
-      const media = el("div", "news-card__media" + (item.fit === "contain" ? " news-card__media--contain" : ""));
-      if (item.image) {
-        const img = el("img");
-        img.src = item.image;
-        img.alt = item.alt || "";
-        img.loading = "lazy";
-        img.decoding = "async";
-        media.append(img);
-      }
+    const lead = newsRoot.querySelector("[data-news-lead]");
+    const leadBody = el("div", "news__lead-body");
+    leadBody.append(newsMeta(first), el("h3", "news__lead-title", first.title));
+    if (first.text) leadBody.append(el("p", "news__lead-text", first.text));
+    const leadLink = newsLink(first);
+    if (leadLink) leadBody.append(leadLink);
+    lead.append(newsMedia(first, "news__lead-media"), leadBody);
 
-      const body = el("div", "news-card__body");
-      const meta = el("p", "news-card__meta");
-      if (item.tag) meta.append(el("span", "news-card__tag", item.tag));
-      if (item.date) meta.append(el("span", "", item.date));
-      body.append(meta, el("h3", "news-card__title", item.title));
-      if (item.text) body.append(el("p", "news-card__text", item.text));
-      if (item.cta && item.cta.href) {
-        const link = el("a", "link", item.cta.label);
-        link.href = item.cta.href;
-        if (/^https?:/.test(item.cta.href)) { link.target = "_blank"; link.rel = "noopener"; }
-        body.append(link);
-      }
-
-      card.append(media, body);
-      track.append(card);
+    const list = newsRoot.querySelector("[data-news-list]");
+    rest.forEach((item) => {
+      const row = el("li", "news__item");
+      const body = el("div", "news__item-body");
+      body.append(newsMeta(item), el("h3", "news__item-title", item.title));
+      if (item.text) body.append(el("p", "news__item-text", item.text));
+      const link = newsLink(item);
+      if (link) body.append(link);
+      row.append(newsMedia(item, "news__thumb"), body);
+      list.append(row);
     });
-
-    const cards = Array.from(track.children);
-    const stepSize = () => cards[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || 0);
-
-    const update = () => {
-      const max = track.scrollWidth - track.clientWidth;
-      prevBtn.disabled = track.scrollLeft <= 2;
-      nextBtn.disabled = track.scrollLeft >= max - 2;
-      prevBtn.parentElement.hidden = max <= 2;
-    };
-
-    prevBtn.addEventListener("click", () => track.scrollBy({ left: -stepSize(), behavior: "smooth" }));
-    nextBtn.addEventListener("click", () => track.scrollBy({ left: stepSize(), behavior: "smooth" }));
-    track.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") { e.preventDefault(); track.scrollBy({ left: stepSize(), behavior: "smooth" }); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: -stepSize(), behavior: "smooth" }); }
-    });
-    track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
-    window.addEventListener("resize", update);
-    update();
-  } else if (track) {
-    track.closest("section").hidden = true;
+    if (!rest.length) list.hidden = true;
+  } else if (newsRoot) {
+    newsRoot.closest("section").hidden = true;
   }
 
   /* ---------- Service tabs (WAI-ARIA tabs pattern) ---------- */

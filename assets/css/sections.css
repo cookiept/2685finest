@@ -33,31 +33,30 @@
   .hero__frog { left: -.5rem; width: 52%; bottom: -1rem; }
 }
 
-/* ---------- Novidades ---------- */
-.news__controls { display: flex; gap: .5rem; }
-.news__track {
-  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3rem) / 3);
-  gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-  scrollbar-width: none; overscroll-behavior-x: contain; padding: 2px;
-}
-.news__track::-webkit-scrollbar { display: none; }
+/* ---------- Novidades: one headline + a short list ---------- */
+.news__layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.news__meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: var(--text-caption); color: var(--graphite); }
+.news__tag { padding: .15rem .5rem; border-radius: var(--radius-btn); background: var(--moss-wash); color: var(--forest); font-weight: 600; }
+.news .link { justify-self: start; }
 
-.news-card {
-  scroll-snap-align: start; display: grid; grid-template-rows: auto 1fr;
-  background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
-}
-.news-card__media { aspect-ratio: 16 / 10; background: var(--moss-wash); overflow: hidden; }
-.news-card__media img { width: 100%; height: 100%; object-fit: cover; }
-.news-card__media--contain img { object-fit: contain; padding: 1rem; }
-.news-card__body { display: grid; gap: .5rem; align-content: start; padding: 1.5rem; }
-.news-card__meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: var(--text-caption); color: var(--graphite); }
-.news-card__tag { padding: .15rem .5rem; border-radius: var(--radius-btn); background: var(--moss-wash); color: var(--forest); font-weight: 600; }
-.news-card__title { font-size: 1.25rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
-.news-card__text { color: var(--graphite); font-size: .95rem; }
-.news-card .link { margin-top: .25rem; justify-self: start; }
+.news__lead { display: grid; gap: 1.5rem; }
+.news__lead-media { aspect-ratio: 16 / 10; border-radius: var(--radius-lg); background: var(--moss-wash); overflow: hidden; }
+.news__lead-media img, .news__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.news__lead-media--contain img { object-fit: contain; padding: 9% 14%; }
+.news__lead-body { display: grid; gap: .75rem; }
+.news__lead-title { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.news__lead-text { color: var(--graphite); font-size: var(--text-sub); max-width: 46ch; }
 
-@media (max-width: 1000px) { .news__track { grid-auto-columns: calc((100% - 1.5rem) / 2); } }
-@media (max-width: 640px) { .news__track { grid-auto-columns: 85%; gap: 1rem; } }
+.news__list { display: grid; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+.news__item { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1.25rem; padding-block: 1.5rem; border-bottom: 1px solid var(--border); }
+.news__thumb { aspect-ratio: 1; border-radius: var(--radius); background: var(--moss-wash); overflow: hidden; }
+.news__thumb--contain img { object-fit: contain; padding: 12%; }
+.news__item-body { display: grid; gap: .4rem; align-content: start; }
+.news__item-title { font-size: var(--text-sub); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+.news__item-text { color: var(--graphite); font-size: .95rem; }
+
+@media (max-width: 900px) { .news__layout { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .news__item { grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; } }
 
 /* ---------- A casa ---------- */
 .about__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 4rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
@@ -103,22 +102,72 @@
   margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
 }
 
-/* ---------- Equipa ---------- */
-.team__grid { display: grid; grid-template-columns: 1fr 1fr .85fr; gap: 1.5rem; }
-.barber { display: grid; grid-template-rows: auto 1fr; gap: 1.25rem; }
-.barber__photo { aspect-ratio: 1; }
-.barber__body { display: grid; gap: .5rem; align-content: start; }
-.barber .link { margin-top: .5rem; }
+/* ---------- Equipa: football-sticker cards ("cromos") ---------- */
+.team__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+.barber { display: grid; justify-items: start; gap: .75rem; }
+.barber__bio { max-width: 36ch; }
+.barber .cromo { margin-bottom: .75rem; }
 
-.join {
-  display: grid; align-content: end; justify-items: start; gap: .75rem;
-  padding: 2rem; border-radius: var(--radius-lg); background: var(--cream);
+.cromo {
+  position: relative; width: 100%; display: grid; gap: .6rem;
+  padding: .7rem .7rem .9rem; border-radius: var(--radius-lg);
+  background: var(--paper); border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(21, 30, 27, .06);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
-.join img { height: 8rem; width: auto; margin-bottom: auto; }
-.join p { color: var(--graphite); }
+.cromo::after { /* faint sheen that crosses the card on hover */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%);
+  background-size: 250% 100%; background-position: 120% 0; opacity: 0;
+  transition: background-position .9s var(--ease), opacity .3s;
+}
+.cromo__top {
+  display: flex; justify-content: space-between; padding-inline: .2rem;
+  font-family: var(--font-display); font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--wall);
+}
+.cromo__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--wall); }
+.cromo__photo > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.cromo__num {
+  position: absolute; top: .6rem; left: .6rem; min-width: 2.6rem; padding: .25rem .4rem; border-radius: var(--radius-btn);
+  background: var(--paper); color: var(--forest); text-align: center;
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; line-height: 1; letter-spacing: .04em;
+}
+.cromo__crest {
+  position: absolute; right: .6rem; bottom: .6rem; width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  background: var(--moss-wash); border: 3px solid var(--paper);
+}
+.cromo__plate { padding: .75rem .9rem .7rem; border-radius: var(--radius); background: var(--forest); color: var(--paper); }
+.cromo__name { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
+.cromo__role { margin-top: .3rem; font-size: var(--text-caption); letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.cromo__stats { display: grid; grid-template-columns: 1fr 1fr; padding-inline: .2rem; }
+.cromo__stats div { display: grid; gap: .1rem; padding-top: .5rem; }
+.cromo__stats div + div { padding-left: .9rem; border-left: 1px solid var(--border); }
+.cromo__stats dt { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--wall); }
+.cromo__stats dd { font-size: var(--text-sm); font-weight: 600; }
 
-@media (max-width: 1000px) { .team__grid { grid-template-columns: 1fr 1fr; } .join { grid-column: 1 / -1; } }
-@media (max-width: 600px) { .team__grid { grid-template-columns: 1fr; } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .barber:hover .cromo { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--shadow-photo); }
+  .barber:nth-child(2):hover .cromo { transform: translateY(-4px) rotate(1deg); }
+  .barber:hover .cromo::after { opacity: 1; background-position: -20% 0; }
+}
+
+/* The empty slot in the album */
+.cromo--missing {
+  aspect-ratio: 5 / 7.4; place-items: center; align-content: center; gap: 1rem;
+  background: var(--fog); border: 1.5px dashed #c9cdc6; box-shadow: none;
+}
+.cromo--missing img { height: 9rem; width: auto; opacity: .35; filter: grayscale(1); }
+.cromo--missing .cromo__num { background: transparent; color: var(--graphite); border: 1px dashed #c9cdc6; }
+.cromo__missing-label { font-family: var(--font-display); font-size: 1rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--graphite); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .barber--missing:hover .cromo--missing img { opacity: .6; filter: none; transition: opacity .4s, filter .4s; }
+}
+
+@media (max-width: 1000px) { .team__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .team__grid { grid-template-columns: 1fr; max-width: 23rem; margin-inline: auto; }
+  .cromo--missing { aspect-ratio: auto; padding-block: 2rem; }
+}
 
 /* ---------- Photo band ---------- */
 .band { position: relative; overflow: hidden; background: var(--ink); color: var(--paper); }
@@ -196,3 +245,50 @@
   .site-footer__brand { grid-column: 1 / -1; }
   .site-footer__frog { display: none; }
 }
+
+/* ---------- Plants: decorative ivy and eucalyptus in the page margins ----------
+   Still by default. When the mouse passes over a plant, it sways a little and
+   its leaves rustle once. Nothing moves for touch or reduced-motion users. */
+.hero, .about, .team, .contact { position: relative; }
+.hero, .about, .team, .contact { overflow-x: clip; }
+
+.plant { position: absolute; z-index: 2; height: auto; overflow: visible; color: var(--wall); pointer-events: none; }
+.plant .sway { pointer-events: visiblePainted; }
+.plant .vine { fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; }
+.plant use { stroke: currentColor; stroke-width: 1.1; stroke-linejoin: round; }
+.plant .lf { fill: #dfe8d8; }
+.plant .lf--b { fill: #cbdac2; }
+.plant .sway, .plant .leaf { transform-box: fill-box; }
+.plant .sway { transform-origin: 50% 0; }
+.plant .sway--base { transform-origin: 0 100%; }
+.plant .leaf { transform-origin: 50% 0; }
+.plant .leaf--side { transform-origin: 0 50%; }
+
+.plant--hero   { top: 0; right: max(.5rem, calc(50% - 600px - 8.5rem)); width: 7rem; }
+.plant--hero-l { top: 0; left: max(.5rem, calc(50% - 600px - 7.5rem)); width: 5.5rem; }
+.plant--about  { top: 2.5rem; right: max(-3rem, calc(50% - 600px - 11rem)); width: 11rem; transform: scaleX(-1); }
+.plant--team   { top: 0; left: max(.5rem, calc(50% - 600px - 8rem)); width: 6rem; }
+.plant--contact{ bottom: 1.5rem; left: max(-3rem, calc(50% - 600px - 11rem)); width: 11rem; }
+.plant--footer { display: none; }
+
+@keyframes plant-sway {
+  0%, 100% { transform: rotate(0); }
+  30% { transform: rotate(2.2deg); }
+  65% { transform: rotate(-1.4deg); }
+}
+@keyframes leaf-rustle {
+  0%, 100% { transform: rotate(0); }
+  35% { transform: rotate(7deg); }
+  70% { transform: rotate(-4deg); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .plant:hover .sway { animation: plant-sway 2.8s var(--ease); }
+  .plant:hover .leaf { animation: leaf-rustle 1.6s ease-in-out var(--d, 0s); }
+}
+
+/* Only where there is room in the margins; on small screens one short vine stays in the hero */
+@media (max-width: 1279px) {
+  .plant--hero, .plant--about, .plant--team, .plant--contact { display: none; }
+  .plant--hero-l { left: auto; right: .25rem; width: 3.75rem; }
+}
+@media (min-width: 861px) and (max-width: 1279px) { .plant--hero-l { display: none; } }

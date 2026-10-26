@@ -45,7 +45,9 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 
 - **Notice bar**: thin green bar above the header with the latest news.
 - **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
-- **News card**: image, tag + date, title, text, optional link. Rendered from `assets/data/news.js`.
+- **Novidades**: one headline (large image, tag + date, title, text, link) with the other items listed beside it as rows with a small thumbnail and hairline dividers. Rendered from `assets/data/news.js`.
+- **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Cromo em falta") invites barbers to join.
+- **Plants**: hand-drawn ivy and eucalyptus SVGs in the page margins (hero, A casa, Equipa, Contacto), wall-green outline with pale leaves. Still by default; on mouse hover they sway about 2° and the leaves rustle once. No motion on touch or with reduced motion. Hidden below 1280px except one short vine in the mobile hero.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
 - **Featured service card** and **rating card** on `--moss-wash`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
@@ -56,14 +58,14 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 The shop's mascot (crown, gold chain with "85"):
 
 1. Hero: `frog-lounging`, resting on the corner of the interior photo.
-2. News cards: whatever image each news item uses.
-3. "Há lugar na lagoa?" card: `frog-cigar`.
+2. Novidades: whatever image each news item uses.
+3. Barber cromos: `frog-head` as the club crest. "Cromo em falta" slot: `frog-cigar`, greyed.
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
 5. Gallery: the "Sapos a virar príncipes" Sacavém sticker.
 
 ## Imagery
 
-Real photos only: the interior, the façade, the barbers, the cuts. No stock photos and no decorative graphics apart from the mascot.
+Real photos only: the interior, the façade, the barbers, the cuts. No stock photos. The only decorative graphics are the mascot and the margin plants.
 
 ## Voice
 
