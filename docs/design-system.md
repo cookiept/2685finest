@@ -60,7 +60,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 The shop's mascot (crown, gold chain with "85"):
 
 1. Hero: `frog-lounging`, resting on the corner of the interior photo.
-2. Novidades: every banner carries a frog (lounging, standing, cigar, the Sacavém sticker, and `frog-cv` on the "Estamos a recrutar!" banner). That one uses the `hiring` theme: a crumpled paper job ad with a red "Vaga aberta" rubber stamp and tear-off phone tabs along the bottom (one already taken). The Tonik partnership banner uses the `gym` theme: a dark green chalkboard in a wooden frame, a "Treino do dia" list in chalk (Agachamento 4×8, Supino 3×10, Skinfade 1× ✓) and Tonik red only on the kicker, the tick and the button; frog: `frog-gym`.
+2. Novidades: every banner is drawn as a real object and carries a frog: Recrutamento = paper job ad (`frog-cv`, red "Vaga aberta" rubber stamp, tear-off phone tabs); Tonik = gym chalkboard in a wooden frame (`frog-gym`, "Treino do dia" in chalk, Tonik red accents); Site novo = phone with a WhatsApp chat (`frog-lounging` leaning on it); Booksy = cream ticket with a green perforated "24/7 · Admite 1 sapo" stub (`frog-standing`); Hot Towel = flickering green neon sign on a dark brick wall (`frog-cigar`); Fidelização = kraft card with a stamp card of frog-head stamps (5 of 8). Themes and their extra fields are documented at the top of `assets/data/news.js`.
 3. Barber cards: `frog-head` as a small crest. "Procura-se barbeiro" strip: `frog-cv` (holding a CV, pointing at the reader).
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
 5. Banners: the "Sapos a virar príncipes" Sacavém sticker. The gallery itself only shows people.

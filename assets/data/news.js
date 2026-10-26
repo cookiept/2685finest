@@ -1,20 +1,25 @@
 /* ==========================================================
-   Novidades da casa: the banners in the news carousel
+   Novidades da casa: the banners in the news card stack
    Edit this list to update the news on the homepage.
 
-   - theme: how the banner is drawn
-       "green" : shop-green background, white text, illustration on the right
-       "light" : pale green background, dark text, illustration on the right
-       "photo" : the image fills the banner, text on top of it
-       "hiring": a paper job ad with a stamp and tear-off tabs (set tabs to the phone number)
-       "gym"   : a gym chalkboard; list holds the "treino do dia" rows as [name, value]
-   - image: the frog for this banner (assets/images/brand/frog-*.webp or sticker-sacavem.webp),
-            or a photo when theme is "photo".
-   - banner: OPTIONAL. A finished banner image (e.g. made in Canva, about 2400x1000).
-             If set, it replaces the drawn banner; title + text are still used as its description.
+   - theme: how the banner is drawn. Each one is a real object:
+       "hiring"  : a paper job ad with a rubber stamp and tear-off phone tabs
+       "gym"     : a gym chalkboard with the "treino do dia" in chalk
+       "chat"    : a phone with a WhatsApp-style conversation
+       "ticket"  : a paper ticket with a perforated stub
+       "neon"    : a neon sign glowing on a dark brick wall
+       "loyalty" : a kraft loyalty card with frog stamps
+       "green" / "light" / "photo" : plain banners (photo fills the banner)
+   - image: the frog for this banner (assets/images/brand/frog-*.webp), or a photo for "photo".
+   - banner: OPTIONAL. A finished banner image (about 2400x1000) that replaces the drawn one.
    - cta is optional: { label, href }.
-   - tabs is optional (hiring theme): the text printed on each tear-off tab.
-   - list is optional: rows of [name, value], drawn in chalk on the gym board.
+   Extras, only for the theme that uses them:
+   - stamp: text on the rubber stamp (hiring)
+   - tabs: text on each tear-off tab, usually the phone number (hiring)
+   - list: rows of [name, value] written in chalk (gym)
+   - chat: lines of ["in" | "out", text] shown on the phone (chat)
+   - stub: { big, small } printed on the ticket stub (ticket)
+   - stamps: { total, filled } boxes on the loyalty card (loyalty)
    ========================================================== */
 window.SITE_NEWS = [
   {
@@ -25,6 +30,7 @@ window.SITE_NEWS = [
     theme: "hiring",
     image: "assets/images/brand/frog-cv.webp",
     alt: "O sapo da 2685 Finest, de coroa, com o currículo na mão a apontar para ti",
+    stamp: "Vaga aberta",
     tabs: "927 266 234",
     cta: { label: "Quero a vaga", href: "#contacto" }
   },
@@ -42,27 +48,29 @@ window.SITE_NEWS = [
   {
     tag: "Novo",
     date: "Outubro 2026",
-    title: "Site novo. Fala connosco pelo WhatsApp.",
-    text: "Serviços, preços e barbeiros num só sítio, e uma mensagem direta para a barbearia.",
-    theme: "green",
+    title: "Site novo. Fala connosco.",
+    text: "Serviços, preços e barbeiros num só sítio, e uma mensagem direta para a barbearia pelo WhatsApp.",
+    theme: "chat",
     image: "assets/images/brand/frog-lounging.webp",
+    chat: [["in", "Olá! Vi o site novo 👀"], ["out", "Bem-vindo à 2685! 🐸"], ["in", "Têm vaga sábado de manhã?"], ["out", "Temos às 10h. Marcamos?"]],
     cta: { label: "Falar connosco", href: "#contacto" }
   },
   {
     tag: "Marcações",
-    date: "24 horas por dia",
-    title: "Marca no Booksy, a qualquer hora.",
-    text: "Escolhe o barbeiro, o serviço e a hora em menos de um minuto.",
-    theme: "light",
+    date: "Booksy",
+    title: "Marca a qualquer hora.",
+    text: "Escolhe o barbeiro, o serviço e a hora em menos de um minuto. Até às 3 da manhã.",
+    theme: "ticket",
     image: "assets/images/brand/frog-standing.webp",
+    stub: { big: "24/7", small: "Admite 1 sapo" },
     cta: { label: "Marcar agora", href: "https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" }
   },
   {
     tag: "Ritual",
     date: "Na carta",
-    title: "Barba Hot Towel com massagem.",
+    title: "Hot Towel",
     text: "Toalha quente, navalha e massagem incluída. 11€ sozinha, ou 23€ com skinfade.",
-    theme: "green",
+    theme: "neon",
     image: "assets/images/brand/frog-cigar.webp",
     cta: { label: "Ver preços", href: "#servicos" }
   },
@@ -71,8 +79,8 @@ window.SITE_NEWS = [
     date: "",
     title: "Quem volta, ganha.",
     text: "Temos programa de fidelização. Pergunta na tua próxima visita como funciona.",
-    theme: "light",
-    image: "assets/images/brand/sticker-sacavem.webp",
+    theme: "loyalty",
+    stamps: { total: 8, filled: 5 },
     cta: { label: "Ver horário", href: "#contacto" }
   }
 ];

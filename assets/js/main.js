@@ -121,6 +121,40 @@
     }
     slide.append(copy);
 
+    // Optional props drawn next to the copy; each theme styles its own
+    const prop = el("div", "banner__prop");
+    prop.setAttribute("aria-hidden", "true");
+
+    // a phone with a WhatsApp-style chat: [["in" | "out", "text"], ...]
+    if (Array.isArray(item.chat)) {
+      const phone = el("div", "banner__phone");
+      item.chat.forEach(([side, text]) => phone.append(el("p", "bubble bubble--" + side, text)));
+      prop.append(phone);
+    }
+    // a ticket stub with a big word or number on it
+    if (item.stub) {
+      prop.append(el("span", "banner__stub-big", item.stub.big));
+      if (item.stub.small) prop.append(el("span", "banner__stub-small", item.stub.small));
+    }
+    // a loyalty card with frog stamps: { total, filled }
+    if (item.stamps) {
+      const card = el("div", "banner__stampcard");
+      for (let n = 0; n < item.stamps.total; n++) {
+        const slot = el("span", n < item.stamps.filled ? "is-stamped" : "");
+        slot.style.setProperty("--r", `${(n * 37) % 30 - 15}deg`);
+        card.append(slot);
+      }
+      prop.append(card);
+    }
+    if (prop.childElementCount) slide.append(prop);
+
+    // a rubber stamp across the art
+    if (item.stamp) {
+      const stamp = el("span", "banner__stamp", item.stamp);
+      stamp.setAttribute("aria-hidden", "true");
+      slide.append(stamp);
+    }
+
     // Tear-off tabs along the bottom, like a job ad on a lamp post (one already taken)
     if (item.tabs) {
       const strip = el("div", "banner__tabs");
