@@ -38,7 +38,6 @@ python3 -m http.server 8000
 ## Updating the news ("Novidades")
 
 Edit `assets/data/news.js`. Each item becomes one banner card in the fanned card stack: tag, date, title, text, a frog image, a theme (`green` or `light`) and an optional button.
-The first item also shows in the thin green bar at the very top of the page (its `notice` text, or its title).
 To use a banner designed elsewhere (e.g. Canva, about 2400×1000), put the image in `assets/images/` and set `banner: "assets/images/…"` on the item.
 
 ## Images
@@ -49,7 +48,7 @@ To add more cuts to the gallery, add files to `assets/images/gallery/` and a `<f
 
 ## Page order
 
-Follows what people look for first on a barbershop site: the hero (name, Marcar button, rating, and a line with "Aberto agora", address and phone), then Serviços e preços, Barbeiros, Avaliações, Galeria, Novidades, A casa and Contacto. The latest news also sits in the green bar at the very top. On phones a "Marcar no Booksy / Ligar" bar stays fixed at the bottom.
+Follows what people look for first on a barbershop site: the hero (name, Marcar button, rating, and a line with "Aberto agora", address and phone), then Serviços e preços, Barbeiros, Avaliações, Galeria, Novidades, A casa and Contacto. On phones a "Marcar no Booksy / Ligar" bar stays fixed at the bottom.
 
 Opening hours for the "Aberto agora" line live in `assets/js/config.js` (`hours`).
 
@@ -73,7 +72,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=12`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=13`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 

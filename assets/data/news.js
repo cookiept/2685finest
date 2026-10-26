@@ -2,7 +2,6 @@
    Novidades da casa: the banners in the news carousel
    Edit this list to update the news on the homepage.
 
-   - The FIRST item also appears in the green bar at the very top (its "notice" text, or its title).
    - theme: how the banner is drawn
        "green" : shop-green background, white text, illustration on the right
        "light" : pale green background, dark text, illustration on the right
@@ -19,7 +18,6 @@ window.SITE_NEWS = [
     date: "Outubro 2026",
     title: "Site novo. Fala connosco pelo WhatsApp.",
     text: "Serviços, preços e barbeiros num só sítio, e uma mensagem direta para a barbearia.",
-    notice: "Site novo no ar: já podes falar connosco pelo WhatsApp",
     theme: "green",
     image: "assets/images/brand/frog-lounging.webp",
     cta: { label: "Falar connosco", href: "#contacto" }

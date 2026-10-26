@@ -49,13 +49,12 @@
     openStatus.parentElement.classList.toggle("is-open", open);
   }
 
-  /* ---------- Novidades: notice bar + card stack of banners, from assets/data/news.js ----------
+  /* ---------- Novidades: card stack of banners, from assets/data/news.js ----------
      The banners are fanned out like a hand of cards: the active one in front, the others
      tilted behind it. Arrows, dots, keyboard, a click on a card behind, or dragging the
-     front card all change it. On desktop it advances every 5s, pauses while hovered or
-     focused, and stops once someone takes over. No autoplay on touch or reduced motion. */
+     front card all change it. It advances every 5s, pauses while hovered or focused.
+     No autoplay with reduced motion. */
   const news = Array.isArray(window.SITE_NEWS) ? window.SITE_NEWS : [];
-  const notice = document.querySelector("[data-notice]");
   const fan = document.querySelector("[data-fan]");
 
   const el = (tag, className, text) => {
@@ -115,7 +114,6 @@
     return slide;
   };
 
-  if (news.length && notice) notice.textContent = news[0].notice || news[0].title;
 
   if (fan && news.length) {
     const stage = fan.querySelector("[data-fan-stage]");
@@ -140,7 +138,7 @@
       const dot = el("button", "fan__dot");
       dot.type = "button";
       dot.setAttribute("aria-label", `Ver novidade ${i + 1}: ${news[i].title}`);
-      dot.addEventListener("click", () => { stopAuto(); setActive(i); });
+      dot.addEventListener("click", () => { restartAuto(); setActive(i); });
       dotsWrap.append(dot);
       return dot;
     });
@@ -196,15 +194,15 @@
     stage.addEventListener("click", (e) => {
       const card = e.target.closest(".fan__card");
       if (!card || card.classList.contains("is-active")) return;
-      stopAuto();
+      restartAuto();
       setActive(cards.indexOf(card));
     });
 
-    controls.querySelector("[data-fan-prev]").addEventListener("click", () => { stopAuto(); prev(); });
-    controls.querySelector("[data-fan-next]").addEventListener("click", () => { stopAuto(); next(); });
+    controls.querySelector("[data-fan-prev]").addEventListener("click", () => { restartAuto(); prev(); });
+    controls.querySelector("[data-fan-next]").addEventListener("click", () => { restartAuto(); next(); });
     stage.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { e.preventDefault(); stopAuto(); prev(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); stopAuto(); next(); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); restartAuto(); prev(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); restartAuto(); next(); }
     });
 
     // Drag / swipe the front card
@@ -218,7 +216,7 @@
       if (!start) return;
       const dx = e.clientX - start.x;
       if (!start.moved && Math.abs(dx) < 6) return;
-      if (!start.moved) { start.moved = true; start.card.setPointerCapture?.(e.pointerId); stage.classList.add("is-dragging"); stopAuto(); }
+      if (!start.moved) { start.moved = true; start.card.setPointerCapture?.(e.pointerId); stage.classList.add("is-dragging"); restartAuto(); }
       dragX = dx * 0.85;
       layout();
     });
@@ -241,27 +239,26 @@
     window.addEventListener("pointerup", endDrag);
     window.addEventListener("pointercancel", endDrag);
 
-    // Autoplay on desktop only: pauses on hover, stops once someone takes over
-    const canAuto = len > 1 && !reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    // Autoplay every 5s on every screen. Paused while hovered or focused; any manual
+    // change restarts the 5s count so the card someone picked stays a moment.
+    const canAuto = len > 1 && !reduceMotion;
     let timer = 0;
     let hovering = false;
-    let stopped = !canAuto;
-    function stopAuto() { stopped = true; clearInterval(timer); }
-    const startAuto = () => {
+    function restartAuto() {
       clearInterval(timer);
-      if (stopped) return;
-      timer = setInterval(() => { if (!hovering && !document.hidden) next(); }, 5000);
-    };
+      if (!canAuto) return;
+      timer = setInterval(() => { if (!hovering && !start && !document.hidden) next(); }, 5000);
+    }
     fan.addEventListener("mouseenter", () => { hovering = true; });
     fan.addEventListener("mouseleave", () => { hovering = false; });
-    fan.addEventListener("focusin", () => { hovering = true; });
+    fan.addEventListener("focusin", (e) => { if (e.target.matches(":focus-visible")) hovering = true; });
     fan.addEventListener("focusout", () => { hovering = false; });
 
     if (len < 2) { controls.hidden = true; dotsWrap.hidden = true; }
     window.addEventListener("resize", layout);
     layout();
     requestAnimationFrame(() => fan.classList.add("is-ready")); // enable transitions after first layout
-    startAuto();
+    restartAuto();
   } else if (fan) {
     fan.closest("section").hidden = true;
   }

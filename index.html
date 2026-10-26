@@ -22,10 +22,10 @@
 
   <link rel="preload" as="image" href="assets/images/gallery/interior.webp" type="image/webp">
 
-  <link rel="stylesheet" href="assets/css/tokens.css?v=12">
-  <link rel="stylesheet" href="assets/css/base.css?v=12">
-  <link rel="stylesheet" href="assets/css/components.css?v=12">
-  <link rel="stylesheet" href="assets/css/sections.css?v=12">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=13">
+  <link rel="stylesheet" href="assets/css/base.css?v=13">
+  <link rel="stylesheet" href="assets/css/components.css?v=13">
+  <link rel="stylesheet" href="assets/css/sections.css?v=13">
 
   <script type="application/ld+json">
   {
@@ -73,14 +73,6 @@
   </svg>
 
   <a class="skip-link" href="#main">Saltar para o conteúdo</a>
-
-  <!-- ============ NOTICE: latest news (text comes from assets/data/news.js) ============ -->
-  <div class="notice">
-    <div class="container notice__inner">
-      <span class="notice__tag">Novidade</span>
-      <a href="#novidades" data-notice>O nosso site novo está no ar</a>
-    </div>
-  </div>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header">
@@ -159,7 +151,8 @@
         </div>
 
         <div class="featured">
-          <article class="featured__card">
+          <article class="featured__card featured__card--popular">
+            <span class="badge-popular"><svg width="12" height="12" aria-hidden="true"><use href="#i-star"/></svg>Mais popular</span>
             <p class="featured__tag">Mais pedido</p>
             <h3>Skinfade / Taper / Degradê</h3>
             <p class="featured__price">14€ <span>40 min</span></p>
@@ -187,7 +180,7 @@
 
           <div class="menu__panel" role="tabpanel" id="panel-cabelo" aria-labelledby="tab-cabelo">
             <ul class="price-list">
-              <li><span class="price-list__name">Skinfade / Taper / Degradê</span><span class="price-list__time">40 min</span><span class="price-list__price">14€</span></li>
+              <li class="is-popular"><span class="price-list__name">Skinfade / Taper / Degradê <span class="badge-popular badge-popular--sm"><svg width="10" height="10" aria-hidden="true"><use href="#i-star"/></svg>Mais popular</span></span><span class="price-list__time">40 min</span><span class="price-list__price">14€</span></li>
               <li><span class="price-list__name">Social</span><span class="price-list__time">25 min</span><span class="price-list__price">12€</span></li>
               <li><span class="price-list__name">Corte Cabelo Longo</span><span class="price-list__time">40 min</span><span class="price-list__price">18€</span></li>
               <li><span class="price-list__name">Rapar <small>1 pente, sem lavagem</small></span><span class="price-list__time">10 min</span><span class="price-list__price">9€</span></li>
@@ -262,8 +255,8 @@
                 <p class="cromo__role">Barbeiro · Sacavém</p>
               </div>
               <dl class="cromo__stats">
-                  <div><dt>Especialidade</dt><dd>Fades e designs</dd></div>
-                  <div><dt>Na casa</dt><dd>5 anos</dd></div>
+                  <div><dt>Especialidade</dt><dd>A definir</dd></div>
+                  <div><dt>Na casa</dt><dd>3 anos</dd></div>
               </dl>
             </div>
             <p class="barber__bio muted">Especialista em fades cirúrgicos e designs geométricos. Garante que sais daqui com o corte que imaginaste.</p>
@@ -283,8 +276,8 @@
                 <p class="cromo__role">Barbeiro · Sacavém</p>
               </div>
               <dl class="cromo__stats">
-                  <div><dt>Especialidade</dt><dd>Tesoura e barba</dd></div>
-                  <div><dt>Assinatura</dt><dd>Toalha quente</dd></div>
+                  <div><dt>Especialidade</dt><dd>A definir</dd></div>
+                  <div><dt>Na casa</dt><dd>3 anos</dd></div>
               </dl>
             </div>
             <p class="barber__bio muted">O mestre da tesoura e da barba à moda antiga, com o ritual completo da toalha quente.</p>
@@ -293,12 +286,21 @@
 
           <aside class="barber barber--missing">
             <div class="cromo cromo--missing">
-              <span class="cromo__num">03</span>
-              <img src="assets/images/brand/frog-cigar.webp" alt="" width="197" height="298" loading="lazy" decoding="async">
-              <p class="cromo__missing-label">Cromo em falta</p>
+              <div class="cromo__top"><span>2685 Finest</span><span>Época 2026</span></div>
+              <figure class="cromo__photo">
+                <img class="cromo__ghost" src="assets/images/brand/frog-cigar.webp" alt="" width="197" height="298" loading="lazy" decoding="async">
+                <span class="cromo__num" aria-label="Cromo número 03">03</span>
+              </figure>
+              <div class="cromo__plate">
+                <h3 class="cromo__name">Cromo em falta</h3>
+                <p class="cromo__role">Barbeiro · Sacavém</p>
+              </div>
+              <dl class="cromo__stats">
+                  <div><dt>Especialidade</dt><dd>A tua</dd></div>
+                  <div><dt>Na casa</dt><dd>Em breve</dd></div>
+              </dl>
             </div>
-            <h3 class="h3">Há lugar na lagoa?</h3>
-            <p class="barber__bio muted">És barbeiro e partilhas a nossa forma de trabalhar? Manda-nos uma mensagem.</p>
+            <p class="barber__bio muted">Podes ser o cromo que nos falta. És barbeiro e partilhas a nossa forma de trabalhar? Manda-nos uma mensagem.</p>
             <a href="#contacto" class="link">Fala connosco <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </aside>
         </div>
@@ -581,8 +583,8 @@
     <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
   </a>
 
-  <script src="assets/js/config.js?v=12"></script>
-  <script src="assets/data/news.js?v=12"></script>
-  <script src="assets/js/main.js?v=12" defer></script>
+  <script src="assets/js/config.js?v=13"></script>
+  <script src="assets/data/news.js?v=13"></script>
+  <script src="assets/js/main.js?v=13" defer></script>
 </body>
 </html>
