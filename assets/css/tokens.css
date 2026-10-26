@@ -1,48 +1,43 @@
 /* ==========================================================
    2685 Finest — Design tokens
-   Colours come from the shop itself: black barber capes,
-   sage-green walls, the frog and its gold crown.
+   White paper, the green of the shop's walls, and nothing loud.
    See docs/design-system.md for usage guidance.
    ========================================================== */
 :root {
   /* Colour */
-  --ink: #0f120e;          /* main background: the black capes */
-  --ink-2: #171b15;        /* raised surfaces */
-  --ink-3: #21271e;        /* cards, inputs */
-  --bone: #f3efe6;         /* primary text, light sections */
-  --bone-dim: #aeab9f;     /* secondary text on dark */
-  --frog: #7cc04b;         /* signature accent: the frog */
-  --frog-deep: #4e8a2a;    /* frog green on light backgrounds */
-  --sage: #5f8458;         /* the shop's walls */
-  --moss: #22341f;         /* deep green panels */
-  --gold: #f0a63a;         /* crown and chain: ratings, small highlights */
-  --line: rgba(243, 239, 230, 0.12);
-  --line-strong: rgba(243, 239, 230, 0.28);
+  --paper: #ffffff;        /* page canvas */
+  --fog: #f5f5f2;          /* alternate sections, tab hover */
+  --moss-wash: #e9efe6;    /* brand-tinted cards (stats, featured) */
+  --cream: #f6efdc;        /* warm highlight card, used once or twice */
+  --ink: #151e1b;          /* text: green-tinted near-black */
+  --graphite: #4d4f4c;     /* secondary text */
+  --border: #e4e5e3;       /* hairlines: cards, inputs, dividers */
+  --forest: #2f4530;       /* primary action, headings accent, stars */
+  --wall: #4d6747;         /* the shop's wall green: icons, details */
+  --leaf: #3f7d22;         /* small text accents and links */
 
   /* Type */
-  --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
-  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sign: "Mr Dafoe", "Brush Script MT", cursive;  /* echoes "Simões" in the logo */
+  --font-display: "Antonio", "Oswald", "Arial Narrow", sans-serif;   /* hero only */
+  --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
 
-  --fs-hero: clamp(5rem, 22vw, 13.5rem);
-  --fs-h2: clamp(2.75rem, 7vw, 5.5rem);
-  --fs-h3: clamp(1.5rem, 2.6vw, 2rem);
-  --fs-lead: clamp(1.1rem, 1.6vw, 1.35rem);
-  --fs-body: 1rem;
-  --fs-small: 0.875rem;
-  --fs-label: 0.75rem;
+  --text-caption: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-body: 1rem;
+  --text-sub: 1.125rem;
+  --text-h3: 1.5rem;
+  --text-h2: clamp(2rem, 4.2vw, 3rem);
+  --text-display: clamp(5rem, 20vw, 10.5rem);
 
   /* Space & shape */
-  --gutter: clamp(1rem, 4vw, 3rem);
-  --section-y: clamp(5rem, 11vw, 9rem);
-  --max-w: 1280px;
-  --radius-sm: 6px;
-  --radius: 14px;
-  --radius-lg: 28px;
-  --radius-pill: 999px;
+  --max-w: 1200px;
+  --gutter: max(16px, 4vw);
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+  --radius-btn: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
 
-  /* Motion */
-  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --dur: 0.5s;
+  /* Elevation: only for photos that should feel lifted */
+  --shadow-photo: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
 }

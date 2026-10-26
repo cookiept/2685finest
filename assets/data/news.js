@@ -1,7 +1,7 @@
 /* ==========================================================
    Novidades da casa
    Edit this list to update the news on the homepage.
-   - The FIRST item also appears in the green pill at the top of the page.
+   - The FIRST item also appears in the green bar at the very top (its "notice" text, or its title).
    - image: any file in assets/images/ (photos look best at 4:3 or square).
    - fit: "cover" for photos, "contain" for illustrations and the frog.
    - cta is optional: { label, href }.
@@ -12,14 +12,14 @@ window.SITE_NEWS = [
     date: "Outubro 2026",
     title: "O nosso site novo está no ar",
     text: "Serviços, preços e barbeiros num só sítio. E agora podes falar connosco pelo WhatsApp diretamente daqui.",
-    pill: "Já podes falar connosco pelo WhatsApp",
+    notice: "Site novo no ar: já podes falar connosco pelo WhatsApp",
     image: "assets/images/brand/frog-lounging.webp",
     fit: "contain",
     cta: { label: "Falar connosco", href: "#contacto" }
   },
   {
     tag: "Marcações",
-    date: "Sempre",
+    date: "",
     title: "Marca 24/7 no Booksy",
     text: "Escolhe o barbeiro, o serviço e a hora em menos de um minuto, a qualquer hora do dia.",
     image: "assets/images/gallery/interior.webp",
@@ -37,7 +37,7 @@ window.SITE_NEWS = [
   },
   {
     tag: "Clientes da casa",
-    date: "Sempre",
+    date: "",
     title: "Temos programa de fidelização",
     text: "Quem volta, ganha. Pergunta na tua próxima visita como funciona.",
     image: "assets/images/brand/sticker-sacavem.webp",

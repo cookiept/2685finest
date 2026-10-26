@@ -1,67 +1,70 @@
 # 2685 Finest — Design System
 
-The brand is a neighbourhood barbershop with top-tier standards. The visual language mixes **street poster boldness** (condensed caps, outlined type, rotated ticker) with a **playful frog mascot** and a clean, readable price menu.
+The shop feels clean, calm, artistic and natural: white light, sage-green walls, hanging ivy, black paisley capes.
+The site mirrors that. It is about 90% white paper, with one deep green taken from the walls doing all the work,
+generous whitespace and hairline borders instead of shadows. The frog shows up a few times, with restraint.
 
 All values live in [`assets/css/tokens.css`](../assets/css/tokens.css).
 
 ## Colour
 
-Taken from the shop itself: black barber capes, sage-green walls, the frog and its gold crown.
-
 | Token | Hex | Use |
 | --- | --- | --- |
-| `--ink` | `#0f120e` | Main background (the black capes). |
-| `--ink-2` / `--ink-3` | `#171b15` / `#21271e` | Raised surfaces, cards, inputs. |
-| `--bone` | `#f3efe6` | Primary text on dark; background of the Services section. |
-| `--bone-dim` | `#aeab9f` | Secondary text on dark. |
-| `--frog` | `#7cc04b` | Signature accent: CTAs, highlights. Matches the frog's skin. |
-| `--frog-deep` | `#4e8a2a` | Frog green on light (`--bone`) backgrounds. |
-| `--sage` | `#5f8458` | The shop's walls; hero glow. |
-| `--moss` | `#22341f` | Deep green panels (Reviews, news images, join card). |
-| `--gold` | `#f0a63a` | The crown and chain: ratings, news tags, the "Simões" signature. |
+| `--paper` | `#ffffff` | Page canvas, cards. |
+| `--fog` | `#f5f5f2` | Alternate sections (Novidades, Serviços, Avaliações, footer), tab hover. |
+| `--moss-wash` | `#e9efe6` | Brand-tinted cards: featured services, rating card, news image backgrounds. |
+| `--cream` | `#f6efdc` | Warm highlight card. Used once ("Há lugar na lagoa?"). |
+| `--ink` | `#151e1b` | Text. A green-tinted near-black, never pure black. |
+| `--graphite` | `#4d4f4c` | Secondary text. |
+| `--border` | `#e4e5e3` | Hairlines for cards, inputs, dividers. |
+| `--forest` | `#2f4530` | Primary action, hero title, active tab, stars, links. |
+| `--wall` | `#4d6747` | The shop's wall green, sampled from the interior photo. Icons and eyebrows. |
+| `--leaf` | `#3f7d22` | Success messages. |
 
-Rules: one frog-green element dominates each viewport; gold is for small highlights only. Never put `--frog` text on `--bone`; use `--frog-deep`.
+Rules:
+- `--forest` is for actions and the hero title, never for large background blocks.
+- The only dark section is the photo band ("Onde os sapos viram príncipes"). Don't add more.
+- Stars are green, not yellow.
 
 ## Typography
 
 | Role | Font | Notes |
 | --- | --- | --- |
-| Display | **Anton** | Always uppercase. Headlines, prices, numbers. |
-| Body | **Archivo** 400–800 | Paragraphs, UI, labels. |
-| Accent | **Instrument Serif** italic | The "&" in headings (`.script`). |
-| Signature | **Mr Dafoe** | Only the gold "Simões" in the hero, echoing the script in the logo. |
+| Display | **Antonio** 700 | Hero title only ("2685 Finest"), uppercase, wide tracking. Echoes the condensed letters in the logo. |
+| Everything else | **Manrope** 400–700 | Section titles 700 with tight tracking; body 400; buttons and nav 500. |
 
-Labels (`.label`) are 12px, bold, tracked `.18em`, uppercase, numbered (`01 · A casa`).
+Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 
 ## Shape & space
 
-- Radii: `6px` small, `14px` inputs, `28px` cards and photos, pills for buttons and tags.
-- Sections breathe: `--section-y` is 5–9rem.
-- Layout max width 1280px, fluid gutter.
+- Radii: **4px** buttons, **8px** cards, photos and inputs, **12px** larger panels.
+- Max width 1200px. Sections are 72–120px apart.
+- Shadows only on the hero photo (`--shadow-photo`). Everything else uses hairline borders.
 
 ## Components
 
-- **Buttons**: `.btn--frog` (primary, Booksy), `.btn--ghost` (secondary). Sizes `--sm`, `--lg`.
-- **Photo slot** (`.photo`): striped branded placeholder with a label; an `<img>` inside covers it once the file exists.
-- **Feature card**, **price list**, **tabs**, **barber card**, **score card**, **contact form**, **floating WhatsApp button**.
+- **Notice bar**: thin green bar above the header with the latest news.
+- **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
+- **News card**: image, tag + date, title, text, optional link. Rendered from `assets/data/news.js`.
+- **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
+- **Featured service card** and **rating card** on `--moss-wash`.
+- **Tabs**: 8px radius, hairline; active is forest with white text.
+- **Inputs**: hairline border that turns forest on focus. No glow.
 
 ## The frog
 
-The shop's mascot (crown, gold chain with "85") appears where it adds personality without hurting clarity:
+The shop's mascot (crown, gold chain with "85"):
 
-1. Hero: `frog-standing`, arms crossed, floating gently.
-2. News cards and the About photo: `frog-lounging`.
-3. "Há lugar na lagoa?" card and the hot towel news: `frog-cigar`.
-4. Gallery: the "Sapos a virar príncipes" Sacavém sticker, and `frog-head` on the Instagram tile and contact form.
-5. Favicon: the frog head cropped from the sticker.
+1. Hero: `frog-lounging`, resting on the corner of the interior photo.
+2. News cards: whatever image each news item uses.
+3. "Há lugar na lagoa?" card: `frog-cigar`.
+4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
+5. Gallery: the "Sapos a virar príncipes" Sacavém sticker.
 
-## Motion
+## Imagery
 
-- Elements fade up on scroll (`.reveal`).
-- Ticker marquee in the brand green.
-- Rating bars fill when visible.
-- All motion is disabled under `prefers-reduced-motion`.
+Real photos only: the interior, the façade, the barbers, the cuts. No stock photos and no decorative graphics apart from the mascot.
 
 ## Voice
 
-Portuguese (pt-PT), informal "tu", short and confident. Examples: "Vens pelo fade, voltas pela vibe." · "Saído da cadeira." · "Fala com o sapo."
+Portuguese (pt-PT), informal "tu", calm and warm. Short sentences.

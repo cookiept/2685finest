@@ -11,13 +11,13 @@ Landing page for **2685 Finest Barbearia** (Sacavém, Loures). Static HTML/CSS/J
 │   ├── css/
 │   │   ├── tokens.css         # Design tokens (colours, type, spacing)
 │   │   ├── base.css           # Reset, typography, layout helpers
-│   │   ├── components.css     # Buttons, nav, photos, news pill, form…
-│   │   └── sections.css       # Hero, news, about, services, team, gallery, reviews, contact
+│   │   ├── components.css     # Notice bar, header, buttons, tabs, form…
+│   │   └── sections.css       # Hero, news, about, services, team, photo band, gallery, reviews, contact, footer
 │   ├── data/
 │   │   └── news.js            # "Novidades" cards shown at the top of the page
 │   ├── js/
 │   │   ├── config.js          # WhatsApp number, Booksy & Instagram links
-│   │   └── main.js            # Nav, news carousel, tabs, scroll reveal, contact form
+│   │   └── main.js            # Nav, news carousel, tabs, contact form
 │   └── images/
 │       ├── brand/             # logo-light/dark, frog-standing, frog-lounging, frog-cigar,
 │       │                      # frog-head, sticker-sacavem, favicon-48, apple-touch-icon
@@ -38,7 +38,7 @@ python3 -m http.server 8000
 ## Updating the news ("Novidades")
 
 Edit `assets/data/news.js`. Each item has a tag, date, title, text, image and an optional button.
-The first item also shows in the green "Novidade" pill at the top of the page.
+The first item also shows in the thin green bar at the very top of the page (its `notice` text, or its title).
 Add, remove or reorder items freely; the carousel adapts.
 
 ## Images

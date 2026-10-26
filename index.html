@@ -2,10 +2,10 @@
 <html lang="pt-PT" class="no-js">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>2685 Finest · Simões BarberHouse · Sacavém</title>
   <meta name="description" content="2685 Finest Simões BarberHouse, barbearia em Sacavém. Skinfade, taper, barba hot towel e cortes kids. 5,0 estrelas em 409 avaliações. Marca online 24/7.">
-  <meta name="theme-color" content="#0f120e">
+  <meta name="theme-color" content="#ffffff">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="2685 Finest · Simões BarberHouse">
@@ -18,9 +18,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=Mr+Dafoe&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="assets/images/brand/frog-standing.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/images/gallery/interior.webp" type="image/webp">
 
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "BarberShop",
     "name": "2685 Finest Simões BarberHouse",
-    "image": "assets/images/gallery/interior.webp",
+    "image": "https://cookiept.github.io/2685finest/assets/images/gallery/interior.webp",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rua Herbert Gilbert, 10 e 10A",
@@ -53,13 +53,27 @@
   </script>
 </head>
 <body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
   <a class="skip-link" href="#main">Saltar para o conteúdo</a>
 
+  <!-- ============ NOTICE: latest news (text comes from assets/data/news.js) ============ -->
+  <div class="notice">
+    <div class="container notice__inner">
+      <span class="notice__tag">Novidade</span>
+      <a href="#novidades" data-notice>O nosso site novo está no ar</a>
+    </div>
+  </div>
+
   <!-- ============ HEADER ============ -->
-  <header class="site-header" data-header>
+  <header class="site-header">
     <div class="container site-header__inner">
       <a href="#top" class="brand" aria-label="2685 Finest Simões BarberHouse, início">
-        <img src="assets/images/brand/logo-light.webp" alt="" width="600" height="510">
+        <img src="assets/images/brand/logo-dark.webp" alt="" width="600" height="510">
       </a>
 
       <nav class="nav" id="nav" aria-label="Principal">
@@ -68,10 +82,10 @@
         <a href="#barbeiros">Barbeiros</a>
         <a href="#galeria">Galeria</a>
         <a href="#contacto">Contacto</a>
-        <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--frog btn--sm nav__cta" target="_blank" rel="noopener">Marcar</a>
+        <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--primary" target="_blank" rel="noopener">Marcar</a>
       </nav>
 
-      <button class="nav-toggle" aria-controls="nav" aria-expanded="false" data-nav-toggle>
+      <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" data-nav-toggle>
         <span class="sr-only">Abrir menu</span>
         <span class="nav-toggle__bar"></span>
         <span class="nav-toggle__bar"></span>
@@ -84,158 +98,129 @@
     <section class="hero" id="top">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <a class="news-pill" href="#novidades" data-news-pill>
-            <span class="news-pill__tag">Novidade</span>
-            <span class="news-pill__text">Já podes falar connosco pelo WhatsApp</span>
-            <span aria-hidden="true">→</span>
-          </a>
-
-          <h1 class="hero__title">
-            <span class="hero__line">2685</span>
-            <span class="hero__line hero__line--outline">Finest</span>
-            <span class="hero__sign" aria-hidden="true">Simões</span>
-            <span class="sr-only">Simões BarberHouse</span>
-          </h1>
-
+          <p class="eyebrow">Simões BarberHouse · Sacavém</p>
+          <h1 class="hero__title">2685<br>Finest</h1>
           <p class="hero__lead">
-            <strong>Onde os sapos viram príncipes.</strong>
-            A tua barbearia de confiança em Sacavém: fades limpos, barbas afiadas e aquela vibe que já conheces.
+            Onde os sapos viram príncipes. Uma barbearia de bairro, calma e cuidada,
+            entre paredes verdes e hera a cair do teto.
           </p>
-
           <div class="hero__actions">
-            <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--frog btn--lg" target="_blank" rel="noopener">
-              Marcar no Booksy
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="#contacto" class="btn btn--ghost btn--lg">Falar connosco</a>
+            <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--primary" target="_blank" rel="noopener">Marcar no Booksy</a>
+            <a href="#contacto" class="btn btn--outline">Falar connosco</a>
           </div>
+          <a class="hero__rating" href="#avaliacoes">
+            <span class="stars" aria-hidden="true">
+              <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+            </span>
+            <span><strong>5,0</strong> · 409 avaliações no Booksy</span>
+          </a>
         </div>
 
-        <div class="hero__art">
-          <div class="hero__halo" aria-hidden="true"></div>
-          <img class="hero__frog" src="assets/images/brand/frog-standing.webp" alt="O sapo da 2685 Finest, de coroa e fio de ouro, de braços cruzados" width="472" height="1000" fetchpriority="high">
-          <a class="rating-badge" href="#avaliacoes">
-            <span class="rating-badge__score">5,0</span>
-            <span class="rating-badge__meta">
-              <span class="stars" aria-hidden="true">★★★★★</span>
-              <span>409 avaliações no Booksy</span>
-            </span>
-          </a>
+        <div class="hero__media">
+          <figure class="photo photo--lifted hero__photo">
+            <img src="assets/images/gallery/interior.webp" alt="Interior da 2685 Finest: paredes verdes, hera no teto e cadeiras de barbeiro com capas de bandana" width="1600" height="1200" fetchpriority="high">
+          </figure>
+          <img class="hero__frog" src="assets/images/brand/frog-lounging.webp" alt="O sapo da 2685 Finest, de coroa, deitado a relaxar" width="1200" height="708">
         </div>
       </div>
     </section>
 
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Skinfade</span><span class="marquee__sep">♛</span>
-        <span>Taper</span><span class="marquee__sep">♛</span>
-        <span>Degradê</span><span class="marquee__sep">♛</span>
-        <span>Hot Towel Shave</span><span class="marquee__sep">♛</span>
-        <span>Barba Italiana</span><span class="marquee__sep">♛</span>
-        <span>Kids</span><span class="marquee__sep">♛</span>
-        <span>Skinfade</span><span class="marquee__sep">♛</span>
-        <span>Taper</span><span class="marquee__sep">♛</span>
-        <span>Degradê</span><span class="marquee__sep">♛</span>
-        <span>Hot Towel Shave</span><span class="marquee__sep">♛</span>
-        <span>Barba Italiana</span><span class="marquee__sep">♛</span>
-        <span>Kids</span><span class="marquee__sep">♛</span>
-      </div>
-    </div>
-
-    <!-- ============ NOVIDADES ============
-         Cards are rendered from assets/data/news.js -->
-    <section class="section news" id="novidades" aria-labelledby="news-title">
+    <!-- ============ NOVIDADES (cards rendered from assets/data/news.js) ============ -->
+    <section class="section section--fog news" id="novidades" aria-labelledby="news-title">
       <div class="container">
-        <div class="section-head section-head--row">
+        <div class="section-head section-head--split">
           <div>
-            <p class="label">Novidades da casa</p>
-            <h2 class="h2" id="news-title">O que há de <span class="hl">novo</span>.</h2>
+            <p class="eyebrow">Novidades</p>
+            <h2 class="h2" id="news-title">O que se passa na barbearia</h2>
           </div>
           <div class="news__controls">
             <button class="icon-btn" type="button" data-news-prev aria-label="Novidade anterior">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="20" height="20" style="transform:scaleX(-1)" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
             <button class="icon-btn" type="button" data-news-next aria-label="Próxima novidade">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
           </div>
         </div>
-
         <div class="news__track" data-news-track role="region" aria-roledescription="carrossel" aria-label="Novidades" tabindex="0"></div>
-        <div class="news__dots" data-news-dots></div>
       </div>
     </section>
 
-    <!-- ============ SOBRE ============ -->
+    <!-- ============ A CASA ============ -->
     <section class="section about" id="sobre">
-      <div class="container about__grid">
-        <div class="about__copy">
-          <p class="label reveal">A casa</p>
-          <h2 class="h2 reveal">Nascidos no <span class="hl">2685</span>.</h2>
-          <p class="lead reveal">
-            O nome vem do código postal de Sacavém. É daqui que somos e é para aqui que trabalhamos:
-            uma barbearia de bairro com padrão de topo.
-          </p>
-          <p class="reveal">
-            Paredes verdes, hera a cair do teto e uns ténis pendurados para dar sorte.
-            Senta-te, aproveita a playlist e deixa o resto connosco.
-          </p>
-
-          <ul class="perks reveal">
-            <li>Acessível</li>
-            <li>Wi-Fi grátis</li>
-            <li>Programa de fidelização</li>
-            <li>Atendimento ao domicílio</li>
-          </ul>
-
-          <div class="about__stats">
-            <div class="stat reveal"><span class="stat__num">5,0</span><span class="stat__label">Média no Booksy</span></div>
-            <div class="stat reveal"><span class="stat__num">409</span><span class="stat__label">Avaliações</span></div>
-            <div class="stat reveal"><span class="stat__num">24/7</span><span class="stat__label">Marcações online</span></div>
+      <div class="container">
+        <div class="about__intro">
+          <div class="section-head">
+            <p class="eyebrow">A casa</p>
+            <h2 class="h2">Nascidos no 2685.</h2>
           </div>
+          <p class="lead">
+            O nome vem do código postal de Sacavém. É daqui que somos e é para aqui que trabalhamos:
+            um espaço luminoso e focado no detalhe. Senta-te, aproveita a playlist e deixa o resto connosco.
+          </p>
         </div>
 
-        <div class="about__media reveal">
-          <figure class="photo about__photo">
-            <img src="assets/images/gallery/interior.webp" alt="Interior da 2685 Finest: paredes verde-sálvia, hera no teto e cadeiras de barbeiro com capas de bandana" width="1600" height="1200" loading="lazy" decoding="async">
-          </figure>
-          <figure class="photo about__exterior">
-            <img src="assets/images/gallery/exterior.webp" alt="Fachada da barbearia na Rua Herbert Gilbert, em Sacavém" width="382" height="510" loading="lazy" decoding="async">
-          </figure>
-          <img class="about__frog" src="assets/images/brand/frog-lounging.webp" alt="" width="1200" height="708" loading="lazy" decoding="async">
-        </div>
+        <ul class="features">
+          <li class="feature">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>
+            <h3>Fades e cortes</h3>
+            <p>Skinfade, taper, degradê e social, ao detalhe.</p>
+          </li>
+          <li class="feature">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h13v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 14h1.5a2.5 2.5 0 0 1 0 5H17M8 10c0-1.5 1.5-1.5 1.5-3S8 5.5 8 4M12.5 10c0-1.5 1.5-1.5 1.5-3s-1.5-1.5-1.5-3"/></svg>
+            <h3>Barba hot towel</h3>
+            <p>Toalha quente, navalha e massagem incluída.</p>
+          </li>
+          <li class="feature">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>
+            <h3>Kids</h3>
+            <p>Cortes para os mais novos, até aos 10 anos.</p>
+          </li>
+          <li class="feature">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5 9v12h14V9M10 21v-6h4v6"/></svg>
+            <h3>Ao domicílio</h3>
+            <p>Também vamos até ti. Fala connosco para combinar.</p>
+          </li>
+          <li class="feature">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9M12 8c-1.5-3-5-3-5-1s3 1 5 1zm0 0c1.5-3 5-3 5-1s-3 1-5 1z"/></svg>
+            <h3>Fidelização</h3>
+            <p>Quem volta, ganha. Pergunta como funciona.</p>
+          </li>
+        </ul>
+        <p class="about__small muted">Espaço acessível · Wi-Fi grátis</p>
       </div>
     </section>
 
     <!-- ============ SERVIÇOS ============ -->
-    <section class="section services" id="servicos">
+    <section class="section section--fog services" id="servicos">
       <div class="container">
-        <div class="section-head">
-          <p class="label reveal">Menu</p>
-          <h2 class="h2 reveal">Serviços <span class="script">&amp;</span> preços</h2>
-          <p class="section-head__aside reveal">Preços em euros. Duração aproximada.</p>
+        <div class="section-head section-head--split">
+          <div>
+            <p class="eyebrow">Serviços</p>
+            <h2 class="h2">Serviços e preços</h2>
+          </div>
+          <p class="muted">Preços em euros. Duração aproximada.</p>
         </div>
 
         <div class="featured">
-          <article class="feature-card reveal">
-            <span class="feature-card__tag">Mais pedido</span>
+          <article class="featured__card">
+            <p class="featured__tag">Mais pedido</p>
             <h3>Skinfade / Taper / Degradê</h3>
-            <p class="feature-card__price">14€ <small>· 40 min</small></p>
+            <p class="featured__price">14€ <span>40 min</span></p>
           </article>
-          <article class="feature-card feature-card--frog reveal">
-            <span class="feature-card__tag">Combo da casa</span>
+          <article class="featured__card">
+            <p class="featured__tag">Combo da casa</p>
             <h3>Skinfade + Barba Hot Towel</h3>
-            <p class="feature-card__price">23€ <small>· 1h05</small></p>
+            <p class="featured__price">23€ <span>1h05</span></p>
           </article>
-          <article class="feature-card reveal">
-            <span class="feature-card__tag">Clássico</span>
+          <article class="featured__card">
+            <p class="featured__tag">Clássico</p>
             <h3>Corte Social</h3>
-            <p class="feature-card__price">12€ <small>· 25 min</small></p>
+            <p class="featured__price">12€ <span>25 min</span></p>
           </article>
         </div>
 
-        <div class="tabs" data-tabs>
+        <div class="menu" data-tabs>
           <div class="tabs__list" role="tablist" aria-label="Categorias de serviço">
             <button role="tab" id="tab-cabelo" aria-controls="panel-cabelo" aria-selected="true">Cabelo</button>
             <button role="tab" id="tab-barba" aria-controls="panel-barba" aria-selected="false" tabindex="-1">Barba</button>
@@ -244,23 +229,23 @@
             <button role="tab" id="tab-extras" aria-controls="panel-extras" aria-selected="false" tabindex="-1">Extras</button>
           </div>
 
-          <div class="tabs__panel" role="tabpanel" id="panel-cabelo" aria-labelledby="tab-cabelo">
+          <div class="menu__panel" role="tabpanel" id="panel-cabelo" aria-labelledby="tab-cabelo">
             <ul class="price-list">
               <li><span class="price-list__name">Skinfade / Taper / Degradê</span><span class="price-list__time">40 min</span><span class="price-list__price">14€</span></li>
               <li><span class="price-list__name">Social</span><span class="price-list__time">25 min</span><span class="price-list__price">12€</span></li>
               <li><span class="price-list__name">Corte Cabelo Longo</span><span class="price-list__time">40 min</span><span class="price-list__price">18€</span></li>
-              <li><span class="price-list__name">Rapar <small>(1 pente, sem lavagem)</small></span><span class="price-list__time">10 min</span><span class="price-list__price">9€</span></li>
+              <li><span class="price-list__name">Rapar <small>1 pente, sem lavagem</small></span><span class="price-list__time">10 min</span><span class="price-list__price">9€</span></li>
             </ul>
           </div>
 
-          <div class="tabs__panel" role="tabpanel" id="panel-barba" aria-labelledby="tab-barba" hidden>
+          <div class="menu__panel" role="tabpanel" id="panel-barba" aria-labelledby="tab-barba" hidden>
             <ul class="price-list">
               <li><span class="price-list__name">Barba Degradê / Italiana / Allshave</span><span class="price-list__time">25 min</span><span class="price-list__price">8€</span></li>
-              <li><span class="price-list__name">Barba Hot Towel Shave <small>(massagem incluída)</small></span><span class="price-list__time">25 min</span><span class="price-list__price">11€</span></li>
+              <li><span class="price-list__name">Barba Hot Towel Shave <small>massagem incluída</small></span><span class="price-list__time">25 min</span><span class="price-list__price">11€</span></li>
             </ul>
           </div>
 
-          <div class="tabs__panel" role="tabpanel" id="panel-combos" aria-labelledby="tab-combos" hidden>
+          <div class="menu__panel" role="tabpanel" id="panel-combos" aria-labelledby="tab-combos" hidden>
             <ul class="price-list">
               <li><span class="price-list__name">Rapar + Barba simples</span><span class="price-list__time">25 min</span><span class="price-list__price">13€</span></li>
               <li><span class="price-list__name">Rapar + Barba Degradê / Italiana / Allshave</span><span class="price-list__time">35 min</span><span class="price-list__price">15€</span></li>
@@ -274,26 +259,26 @@
             </ul>
           </div>
 
-          <div class="tabs__panel" role="tabpanel" id="panel-kids" aria-labelledby="tab-kids" hidden>
+          <div class="menu__panel" role="tabpanel" id="panel-kids" aria-labelledby="tab-kids" hidden>
             <ul class="price-list">
-              <li><span class="price-list__name">Social Kids <small>(até 10 anos)</small></span><span class="price-list__time">20 min</span><span class="price-list__price">10€</span></li>
-              <li><span class="price-list__name">Skinfade / Taper / Degradê Kids <small>(até 10 anos)</small></span><span class="price-list__time">40 min</span><span class="price-list__price">12€</span></li>
+              <li><span class="price-list__name">Social Kids <small>até 10 anos</small></span><span class="price-list__time">20 min</span><span class="price-list__price">10€</span></li>
+              <li><span class="price-list__name">Skinfade / Taper / Degradê Kids <small>até 10 anos</small></span><span class="price-list__time">40 min</span><span class="price-list__price">12€</span></li>
             </ul>
           </div>
 
-          <div class="tabs__panel" role="tabpanel" id="panel-extras" aria-labelledby="tab-extras" hidden>
+          <div class="menu__panel" role="tabpanel" id="panel-extras" aria-labelledby="tab-extras" hidden>
             <ul class="price-list">
               <li><span class="price-list__name">Alinhamento</span><span class="price-list__time">10 min</span><span class="price-list__price">7€</span></li>
               <li><span class="price-list__name">Sobrancelhas</span><span class="price-list__time">10 min</span><span class="price-list__price">4€</span></li>
               <li><span class="price-list__name">Lavagem</span><span class="price-list__time">5 min</span><span class="price-list__price">2€</span></li>
-              <li><span class="price-list__name">Coloração <small>(requer avaliação prévia do cabelo e couro cabeludo)</small></span><span class="price-list__time">50+ min</span><span class="price-list__price">desde 15€</span></li>
+              <li><span class="price-list__name">Coloração <small>requer avaliação prévia do cabelo e couro cabeludo</small></span><span class="price-list__time">50+ min</span><span class="price-list__price">desde 15€</span></li>
             </ul>
           </div>
-        </div>
 
-        <div class="services__cta reveal">
-          <p>Escolhe o serviço, o barbeiro e a hora. Demora um minuto.</p>
-          <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--frog" target="_blank" rel="noopener">Marcar agora</a>
+          <div class="menu__footer">
+            <p class="muted">Escolhe o serviço, o barbeiro e a hora. Demora um minuto.</p>
+            <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--primary" target="_blank" rel="noopener">Marcar agora</a>
+          </div>
         </div>
       </div>
     </section>
@@ -302,94 +287,101 @@
     <section class="section team" id="barbeiros">
       <div class="container">
         <div class="section-head">
-          <p class="label reveal">A equipa</p>
-          <h2 class="h2 reveal">Os artistas <span class="hl">por trás</span> da cadeira.</h2>
+          <p class="eyebrow">A equipa</p>
+          <h2 class="h2">Os artistas por trás da cadeira</h2>
         </div>
 
         <div class="team__grid">
-          <article class="barber reveal">
+          <article class="barber">
             <figure class="photo barber__photo">
               <img src="assets/images/team/simoes.webp" alt="Simões, barbeiro, com o colete da 2685 Finest" width="900" height="900" loading="lazy" decoding="async">
             </figure>
             <div class="barber__body">
-              <p class="barber__role">Barbeiro · 5 anos na casa</p>
-              <h3 class="barber__name">Simões</h3>
-              <p class="barber__bio">Fades cirúrgicos e designs geométricos. Há cinco anos a garantir que sais daqui com o corte que imaginaste.</p>
-              <ul class="tags"><li>Skinfade</li><li>Designs</li><li>Taper</li></ul>
-              <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem/staffer/9337" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Marcar com o Simões</a>
+              <p class="eyebrow">Barbeiro · 5 anos na casa</p>
+              <h3 class="h3">Simões</h3>
+              <p class="muted">Especialista em fades cirúrgicos e designs geométricos. Garante que sais daqui com o corte que imaginaste.</p>
+              <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem/staffer/9337" class="link" target="_blank" rel="noopener">Marcar com o Simões <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
           </article>
 
-          <article class="barber reveal">
+          <article class="barber">
             <figure class="photo barber__photo">
               <img src="assets/images/team/ricardo.webp" alt="Ricardo, barbeiro, com o colete da 2685 Finest" width="900" height="900" loading="lazy" decoding="async">
             </figure>
             <div class="barber__body">
-              <p class="barber__role">Barbeiro</p>
-              <h3 class="barber__name">Ricardo</h3>
-              <p class="barber__bio">O mestre da tesoura e da barba à moda antiga, com o ritual completo da toalha quente.</p>
-              <ul class="tags"><li>Clássicos</li><li>Barba</li><li>Hot Towel</li></ul>
-              <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem/staffer/13220" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Marcar com o Ricardo</a>
+              <p class="eyebrow">Barbeiro</p>
+              <h3 class="h3">Ricardo</h3>
+              <p class="muted">O mestre da tesoura e da barba à moda antiga, com o ritual completo da toalha quente.</p>
+              <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem/staffer/13220" class="link" target="_blank" rel="noopener">Marcar com o Ricardo <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
           </article>
 
-          <aside class="join-card reveal">
+          <aside class="join">
             <img src="assets/images/brand/frog-cigar.webp" alt="" width="197" height="298" loading="lazy" decoding="async">
-            <h3>Há lugar na lagoa?</h3>
-            <p>És barbeiro e partilhas a nossa vibe? Manda-nos uma mensagem.</p>
-            <a href="#contacto" class="link-arrow">Fala connosco →</a>
+            <h3 class="h3">Há lugar na lagoa?</h3>
+            <p>És barbeiro e partilhas a nossa forma de trabalhar? Manda-nos uma mensagem.</p>
+            <a href="#contacto" class="link">Fala connosco <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ PHOTO BAND (the one dark section) ============ -->
+    <section class="band" aria-labelledby="band-title">
+      <img class="band__img" src="assets/images/gallery/interior.webp" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+      <div class="container band__inner">
+        <h2 class="band__title" id="band-title">Onde os sapos viram príncipes.</h2>
+        <p>Mais do que um corte, uma pausa. Entras, sentas-te e sais a sentir-te outra pessoa.</p>
+        <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--light" target="_blank" rel="noopener">Marcar a minha vez</a>
       </div>
     </section>
 
     <!-- ============ GALERIA ============ -->
     <section class="section gallery" id="galeria">
       <div class="container">
-        <div class="section-head">
-          <p class="label reveal">Trabalho</p>
-          <h2 class="h2 reveal">Sapos a virar <span class="hl">príncipes</span>.</h2>
-          <p class="section-head__aside reveal">A nossa arte fala por nós.</p>
+        <div class="section-head section-head--split">
+          <div>
+            <p class="eyebrow">Galeria</p>
+            <h2 class="h2">Sapos a virar príncipes</h2>
+          </div>
+          <a class="link" href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">Mais no Instagram <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
 
         <div class="gallery__grid">
-          <figure class="photo g-1 reveal"><img src="assets/images/gallery/corte-01.webp" alt="Cabelo encaracolado com fade baixo, feito na 2685 Finest" width="1000" height="1002" loading="lazy" decoding="async"></figure>
-          <figure class="photo g-2 reveal"><img src="assets/images/gallery/corte-02.webp" alt="Buzz cut com fade e linhas marcadas, feito na 2685 Finest" width="1000" height="998" loading="lazy" decoding="async"></figure>
-          <figure class="photo photo--art g-3 reveal"><img src="assets/images/brand/sticker-sacavem.webp" alt="Ilustração: placa de Sacavém com o sapo e a frase Sapos a virar príncipes" width="800" height="864" loading="lazy" decoding="async"></figure>
-          <figure class="photo g-4 reveal"><img src="assets/images/gallery/exterior.webp" alt="Fachada da 2685 Finest em Sacavém" width="382" height="510" loading="lazy" decoding="async"></figure>
-          <a class="insta-tile g-5 reveal" href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">
-            <img src="assets/images/brand/frog-head.webp" alt="" width="240" height="240" loading="lazy" decoding="async">
-            <span class="insta-tile__text">Mais cortes no Instagram</span>
-            <span class="insta-tile__handle">@2685finest_simoes.barberhouse →</span>
-          </a>
+          <figure class="photo g-a"><img src="assets/images/gallery/corte-01.webp" alt="Cabelo encaracolado com fade baixo, feito na 2685 Finest" width="1000" height="1002" loading="lazy" decoding="async"></figure>
+          <figure class="photo g-b"><img src="assets/images/gallery/corte-02.webp" alt="Buzz cut com fade e linhas marcadas, feito na 2685 Finest" width="1000" height="998" loading="lazy" decoding="async"></figure>
+          <figure class="photo g-c"><img src="assets/images/gallery/exterior.webp" alt="Fachada da 2685 Finest na Rua Herbert Gilbert, em Sacavém" width="382" height="510" loading="lazy" decoding="async"></figure>
+          <figure class="photo photo--art g-d"><img src="assets/images/brand/sticker-sacavem.webp" alt="Ilustração: placa de Sacavém com o sapo e a frase Sapos a virar príncipes" width="800" height="864" loading="lazy" decoding="async"></figure>
         </div>
       </div>
     </section>
 
     <!-- ============ AVALIAÇÕES ============ -->
-    <section class="section reviews" id="avaliacoes">
+    <section class="section section--fog reviews" id="avaliacoes">
       <div class="container reviews__grid">
-        <div>
-          <p class="label reveal">Quem já sentou</p>
-          <h2 class="h2 reveal">409 clientes.<br><span class="hl">Uma nota.</span></h2>
-          <p class="lead reveal">Avaliações verificadas no Booksy, de quem marcou e se sentou na cadeira.</p>
-          <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="link-arrow reveal" target="_blank" rel="noopener">Ler avaliações no Booksy →</a>
+        <div class="section-head">
+          <p class="eyebrow">Avaliações</p>
+          <h2 class="h2">409 clientes, uma nota.</h2>
+          <p class="lead">Avaliações verificadas no Booksy, de quem marcou e se sentou na cadeira.</p>
+          <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="link" target="_blank" rel="noopener">Ler avaliações no Booksy <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
 
-        <div class="score-card reveal">
-          <div class="score-card__top">
-            <span class="score-card__num">5,0</span>
+        <div class="score">
+          <div class="score__top">
+            <span class="score__num">5,0</span>
             <div>
-              <span class="stars stars--lg" aria-hidden="true">★★★★★</span>
-              <p class="score-card__meta">409 avaliações</p>
+              <span class="stars" aria-hidden="true">
+                <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+              </span>
+              <p class="muted">409 avaliações no Booksy</p>
             </div>
           </div>
           <ul class="bars" aria-label="Distribuição das avaliações">
-            <li><span>5★</span><span class="bars__track"><span class="bars__fill" style="--w: 98.5%"></span></span><span>403</span></li>
-            <li><span>4★</span><span class="bars__track"><span class="bars__fill" style="--w: 1.2%"></span></span><span>5</span></li>
-            <li><span>3★</span><span class="bars__track"><span class="bars__fill" style="--w: 0%"></span></span><span>0</span></li>
-            <li><span>2★</span><span class="bars__track"><span class="bars__fill" style="--w: 0%"></span></span><span>0</span></li>
-            <li><span>1★</span><span class="bars__track"><span class="bars__fill" style="--w: 0.3%"></span></span><span>1</span></li>
+            <li><span>5 estrelas</span><span class="bars__track"><span class="bars__fill" style="width: 98.5%"></span></span><span>403</span></li>
+            <li><span>4 estrelas</span><span class="bars__track"><span class="bars__fill" style="width: 1.2%"></span></span><span>5</span></li>
+            <li><span>3 estrelas</span><span class="bars__track"><span class="bars__fill" style="width: 0%"></span></span><span>0</span></li>
+            <li><span>2 estrelas</span><span class="bars__track"><span class="bars__fill" style="width: 0%"></span></span><span>0</span></li>
+            <li><span>1 estrela</span><span class="bars__track"><span class="bars__fill" style="width: .3%"></span></span><span>1</span></li>
           </ul>
         </div>
       </div>
@@ -399,44 +391,39 @@
     <section class="section contact" id="contacto">
       <div class="container contact__grid">
         <div class="contact__info">
-          <p class="label reveal">Aparece</p>
-          <h2 class="h2 reveal">Fala com<br>o <span class="hl">sapo</span>.</h2>
-          <p class="lead reveal">Dúvidas, pedidos especiais, atendimento ao domicílio ou marcações de grupo. Escreve aqui e a mensagem segue direto para o WhatsApp da barbearia.</p>
+          <div class="section-head">
+            <p class="eyebrow">Contacto</p>
+            <h2 class="h2">Fala com o sapo</h2>
+            <p class="lead">Dúvidas, pedidos especiais, atendimento ao domicílio ou marcações de grupo. A mensagem segue direto para o WhatsApp da barbearia.</p>
+          </div>
 
-          <dl class="info-list reveal">
+          <dl class="info-list">
             <div>
               <dt>Morada</dt>
               <dd>
                 Rua Herbert Gilbert, 10 e 10A<br>2685-085 Sacavém, Loures<br>
-                <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Herbert+Gilbert+10+2685-085+Sacav%C3%A9m" target="_blank" rel="noopener">Abrir no mapa →</a>
+                <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Herbert+Gilbert+10+2685-085+Sacav%C3%A9m" target="_blank" rel="noopener">Abrir no mapa</a>
               </dd>
             </div>
             <div>
               <dt>Horário</dt>
               <dd class="hours">
-                <span>Seg – Sex</span><span>09:00 – 20:00</span>
+                <span>Segunda a sexta</span><span>09:00 – 20:00</span>
                 <span>Sábado</span><span>08:00 – 18:00</span>
                 <span>Domingo</span><span>Fechado</span>
               </dd>
             </div>
             <div>
               <dt>Telefone</dt>
-              <dd><a href="tel:+351927266234">927 266 234</a></dd>
-            </div>
-            <div>
-              <dt>Redes</dt>
-              <dd>
-                <a href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">Instagram</a> ·
-                <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" target="_blank" rel="noopener">Booksy</a>
-              </dd>
+              <dd><a class="link" href="tel:+351927266234">927 266 234</a></dd>
             </div>
           </dl>
         </div>
 
-        <form class="contact-form reveal" data-contact-form novalidate>
+        <form class="contact-form" data-contact-form novalidate>
           <div class="contact-form__head">
-            <img src="assets/images/brand/frog-head.webp" alt="" width="56" height="56" loading="lazy">
-            <p>Resposta rápida via WhatsApp</p>
+            <img src="assets/images/brand/frog-head.webp" alt="" width="48" height="48" loading="lazy">
+            <p><strong>Mensagem rápida</strong><br><span class="muted">Abre no WhatsApp, pronta a enviar.</span></p>
           </div>
 
           <div class="field">
@@ -467,12 +454,12 @@
 
           <div class="field">
             <label for="cf-msg">Mensagem</label>
-            <textarea id="cf-msg" name="message" rows="4" required placeholder="Ex.: Queria um skinfade + barba hot towel no sábado de manhã."></textarea>
+            <textarea id="cf-msg" name="message" rows="4" required placeholder="Ex.: Queria um skinfade e barba hot towel no sábado de manhã."></textarea>
           </div>
 
-          <button type="submit" class="btn btn--frog btn--block btn--lg">Enviar pelo WhatsApp</button>
+          <button type="submit" class="btn btn--primary btn--block">Enviar pelo WhatsApp</button>
           <p class="form-status" role="status" aria-live="polite" data-form-status></p>
-          <p class="form-note">Para marcar uma hora certa, o mais rápido é o <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" target="_blank" rel="noopener">Booksy</a>.</p>
+          <p class="form-note muted">Para marcar uma hora certa, o mais rápido é o <a class="link" href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" target="_blank" rel="noopener">Booksy</a>.</p>
         </form>
       </div>
     </section>
@@ -481,20 +468,38 @@
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="container">
-      <div class="site-footer__top">
-        <img src="assets/images/brand/logo-light.webp" alt="2685 Finest Simões BarberHouse" width="600" height="510" loading="lazy">
-        <p class="site-footer__tagline">Onde os sapos viram <span class="hl">príncipes</span>.</p>
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <img src="assets/images/brand/logo-dark.webp" alt="2685 Finest Simões BarberHouse" width="600" height="510" loading="lazy">
+          <p class="muted">Onde os sapos viram príncipes.</p>
+        </div>
+        <div>
+          <h3 class="site-footer__title">Horário</h3>
+          <p class="muted">Seg a sex · 09:00 – 20:00<br>Sábado · 08:00 – 18:00<br>Domingo · Fechado</p>
+        </div>
+        <div>
+          <h3 class="site-footer__title">Visita</h3>
+          <p class="muted">Rua Herbert Gilbert, 10 e 10A<br>2685-085 Sacavém<br>927 266 234</p>
+        </div>
+        <div>
+          <h3 class="site-footer__title">Segue</h3>
+          <ul class="site-footer__links">
+            <li><a href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" target="_blank" rel="noopener">Booksy</a></li>
+          </ul>
+        </div>
+        <img class="site-footer__frog" src="assets/images/brand/frog-standing.webp" alt="" width="472" height="1000" loading="lazy" decoding="async">
       </div>
       <div class="site-footer__row">
-        <p>© <span data-year>2026</span> 2685 Finest · Sacavém · Website por Gonçalo Almeida</p>
-        <p><a href="#top">Voltar ao topo ↑</a></p>
+        <p>© <span data-year>2026</span> 2685 Finest · Website por Gonçalo Almeida</p>
+        <a href="#top">Voltar ao topo</a>
       </div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp button -->
   <a class="wa-float" href="#contacto" data-wa-float aria-label="Falar pelo WhatsApp">
-    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
   </a>
 
   <script src="assets/js/config.js"></script>
