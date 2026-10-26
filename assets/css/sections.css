@@ -33,57 +33,60 @@
   .hero__frog { left: -.5rem; width: 52%; bottom: -1rem; }
 }
 
-/* ---------- Novidades: banner carousel ----------
-   One banner fills the content width; the next one peeks in from the margin, as on
-   large brand sites. Indicators fill up while a slide is showing (desktop autoplay). */
+/* ---------- Novidades: card stack ("leque") of banners ----------
+   main.js places each card: x from the overlap, a small angle per step, pushed back in
+   depth and tilted when not in front. Transitions use a springy curve. */
 .news { position: relative; overflow-x: clip; }
-.carousel__controls { display: flex; align-items: center; gap: .5rem; }
-.carousel__count { margin-right: .75rem; font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--graphite); }
-.carousel__count span:first-child { color: var(--ink); }
+.fan__controls { display: flex; align-items: center; gap: .5rem; }
+.fan__count { margin-right: .75rem; font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--graphite); }
+.fan__count span:first-child { color: var(--ink); }
 
-.carousel { --edge: max(var(--gutter), calc((100% - var(--max-w)) / 2)); }
-.carousel__track {
-  position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 1.25rem;
-  padding-inline: var(--edge); scroll-padding-inline: var(--edge);
-  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+.fan { --card-w: min(36rem, 84vw); --card-h: calc(var(--card-w) * .6); }
+.fan__stage {
+  position: relative; height: calc(var(--card-h) + 7rem); perspective: 1100px;
+  outline-offset: 6px; border-radius: var(--radius-lg); touch-action: pan-y;
 }
-.carousel__track::-webkit-scrollbar { display: none; }
-.carousel__track:focus-visible { outline-offset: -3px; }
+.fan__glow, .fan__shadow { position: absolute; inset-inline: 0; margin-inline: auto; border-radius: 50%; pointer-events: none; filter: blur(48px); }
+.fan__glow { top: 1.5rem; width: 70%; height: 12rem; background: rgba(77, 103, 71, .10); }
+.fan__shadow { bottom: 0; width: 76%; height: 10rem; background: rgba(21, 30, 27, .12); }
 
-.carousel__foot { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; }
-.carousel__dots { display: flex; gap: .5rem; }
-.carousel__dot { position: relative; width: .5rem; height: .5rem; padding: 0; border: 0; border-radius: 99px; overflow: hidden; background: #c9d0c5; cursor: pointer; transition: width .45s var(--ease), background-color .3s; }
-.carousel__dot::before { content: ""; position: absolute; inset: -.75rem -.25rem; } /* bigger tap target */
-.carousel__dot.is-active { width: 2.75rem; background: #c9d0c5; }
-.carousel__dot span { position: absolute; inset: 0; background: var(--forest); border-radius: inherit; transform: scaleX(0); transform-origin: left; }
-.carousel__dot.is-active span { animation: carousel-fill 7s linear forwards; }
-.carousel.is-paused .carousel__dot.is-active span { animation-play-state: paused; }
-.carousel.is-stopped .carousel__dot.is-active span { animation: none; transform: none; }
-@keyframes carousel-fill { to { transform: scaleX(1); } }
-.carousel__play {
-  display: grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0;
-  border: 1px solid var(--border); border-radius: 50%; background: var(--paper); color: var(--ink); cursor: pointer;
+.fan .fan__card {
+  position: absolute; left: 50%; bottom: 2.5rem; width: var(--card-w); height: var(--card-h);
+  transform-style: preserve-3d; will-change: transform; user-select: none;
+  border: 4px solid rgba(21, 30, 27, .06); box-shadow: 0 20px 40px -12px rgba(21, 30, 27, .3);
+  cursor: pointer;
 }
-.carousel__play:hover { border-color: var(--forest); color: var(--forest); }
-.carousel__icon-play, .carousel.is-stopped .carousel__icon-pause { display: none; }
-.carousel.is-stopped .carousel__icon-play { display: block; }
+.fan.is-ready .fan__card { transition: transform .7s cubic-bezier(.3, 1.35, .45, 1), opacity .4s; }
+.fan__stage.is-dragging .fan__card { transition: none; }
+.fan__card.is-active { cursor: grab; }
+.fan__stage.is-dragging .fan__card.is-active { cursor: grabbing; }
+.fan__card.is-hidden { opacity: 0; pointer-events: none; }
+.fan__card:not(.is-active)::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(255, 255, 255, .12); }
+.fan__inner { display: contents; }
+.fan__card img { -webkit-user-drag: none; }
+
+.fan__dots { display: flex; justify-content: center; gap: .6rem; margin-top: .5rem; }
+.fan__dot { position: relative; width: .5rem; height: .5rem; padding: 0; border: 0; border-radius: 50%; background: rgba(59, 82, 54, .3); cursor: pointer; transition: background-color .2s, transform .2s; }
+.fan__dot::before { content: ""; position: absolute; inset: -.6rem; }
+.fan__dot:hover { background: rgba(59, 82, 54, .55); }
+.fan__dot[aria-current="true"] { background: var(--forest); transform: scale(1.25); }
+
+@media (prefers-reduced-motion: reduce) { .fan.is-ready .fan__card { transition: opacity .2s; } }
 
 /* The banners */
 .banner {
-  position: relative; scroll-snap-align: start; overflow: hidden; isolation: isolate;
-  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); grid-template-rows: minmax(0, 1fr); align-items: center;
-  height: clamp(22rem, 34vw, 28rem); border-radius: 20px;
-  transition: opacity .5s var(--ease);
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); grid-template-rows: minmax(0, 1fr); align-items: center;
+  border-radius: 20px;
 }
-.banner:not(.is-active) { opacity: .45; }
-.banner__copy { position: relative; z-index: 1; display: grid; justify-items: start; gap: 1rem; padding: clamp(2rem, 5vw, 4rem); max-width: 40rem; }
+.banner__copy { position: relative; z-index: 1; display: grid; justify-items: start; gap: .7rem; padding: clamp(1.25rem, 3.5vw, 2.25rem); }
 .banner__kicker { font-size: var(--text-caption); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
 .banner__title {
-  font-family: var(--font-display); font-size: clamp(2.25rem, 4.2vw, 3.75rem); font-weight: 700;
+  font-family: var(--font-display); font-size: clamp(1.6rem, 3.1vw, 2.5rem); font-weight: 700;
   line-height: .95; letter-spacing: .02em; text-transform: uppercase; text-wrap: balance;
 }
-.banner__text { font-size: var(--text-sub); max-width: 34ch; opacity: .85; }
-.banner__btn { margin-top: .5rem; }
+.banner__text { font-size: var(--text-sm); max-width: 34ch; opacity: .85; }
+.banner__btn { margin-top: .25rem; padding: .6rem 1rem; font-size: var(--text-sm); }
 .banner__art { grid-column: 2; grid-row: 1; justify-self: center; width: 90%; height: 80%; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(20, 32, 18, .25)); }
 .banner__copy { grid-column: 1; grid-row: 1; }
 
@@ -107,20 +110,18 @@
 }
 .banner--photo .banner__btn { background: var(--paper); color: var(--forest); }
 
-.banner--image { display: block; height: auto; aspect-ratio: 12 / 5; background: var(--moss-wash); }
+.banner--image { display: block; background: var(--moss-wash); }
 .banner--image img, .banner__cover-link { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 @media (max-width: 760px) {
-  .carousel__count { display: none; }
-  .carousel__track { gap: .75rem; }
-  .banner { grid-template-columns: 1fr; grid-template-rows: 13rem auto; align-items: start; height: auto; min-height: 33rem; border-radius: 16px; }
-  .banner__art { grid-column: 1; grid-row: 1; align-self: end; width: 80%; height: 11.5rem; }
-  .banner__copy { grid-row: 2; padding: 1.25rem 1.5rem 1.75rem; gap: .75rem; }
-  .banner__title { font-size: clamp(2.1rem, 10vw, 2.75rem); }
-  .banner__text { font-size: var(--text-body); }
+  .fan__count { display: none; }
+  .fan { --card-w: min(20rem, 80vw); --card-h: calc(var(--card-w) * 1.3); }
+  .banner { grid-template-columns: 1fr; grid-template-rows: 42% minmax(0, 1fr); align-items: start; border-radius: 16px; }
+  .banner__art { grid-column: 1; grid-row: 1; align-self: end; width: 80%; height: 88%; }
+  .banner__copy { grid-row: 2; gap: .5rem; }
+  .banner__title { font-size: clamp(1.6rem, 8vw, 2.1rem); }
   .banner--photo { grid-template-rows: 1fr auto; }
   .banner--photo::before { background: linear-gradient(0deg, rgba(23, 33, 21, .88) 0%, rgba(23, 33, 21, .6) 50%, rgba(23, 33, 21, .1) 100%); }
-  .banner--image { aspect-ratio: 4 / 5; min-height: 0; }
 }
 
 .plant--news-r { top: -1rem; right: max(0rem, calc(50% - 600px - 9.5rem)); width: 9.5rem; }

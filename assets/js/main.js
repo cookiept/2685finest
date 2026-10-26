@@ -21,13 +21,14 @@
   nav.addEventListener("click", (e) => { if (e.target.closest("a")) setNav(false); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
 
-  /* ---------- Novidades: notice bar + banner carousel, from assets/data/news.js ----------
-     Follows the usual carousel rules: swipe/scroll and arrows always work; on desktop it
-     advances every 7s, pauses while hovered or focused, and stops for good once someone
-     uses the controls. No autoplay on touch screens or with reduced motion. */
+  /* ---------- Novidades: notice bar + card stack of banners, from assets/data/news.js ----------
+     The banners are fanned out like a hand of cards: the active one in front, the others
+     tilted behind it. Arrows, dots, keyboard, a click on a card behind, or dragging the
+     front card all change it. On desktop it advances every 5s, pauses while hovered or
+     focused, and stops once someone takes over. No autoplay on touch or reduced motion. */
   const news = Array.isArray(window.SITE_NEWS) ? window.SITE_NEWS : [];
   const notice = document.querySelector("[data-notice]");
-  const carousel = document.querySelector("[data-carousel]");
+  const fan = document.querySelector("[data-fan]");
 
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
@@ -88,110 +89,153 @@
 
   if (news.length && notice) notice.textContent = news[0].notice || news[0].title;
 
-  if (carousel && news.length) {
-    const track = carousel.querySelector("[data-carousel-track]");
-    const dotsWrap = carousel.querySelector("[data-carousel-dots]");
-    const playBtn = carousel.querySelector("[data-carousel-play]");
-    const controls = document.querySelector("[data-carousel-controls]");
-    const prevBtn = controls.querySelector("[data-carousel-prev]");
-    const nextBtn = controls.querySelector("[data-carousel-next]");
-    const current = controls.querySelector("[data-carousel-current]");
-    controls.querySelector("[data-carousel-total]").textContent = String(news.length).padStart(2, "0");
+  if (fan && news.length) {
+    const stage = fan.querySelector("[data-fan-stage]");
+    const dotsWrap = fan.querySelector("[data-fan-dots]");
+    const controls = document.querySelector("[data-fan-controls]");
+    const current = controls.querySelector("[data-fan-current]");
+    controls.querySelector("[data-fan-total]").textContent = String(news.length).padStart(2, "0");
 
-    const slides = news.map(banner);
-    track.append(...slides);
+    const len = news.length;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cards = news.map((item, i) => {
+      const card = banner(item, i);
+      card.classList.add("fan__card");
+      const inner = el("div", "fan__inner");
+      inner.append(...card.childNodes);
+      card.append(inner);
+      stage.append(card);
+      return card;
+    });
 
-    const dots = slides.map((_, i) => {
-      const dot = el("button", "carousel__dot");
+    const dots = cards.map((_, i) => {
+      const dot = el("button", "fan__dot");
       dot.type = "button";
-      dot.setAttribute("aria-label", `Ver novidade ${i + 1}`);
-      dot.append(el("span"));
-      dot.addEventListener("click", () => { stop(); goTo(i); });
+      dot.setAttribute("aria-label", `Ver novidade ${i + 1}: ${news[i].title}`);
+      dot.addEventListener("click", () => { stopAuto(); setActive(i); });
       dotsWrap.append(dot);
       return dot;
     });
 
-    let index = -1;
-    const canAutoplay = news.length > 1 &&
-      window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
-    let stopped = !canAutoplay;
+    // Fan geometry (same idea as a CardStack: spacing from overlap, angle per step, depth)
+    const OVERLAP = 0.5;
+    const STEP_DEG = 9;
+    const DEPTH = 140;
+    const TILT_X = 10;
+    const LIFT = 18;
+    const MAX_OFFSET = 2;
 
-    const setActive = (i) => {
-      if (i === index) return;
-      index = i;
-      slides.forEach((s, n) => { s.classList.toggle("is-active", n === i); s.inert = n !== i; });
-      dots.forEach((d, n) => {
-        d.classList.remove("is-active");
-        d.setAttribute("aria-current", n === i ? "true" : "false");
+    const wrap = (n) => ((n % len) + len) % len;
+    const signedOffset = (i, a) => {
+      const raw = i - a;
+      if (len <= 1) return raw;
+      const alt = raw > 0 ? raw - len : raw + len;
+      return Math.abs(alt) < Math.abs(raw) ? alt : raw;
+    };
+
+    let active = 0;
+    let dragX = 0;
+
+    const layout = () => {
+      const w = cards[0].offsetWidth;
+      const spacing = Math.max(10, Math.round(w * (1 - OVERLAP)));
+      cards.forEach((card, i) => {
+        const off = signedOffset(i, active);
+        const abs = Math.abs(off);
+        const isActive = off === 0;
+        const x = off * spacing + (isActive ? dragX : 0);
+        const y = abs * 12 - (isActive ? LIFT : 0);
+        const rotZ = off * STEP_DEG + (isActive ? dragX / 40 : 0);
+        const scale = isActive ? 1.02 : 0.92;
+        card.style.transform =
+          `translateX(-50%) translate3d(${x}px, ${y}px, ${-abs * DEPTH}px) ` +
+          `rotateZ(${rotZ}deg) rotateX(${isActive ? 0 : TILT_X}deg) scale(${scale})`;
+        card.style.zIndex = String(100 - abs);
+        card.classList.toggle("is-active", isActive);
+        card.classList.toggle("is-hidden", abs > MAX_OFFSET);
+        card.inert = !isActive;
+        card.setAttribute("aria-hidden", isActive ? "false" : "true");
       });
-      void dots[i].offsetWidth; // restart the progress fill
-      dots[i].classList.add("is-active");
-      current.textContent = String(i + 1).padStart(2, "0");
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
+      dots.forEach((d, n) => d.setAttribute("aria-current", n === active ? "true" : "false"));
+      current.textContent = String(active + 1).padStart(2, "0");
     };
 
-    let gliding = 0; // ignore scroll sync while we scroll the track ourselves
-    const goTo = (i) => {
-      const n = (i + slides.length) % slides.length;
-      clearTimeout(gliding);
-      gliding = setTimeout(() => { gliding = 0; }, 900);
-      track.scrollTo({ left: slides[n].offsetLeft - slides[0].offsetLeft, behavior: "smooth" });
-      setActive(n);
-    };
+    const setActive = (i) => { active = wrap(i); layout(); };
+    const next = () => setActive(active + 1);
+    const prev = () => setActive(active - 1);
 
-    const stop = () => {
-      stopped = true;
-      carousel.classList.add("is-stopped");
-      playBtn.setAttribute("aria-label", "Continuar as novidades");
-    };
-    const play = () => {
-      stopped = false;
-      carousel.classList.remove("is-stopped");
-      playBtn.setAttribute("aria-label", "Pausar as novidades");
-      const i = index; index = -1; setActive(i); // restart progress
-    };
-
-    if (stopped) stop();
-    if (!canAutoplay) playBtn.hidden = true;
-    if (slides.length < 2) { controls.hidden = true; dotsWrap.hidden = true; playBtn.hidden = true; }
-
-    // Autoplay: when the active dot finishes filling, move on
-    dotsWrap.addEventListener("animationend", (e) => {
-      if (!stopped && e.target.parentElement === dots[index]) goTo(index + 1);
+    // Clicking a card behind brings it to the front
+    stage.addEventListener("click", (e) => {
+      const card = e.target.closest(".fan__card");
+      if (!card || card.classList.contains("is-active")) return;
+      stopAuto();
+      setActive(cards.indexOf(card));
     });
 
-    playBtn.addEventListener("click", () => (stopped ? play() : stop()));
-    prevBtn.addEventListener("click", () => { stop(); goTo(index - 1); });
-    nextBtn.addEventListener("click", () => { stop(); goTo(index + 1); });
-
-    const pause = (on) => carousel.classList.toggle("is-paused", on);
-    carousel.addEventListener("mouseenter", () => pause(true));
-    carousel.addEventListener("mouseleave", () => pause(false));
-    carousel.addEventListener("focusin", () => pause(true));
-    carousel.addEventListener("focusout", () => pause(false));
-
-    track.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") { e.preventDefault(); stop(); goTo(index + 1); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); stop(); goTo(index - 1); }
+    controls.querySelector("[data-fan-prev]").addEventListener("click", () => { stopAuto(); prev(); });
+    controls.querySelector("[data-fan-next]").addEventListener("click", () => { stopAuto(); next(); });
+    stage.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); stopAuto(); prev(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); stopAuto(); next(); }
     });
-    ["pointerdown", "wheel", "touchstart"].forEach((type) =>
-      track.addEventListener(type, () => stop(), { passive: true }));
 
-    // Keep the active slide in sync when people swipe or scroll the track
-    let raf = 0;
-    track.addEventListener("scroll", () => {
-      if (gliding) return;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : 1;
-        setActive(Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / step))));
-      });
-    }, { passive: true });
+    // Drag / swipe the front card
+    let start = null;
+    stage.addEventListener("pointerdown", (e) => {
+      const card = e.target.closest(".fan__card.is-active");
+      if (!card || e.button !== 0) return;
+      start = { x: e.clientX, t: performance.now(), card, moved: false };
+    });
+    window.addEventListener("pointermove", (e) => {
+      if (!start) return;
+      const dx = e.clientX - start.x;
+      if (!start.moved && Math.abs(dx) < 6) return;
+      if (!start.moved) { start.moved = true; start.card.setPointerCapture?.(e.pointerId); stage.classList.add("is-dragging"); stopAuto(); }
+      dragX = dx * 0.85;
+      layout();
+    });
+    const endDrag = (e) => {
+      if (!start) return;
+      const { moved, x, t, card } = start;
+      start = null;
+      stage.classList.remove("is-dragging");
+      if (!moved) return;
+      const travel = e.clientX - x;
+      const velocity = travel / Math.max(1, performance.now() - t); // px per ms
+      const threshold = Math.min(140, card.offsetWidth * 0.22);
+      dragX = 0;
+      if (travel > threshold || velocity > 0.65) prev();
+      else if (travel < -threshold || velocity < -0.65) next();
+      else layout();
+      // a drag is not a click on the button inside the card
+      card.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); }, { capture: true, once: true });
+    };
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
 
-    setActive(0);
-  } else if (carousel) {
-    carousel.closest("section").hidden = true;
+    // Autoplay on desktop only: pauses on hover, stops once someone takes over
+    const canAuto = len > 1 && !reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let timer = 0;
+    let hovering = false;
+    let stopped = !canAuto;
+    function stopAuto() { stopped = true; clearInterval(timer); }
+    const startAuto = () => {
+      clearInterval(timer);
+      if (stopped) return;
+      timer = setInterval(() => { if (!hovering && !document.hidden) next(); }, 5000);
+    };
+    fan.addEventListener("mouseenter", () => { hovering = true; });
+    fan.addEventListener("mouseleave", () => { hovering = false; });
+    fan.addEventListener("focusin", () => { hovering = true; });
+    fan.addEventListener("focusout", () => { hovering = false; });
+
+    if (len < 2) { controls.hidden = true; dotsWrap.hidden = true; }
+    window.addEventListener("resize", layout);
+    layout();
+    requestAnimationFrame(() => fan.classList.add("is-ready")); // enable transitions after first layout
+    startAuto();
+  } else if (fan) {
+    fan.closest("section").hidden = true;
   }
 
   /* ---------- Service tabs (WAI-ARIA tabs pattern) ---------- */
