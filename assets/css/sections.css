@@ -124,8 +124,6 @@
   .banner--photo::before { background: linear-gradient(0deg, rgba(23, 33, 21, .88) 0%, rgba(23, 33, 21, .6) 50%, rgba(23, 33, 21, .1) 100%); }
 }
 
-.plant--news-r { top: -1rem; right: max(0rem, calc(50% - 600px - 9.5rem)); width: 9.5rem; }
-@media (max-width: 1279px) { .plant--news-r { display: none; } }
 
 /* ---------- A casa ---------- */
 .about__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 4rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
@@ -353,19 +351,18 @@
 .plant .leaf { transform-origin: 50% 0; }
 .plant .leaf--side { transform-origin: 0 50%; }
 
-.plant--hero   { top: -.5rem; right: max(0rem, calc(50% - 600px - 10rem)); width: 10.5rem; }
-.plant--hero-l { top: -.5rem; left: max(0rem, calc(50% - 600px - 9.5rem)); width: 9rem; }
+.plant--hero   { top: -.4rem; right: -3.25rem; width: 9.5rem; } /* draped over the hero photo */
+.plant--hero-l { top: 0; left: max(.5rem, calc(50% - 600px - 9rem)); width: 8.5rem; } /* hangs from the header line */
 .plant--about  { top: 1.5rem; right: max(-4rem, calc(50% - 600px - 14rem)); width: 15rem; transform: scaleX(-1); }
-.plant--team   { top: -.5rem; right: max(-2rem, calc(50% - 600px - 2rem)); width: 17rem; }
+.plant--team   { top: 0; right: max(-2rem, calc(50% - 600px - 2rem)); width: 17rem; } /* hangs from the edge of the Serviços section */
 .plant--contact{ bottom: 1rem; left: max(-4rem, calc(50% - 600px - 14rem)); width: 15rem; }
 
 /* Wind on hover is driven by assets/js/main.js (spring physics: leaves near the
    moving pointer get a push and settle slowly; nothing moves while the pointer rests). */
 .plant .leaf, .plant .sway { will-change: transform; }
 
-/* Only where there is room in the margins; on small screens one short vine stays in the hero */
+/* Only where there is room in the margins; the ivy on the hero photo stays everywhere */
 @media (max-width: 1279px) {
-  .plant--hero, .plant--about, .plant--team, .plant--contact { display: none; }
-  .plant--hero-l { left: auto; right: -.5rem; width: 5.5rem; }
+  .plant--hero-l, .plant--about, .plant--team, .plant--contact { display: none; }
 }
-@media (min-width: 861px) and (max-width: 1279px) { .plant--hero-l { display: none; } }
+@media (max-width: 860px) { .plant--hero { top: -.3rem; right: -1rem; width: 6rem; } }

@@ -17,7 +17,7 @@ Landing page for **2685 Finest Barbearia** (Sacavém, Loures). Static HTML/CSS/J
 │   │   └── news.js            # "Novidades" cards shown at the top of the page
 │   ├── js/
 │   │   ├── config.js          # WhatsApp number, Booksy & Instagram links
-│   │   └── main.js            # Nav, news carousel, tabs, contact form, plant wind
+│   │   └── main.js            # Nav, news card stack, tabs, contact form, plant wind
 │   └── images/
 │       ├── brand/             # logo-light/dark, frog-standing, frog-lounging, frog-cigar,
 │       │                      # frog-head, sticker-sacavem, favicon-48, apple-touch-icon
@@ -37,7 +37,7 @@ python3 -m http.server 8000
 
 ## Updating the news ("Novidades")
 
-Edit `assets/data/news.js`. Each item becomes one banner in the carousel: tag, date, title, text, a frog image, a theme (`green` or `light`) and an optional button.
+Edit `assets/data/news.js`. Each item becomes one banner card in the fanned card stack: tag, date, title, text, a frog image, a theme (`green` or `light`) and an optional button.
 The first item also shows in the thin green bar at the very top of the page (its `notice` text, or its title).
 To use a banner designed elsewhere (e.g. Canva, about 2400×1000), put the image in `assets/images/` and set `banner: "assets/images/…"` on the item.
 
@@ -67,7 +67,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=8`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=10`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 
