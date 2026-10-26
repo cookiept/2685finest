@@ -148,18 +148,13 @@
 }
 
 /* ---------- Serviços: a barbershop receipt ----------
-   Heading and a frog on the left, the price list printed on a till receipt on the right:
+   The price list printed on a till receipt, as wide as the page:
    monospace, dashed rules, a torn zigzag bottom and a barcode. */
-.services__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
-.services__head { margin-bottom: 0; position: sticky; top: 7rem; }
-.services__head .muted { max-width: 34ch; }
-.services__frog { width: clamp(5rem, 8vw, 7rem); height: auto; margin-top: 1.5rem; filter: drop-shadow(0 12px 16px rgba(21, 30, 27, .18)); }
-
-.receipt-wrap { filter: drop-shadow(0 18px 28px rgba(21, 30, 27, .14)) drop-shadow(0 2px 3px rgba(21, 30, 27, .08)); transform: rotate(.8deg); }
+.receipt-wrap { filter: drop-shadow(0 18px 28px rgba(21, 30, 27, .14)) drop-shadow(0 2px 3px rgba(21, 30, 27, .08)); transform: rotate(-.35deg); }
 .receipt {
   --tooth: 14px;
-  position: relative; padding: 2rem clamp(1.25rem, 3vw, 2rem) calc(2rem + var(--tooth) / 2);
-  background: #fdfdfa; color: #262a24; font-family: var(--font-mono); font-size: .86rem; line-height: 1.5;
+  position: relative; padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 5vw, 3.5rem) calc(2.5rem + var(--tooth) / 2);
+  background: #fdfdfa; color: #262a24; font-family: var(--font-mono); font-size: clamp(.86rem, 1.2vw, .95rem); line-height: 1.5;
   /* torn zigzag bottom edge */
   -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
   mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
@@ -168,10 +163,10 @@
 .receipt__head img { width: 6.5rem; height: auto; margin-bottom: .6rem; }
 .receipt__meta, .receipt__cols, .receipt__total { display: flex; justify-content: space-between; gap: 1rem; text-transform: uppercase; }
 .receipt__meta { margin-top: 1.25rem; padding-block: .6rem; border-block: 1.5px dashed #b9bdb4; font-size: .75rem; }
-.receipt__cols { display: grid; grid-template-columns: minmax(0, 1fr) 4.5rem 5.2rem; padding-top: .9rem; font-size: .72rem; font-weight: 700; color: var(--graphite); }
+.receipt__cols { display: grid; grid-template-columns: minmax(0, 1fr) 6rem 6rem; padding-top: .9rem; font-size: .72rem; font-weight: 700; color: var(--graphite); }
 .receipt__cols span:not(:first-child) { text-align: right; }
 
-.price-list li { display: grid; grid-template-columns: minmax(0, 1fr) 4.5rem 5.2rem; align-items: baseline; gap: .5rem; padding: .55rem 0; }
+.price-list li { display: grid; grid-template-columns: minmax(0, 1fr) 6rem 6rem; align-items: baseline; gap: .5rem; padding: .55rem 0; }
 .price-list__name small { display: block; font-size: .74rem; color: var(--graphite); }
 .price-list__time { font-size: .78rem; color: var(--graphite); text-align: right; }
 .price-list__price { font-weight: 700; text-align: right; white-space: nowrap; }
@@ -204,17 +199,12 @@
 .receipt__total { margin-top: .4rem; padding-top: .9rem; border-top: 1.5px dashed #b9bdb4; font-weight: 700; font-size: .95rem; }
 .receipt__end { display: grid; justify-items: center; gap: .9rem; margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1.5px dashed #b9bdb4; text-align: center; text-transform: uppercase; font-size: .78rem; letter-spacing: .06em; }
 .receipt__barcode {
-  width: 70%; height: 2.6rem;
+  width: min(70%, 18rem); height: 2.6rem;
   background: repeating-linear-gradient(90deg, #262a24 0 2px, transparent 2px 4px, #262a24 4px 5px, transparent 5px 8px, #262a24 8px 11px, transparent 11px 13px, #262a24 13px 14px, transparent 14px 17px);
 }
 .receipt__end .btn { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
 
-@media (max-width: 900px) {
-  .services__layout { grid-template-columns: 1fr; }
-  .services__head { position: static; }
-  .services__frog { display: none; }
-  .receipt-wrap { transform: none; }
-}
+@media (max-width: 760px) { .receipt-wrap { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .menu__more > summary::before { transition: none; } }
 
 /* ---------- Equipa: football-sticker cards ("cromos") ---------- */
