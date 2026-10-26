@@ -111,6 +111,14 @@
       slide.append(img);
     }
     slide.append(copy);
+
+    // Tear-off tabs along the bottom, like a job ad on a lamp post (one already taken)
+    if (item.tabs) {
+      const strip = el("div", "banner__tabs");
+      strip.setAttribute("aria-hidden", "true");
+      for (let t = 0; t < 8; t++) strip.append(el("span", t === 2 ? "is-torn" : "", item.tabs));
+      slide.append(strip);
+    }
     return slide;
   };
 

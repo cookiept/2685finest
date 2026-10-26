@@ -117,6 +117,35 @@
 }
 .banner--photo .banner__btn { background: var(--paper); color: var(--forest); }
 
+/* Job ad on paper: crumpled sheet, a rubber stamp over the frog, tear-off phone tabs at the bottom */
+.banner--hiring { grid-template-rows: minmax(0, 1fr) auto; background: #fbfaf4; color: var(--ink); }
+.banner--hiring::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../images/textures/paper-crumple.webp") 0 0 / 700px; mix-blend-mode: multiply; opacity: .12;
+}
+.banner--hiring .banner__kicker { color: var(--wall); opacity: 1; }
+.banner--hiring .banner__title { font-size: clamp(1.8rem, 3.4vw, 2.7rem); color: var(--forest); }
+.banner--hiring .banner__copy { gap: .55rem; padding-block: 1.25rem; }
+.banner--hiring .banner__text { color: var(--graphite); opacity: 1; }
+.banner--hiring .banner__btn { background: var(--forest); color: var(--paper); }
+.banner--hiring .banner__btn:hover { background: var(--wall); }
+.banner--hiring .banner__art { align-self: end; height: 92%; margin-top: 1rem; }
+.banner--hiring::after { /* the rubber stamp */
+  content: "Vaga aberta"; position: absolute; top: clamp(1rem, 3vw, 1.6rem); left: 46%; z-index: 2; pointer-events: none;
+  padding: .35rem .7rem; border: 3px double #a8452e; border-radius: 6px; color: #a8452e;
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  transform: rotate(-12deg); opacity: .8; mix-blend-mode: multiply;
+}
+.banner__tabs { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); border-top: 1.5px dashed #b9bdb4; }
+.banner__tabs span {
+  display: grid; place-items: center; height: 4.6rem; overflow: hidden;
+  border-left: 1.5px dashed #b9bdb4; font-family: var(--font-mono); font-size: .6rem; font-weight: 700; color: var(--forest);
+  writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap;
+}
+.banner__tabs span:last-child { border-left: 0; }
+.banner__tabs span:first-child { border-left: 1.5px dashed #b9bdb4; }
+.banner__tabs .is-torn { visibility: hidden; }
+
 .banner--image { display: block; background: var(--moss-wash); }
 .banner--image img, .banner__cover-link { display: block; width: 100%; height: 100%; object-fit: cover; }
 
@@ -128,6 +157,13 @@
   .banner__copy { grid-row: 2; gap: .5rem; }
   .banner__title { font-size: clamp(1.6rem, 8vw, 2.1rem); }
   .banner--photo { grid-template-rows: 1fr auto; }
+  .banner--hiring { grid-template-rows: 38% minmax(0, 1fr) auto; }
+  .banner--hiring .banner__title { font-size: clamp(1.8rem, 9vw, 2.3rem); }
+  .banner--hiring .banner__text { display: none; }
+  .banner--hiring::after { top: 1rem; left: 1rem; font-size: .85rem; }
+  .banner__tabs { grid-row: 3; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .banner__tabs span { height: 4rem; font-size: .55rem; }
+  .banner__tabs span:nth-child(n + 7) { display: none; }
   .banner--photo::before { background: linear-gradient(0deg, rgba(23, 33, 21, .88) 0%, rgba(23, 33, 21, .6) 50%, rgba(23, 33, 21, .1) 100%); }
 }
 

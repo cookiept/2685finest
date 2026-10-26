@@ -6,13 +6,26 @@
        "green" : shop-green background, white text, illustration on the right
        "light" : pale green background, dark text, illustration on the right
        "photo" : the image fills the banner, text on top of it
+       "hiring": a paper job ad with a stamp and tear-off tabs (set tabs to the phone number)
    - image: the frog for this banner (assets/images/brand/frog-*.webp or sticker-sacavem.webp),
             or a photo when theme is "photo".
    - banner: OPTIONAL. A finished banner image (e.g. made in Canva, about 2400x1000).
              If set, it replaces the drawn banner; title + text are still used as its description.
    - cta is optional: { label, href }.
+   - tabs is optional (hiring theme): the text printed on each tear-off tab.
    ========================================================== */
 window.SITE_NEWS = [
+  {
+    tag: "Recrutamento",
+    date: "Sacavém",
+    title: "Estamos a recrutar!",
+    text: "Procuramos barbeiro com mão firme, fades em dia e bom feitio. Traz o teu CV, ou melhor ainda, o teu melhor corte.",
+    theme: "hiring",
+    image: "assets/images/brand/frog-cv.webp",
+    alt: "O sapo da 2685 Finest, de coroa, com o currículo na mão a apontar para ti",
+    tabs: "927 266 234",
+    cta: { label: "Quero a vaga", href: "#contacto" }
+  },
   {
     tag: "Novo",
     date: "Outubro 2026",
