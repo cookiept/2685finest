@@ -1,0 +1,44 @@
+/* ==========================================================
+   2685 Finest — Design tokens
+   See docs/design-system.md for usage guidance.
+   ========================================================== */
+:root {
+  /* Colour */
+  --ink: #0d0f0b;          /* main background, near-black with a green cast */
+  --ink-2: #151912;        /* raised surfaces */
+  --ink-3: #1f251b;        /* cards, inputs */
+  --bone: #f1ece2;         /* primary text, light sections */
+  --bone-dim: #a9a597;     /* secondary text on dark */
+  --frog: #a8f04a;         /* signature accent: the frog */
+  --frog-deep: #6fae1f;    /* accent on light backgrounds */
+  --moss: #1e3a26;         /* deep green panels */
+  --brass: #f2b544;        /* ratings, small highlights */
+  --line: rgba(241, 236, 226, 0.12);
+  --line-strong: rgba(241, 236, 226, 0.28);
+
+  /* Type */
+  --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Instrument Serif", Georgia, serif;
+
+  --fs-hero: clamp(4.5rem, 24vw, 15rem);
+  --fs-h2: clamp(2.75rem, 7vw, 5.5rem);
+  --fs-h3: clamp(1.5rem, 2.6vw, 2rem);
+  --fs-lead: clamp(1.1rem, 1.6vw, 1.35rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+
+  /* Space & shape */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --section-y: clamp(5rem, 11vw, 9rem);
+  --max-w: 1280px;
+  --radius-sm: 6px;
+  --radius: 14px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 0.5s;
+}
