@@ -432,26 +432,37 @@
 .bcard__btn { margin-top: auto; }
 .bcard__bio + .bcard__btn { margin-top: 1.25rem; }
 
+/* The open spot: a green "blank" card with the frog holding his CV popping out over the top edge */
 .bcard--missing {
-  grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.5rem;
-  padding: 1rem clamp(1.25rem, 3vw, 2rem) 0; border: 1.5px dashed #b9c6b2; background: var(--fog); box-shadow: none;
+  grid-column: 1 / -1; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); align-items: end;
+  margin-top: 4rem; overflow: visible; border: 0; color: var(--paper);
+  background: radial-gradient(70% 120% at 15% 100%, rgba(255, 255, 255, .14), transparent 60%), var(--wall);
 }
-.bcard--missing:hover { transform: none; box-shadow: none; }
-.bcard__frog { width: 6.5rem; height: auto; align-self: end; transition: transform .5s var(--ease); }
-.bcard--missing:hover .bcard__frog { transform: translateY(-4px) rotate(-2deg); }
-.bcard--missing .bcard__body { padding: 0 0 1rem; }
-.bcard--missing .bcard__name { margin-top: 0; font-size: 1.35rem; }
-.bcard--missing .bcard__bio { margin-top: .35rem; max-width: 52ch; }
-.bcard--missing .link { padding-bottom: 1rem; }
-@media (prefers-reduced-motion: reduce) { .bcard, .bcard__frog { transition: none; } }
+.bcard--missing:hover { transform: none; }
+.bcard__frogwrap { position: relative; align-self: stretch; }
+.bcard__frog {
+  position: absolute; left: 56%; bottom: 0; width: 17rem; max-width: none; height: auto; transform: translateX(-50%);
+  filter: drop-shadow(0 16px 22px rgba(10, 16, 9, .35));
+}
+.bcard--missing .bcard__body { padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.25rem) 0; }
+.bcard--missing .bcard__house { color: #d6e4cd; }
+.bcard--missing .bcard__name { margin-top: .6rem; font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: var(--paper); }
+.bcard--missing .bcard__name span { /* a blank line to write your name on */
+  display: inline-block; padding: 0 .3em; border-bottom: 2px dashed rgba(255, 255, 255, .7); color: #ffd36b;
+}
+.bcard--missing .bcard__bio { max-width: 48ch; color: rgba(255, 255, 255, .85); }
+.bcard--missing .bcard__btn { margin-top: 1.25rem; background: var(--paper); color: var(--forest); }
+.bcard--missing .bcard__btn:hover { background: var(--moss-wash); }
+@media (prefers-reduced-motion: reduce) { .bcard { transition: none; } }
 
 @media (max-width: 900px) { .team__grid { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; } }
 @media (max-width: 520px) {
   .bcard { grid-template-columns: 1fr; }
   .bcard__photo { aspect-ratio: 4 / 3; }
-  .bcard--missing { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; }
-  .bcard__frog { width: 4.5rem; grid-row: span 2; }
-  .bcard--missing .link { grid-column: 2; }
+  .bcard--missing { grid-template-columns: 1fr; margin-top: 7rem; }
+  .bcard__frogwrap { height: 4rem; }
+  .bcard__frog { width: 11rem; }
+  .bcard--missing .bcard__body { padding: 1.25rem; }
 }
 
 /* ---------- Photo band ---------- */

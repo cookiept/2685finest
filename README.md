@@ -77,7 +77,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=27`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=28`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 
