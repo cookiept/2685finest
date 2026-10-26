@@ -1,0 +1,44 @@
+/* ==========================================================
+   2685 Finest — Design tokens
+   White paper, the green of the shop's walls, and nothing loud.
+   See docs/design-system.md for usage guidance.
+   ========================================================== */
+:root {
+  /* Colour: one green family, all sampled from the shop's wall (hue ~109deg) */
+  --paper: #ffffff;        /* page canvas */
+  --fog: #f2f4f0;          /* alternate sections: a pale wash of the wall green */
+  --moss-wash: #e4eae1;    /* brand-tinted cards and image backgrounds */
+  --cream: #f6efdc;        /* warm highlight card, used once or twice */
+  --ink: #151e1b;          /* text: green-tinted near-black */
+  --graphite: #4d4f4c;     /* secondary text */
+  --border: #e0e4dd;       /* hairlines: cards, inputs, dividers */
+  --forest: #3b5236;       /* the wall green, darker: buttons, links, text on tints */
+  --wall: #4d6747;         /* the shop's wall green: icons, details */
+  --leaf: #4d6747;         /* success messages (same green as the wall) */
+
+  /* Type */
+  --font-display: "Antonio", "Oswald", "Arial Narrow", sans-serif;   /* hero only */
+  --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Space Mono", "Courier New", monospace;   /* the services receipt */
+
+  --text-caption: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-body: 1rem;
+  --text-sub: 1.125rem;
+  --text-h3: 1.5rem;
+  --text-h2: clamp(2rem, 4.2vw, 3rem);
+  --text-display: clamp(5rem, 20vw, 10.5rem);
+
+  /* Space & shape */
+  --max-w: 1200px;
+  --gutter: max(16px, 4vw);
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+  --radius-btn: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* Elevation: only for photos that should feel lifted */
+  --shadow-photo: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
