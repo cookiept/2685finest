@@ -21,6 +21,34 @@
   nav.addEventListener("click", (e) => { if (e.target.closest("a")) setNav(false); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
 
+  /* ---------- "Aberto agora" line in the hero (shop time = Lisbon) ---------- */
+  const openStatus = document.querySelector("[data-open-status]");
+  if (openStatus && config.hours) {
+    const DAYS = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Lisbon", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false,
+    }).formatToParts(new Date()).map((p) => [p.type, p.value]));
+    const today = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday);
+    const now = parts.hour.replace("24", "00") + ":" + parts.minute;
+    const hours = config.hours[today];
+
+    let text;
+    let open = false;
+    if (hours && now >= hours[0] && now < hours[1]) {
+      open = true;
+      text = `Aberto agora · até às ${hours[1]}`;
+    } else if (hours && now < hours[0]) {
+      text = `Fechado agora · abre hoje às ${hours[0]}`;
+    } else {
+      let d = (today + 1) % 7;
+      while (!config.hours[d] && d !== today) d = (d + 1) % 7;
+      const when = d === (today + 1) % 7 ? "amanhã" : `${DAYS[d]}`;
+      text = config.hours[d] ? `Fechado agora · abre ${when} às ${config.hours[d][0]}` : "Fechado";
+    }
+    openStatus.textContent = text;
+    openStatus.parentElement.classList.toggle("is-open", open);
+  }
+
   /* ---------- Novidades: notice bar + card stack of banners, from assets/data/news.js ----------
      The banners are fanned out like a hand of cards: the active one in front, the others
      tilted behind it. Arrows, dots, keyboard, a click on a card behind, or dragging the

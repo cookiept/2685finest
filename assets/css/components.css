@@ -125,3 +125,18 @@
   transition: background .2s;
 }
 .wa-float:hover { background: var(--ink); }
+
+/* ---------- Mobile booking bar ---------- */
+.book-bar { display: none; }
+@media (max-width: 760px) {
+  .book-bar {
+    position: fixed; z-index: 40; inset: auto 0 0 0; display: flex; gap: .5rem;
+    padding: .75rem max(16px, env(safe-area-inset-left, 0px)) calc(.75rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+  }
+  .book-bar__main { flex: 1; justify-content: center; }
+  .book-bar__call { flex: 0 0 auto; }
+  body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+  .wa-float { bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+}

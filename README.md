@@ -47,6 +47,12 @@ All images are WebP, resized for the web (the whole folder is about 1.4 MB).
 To add a photo, export it as WebP around 1000–1600px wide and put it in the matching folder.
 To add more cuts to the gallery, add files to `assets/images/gallery/` and a `<figure>` in the Galeria section of `index.html`.
 
+## Page order
+
+Follows what people look for first on a barbershop site: the hero (name, Marcar button, rating, and a line with "Aberto agora", address and phone), then Serviços e preços, Barbeiros, Avaliações, Galeria, Novidades, A casa and Contacto. The latest news also sits in the green bar at the very top. On phones a "Marcar no Booksy / Ligar" bar stays fixed at the bottom.
+
+Opening hours for the "Aberto agora" line live in `assets/js/config.js` (`hours`).
+
 ## Contact via WhatsApp
 
 The contact form composes a WhatsApp message (name, subject, barber, message) and opens a chat with the shop. No server or database needed.
@@ -67,7 +73,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=10`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=11`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 

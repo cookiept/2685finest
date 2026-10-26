@@ -19,6 +19,13 @@
 .hero__rating strong { color: var(--ink); }
 .hero__rating:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; }
 
+.hero__info { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin-top: -.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: var(--text-sm); color: var(--graphite); }
+.hero__info li { display: inline-flex; align-items: center; gap: .5rem; }
+.hero__info a { color: inherit; text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.hero__info a:hover { color: var(--forest); text-decoration-color: currentColor; }
+.status-dot { width: .5rem; height: .5rem; border-radius: 50%; background: #b9c0b5; }
+.is-open .status-dot { background: var(--wall); box-shadow: 0 0 0 3px rgba(77, 103, 71, .18); }
+.is-open { color: var(--ink); font-weight: 600; }
 .hero__media { position: relative; padding-bottom: 2.5rem; }
 .hero__photo { aspect-ratio: 4 / 5; }
 .hero__photo img { object-position: 45% 50%; }
