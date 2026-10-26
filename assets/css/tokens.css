@@ -1,27 +1,31 @@
 /* ==========================================================
    2685 Finest — Design tokens
+   Colours come from the shop itself: black barber capes,
+   sage-green walls, the frog and its gold crown.
    See docs/design-system.md for usage guidance.
    ========================================================== */
 :root {
   /* Colour */
-  --ink: #0d0f0b;          /* main background, near-black with a green cast */
-  --ink-2: #151912;        /* raised surfaces */
-  --ink-3: #1f251b;        /* cards, inputs */
-  --bone: #f1ece2;         /* primary text, light sections */
-  --bone-dim: #a9a597;     /* secondary text on dark */
-  --frog: #a8f04a;         /* signature accent: the frog */
-  --frog-deep: #6fae1f;    /* accent on light backgrounds */
-  --moss: #1e3a26;         /* deep green panels */
-  --brass: #f2b544;        /* ratings, small highlights */
-  --line: rgba(241, 236, 226, 0.12);
-  --line-strong: rgba(241, 236, 226, 0.28);
+  --ink: #0f120e;          /* main background: the black capes */
+  --ink-2: #171b15;        /* raised surfaces */
+  --ink-3: #21271e;        /* cards, inputs */
+  --bone: #f3efe6;         /* primary text, light sections */
+  --bone-dim: #aeab9f;     /* secondary text on dark */
+  --frog: #7cc04b;         /* signature accent: the frog */
+  --frog-deep: #4e8a2a;    /* frog green on light backgrounds */
+  --sage: #5f8458;         /* the shop's walls */
+  --moss: #22341f;         /* deep green panels */
+  --gold: #f0a63a;         /* crown and chain: ratings, small highlights */
+  --line: rgba(243, 239, 230, 0.12);
+  --line-strong: rgba(243, 239, 230, 0.28);
 
   /* Type */
   --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
   --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-script: "Instrument Serif", Georgia, serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sign: "Mr Dafoe", "Brush Script MT", cursive;  /* echoes "Simões" in the logo */
 
-  --fs-hero: clamp(4.5rem, 24vw, 15rem);
+  --fs-hero: clamp(5rem, 22vw, 13.5rem);
   --fs-h2: clamp(2.75rem, 7vw, 5.5rem);
   --fs-h3: clamp(1.5rem, 2.6vw, 2rem);
   --fs-lead: clamp(1.1rem, 1.6vw, 1.35rem);

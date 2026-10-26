@@ -37,16 +37,15 @@
   border-bottom: 1px solid transparent;
 }
 .site-header.is-scrolled {
-  background: rgba(13, 15, 11, .82);
+  background: rgba(15, 18, 14, .82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-color: var(--line);
 }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
 
-.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
-.brand__word { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; }
-.brand__accent { color: var(--frog); margin-inline: .1em; }
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand img { height: 52px; width: auto; }
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav a:not(.btn) {
@@ -70,6 +69,7 @@
 
 @media (max-width: 860px) {
   .nav-toggle { display: block; z-index: 2; }
+  .brand img { height: 44px; }
   .nav {
     position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 1.75rem;
     background: var(--ink); padding: var(--gutter);
@@ -80,35 +80,48 @@
   .nav__cta { font-size: 1.1rem; padding: 1rem 2rem; }
 }
 
-/* ---------- Photo slot ----------
-   A figure with a branded placeholder. Drop the matching image file into
-   assets/images/ and it covers the placeholder automatically. */
+/* ---------- Photo ---------- */
 .photo {
   position: relative; overflow: hidden;
   border-radius: var(--radius-lg);
-  background:
-    radial-gradient(circle at 30% 20%, rgba(168, 240, 74, .18), transparent 55%),
-    repeating-linear-gradient(-45deg, var(--ink-3) 0 14px, var(--ink-2) 14px 28px);
-  border: 1px solid var(--line);
+  background: var(--ink-3);
   aspect-ratio: 4 / 5;
-}
-.photo::after {
-  content: attr(data-label);
-  position: absolute; left: 1rem; bottom: 1rem;
-  padding: .35rem .7rem; border-radius: var(--radius-pill);
-  background: rgba(13, 15, 11, .75); color: var(--bone);
-  font-size: var(--fs-label); font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
 }
 .photo img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s var(--ease);
 }
 .photo:hover img { transform: scale(1.04); }
-.photo:has(img)::after { opacity: 0; }
-.photo--tall { aspect-ratio: 3 / 4; }
+.photo--art { background: var(--bone); }
+.photo--art img { object-fit: contain; padding: 8%; }
+
+/* ---------- News pill ---------- */
+.news-pill {
+  display: inline-flex; align-items: center; gap: .65rem; max-width: 100%; min-width: 0;
+  padding: .35rem .9rem .35rem .35rem; border-radius: var(--radius-pill);
+  background: var(--ink-2); border: 1px solid var(--line-strong);
+  font-size: var(--fs-small); font-weight: 600; text-decoration: none;
+  transition: border-color .2s, transform .2s var(--ease);
+}
+.news-pill:hover { border-color: var(--frog); transform: translateY(-1px); }
+.news-pill__tag {
+  flex: none; padding: .25rem .65rem; border-radius: var(--radius-pill);
+  background: var(--frog); color: var(--ink);
+  font-size: var(--fs-label); font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+}
+.news-pill__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- Icon button ---------- */
+.icon-btn {
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--line-strong); background: transparent; color: var(--bone); cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.icon-btn:hover { border-color: var(--frog); color: var(--frog); }
+.icon-btn:disabled { opacity: .35; cursor: default; }
 
 /* ---------- Stars ---------- */
-.stars { color: var(--brass); letter-spacing: .1em; }
+.stars { color: var(--gold); letter-spacing: .1em; }
 .stars--lg { font-size: 1.5rem; }
 
 /* ---------- Tags ---------- */
@@ -131,7 +144,7 @@
 .field textarea { resize: vertical; min-height: 7rem; }
 .field input:focus,
 .field select:focus,
-.field textarea:focus { outline: none; border-color: var(--frog); box-shadow: 0 0 0 3px rgba(168, 240, 74, .2); }
+.field textarea:focus { outline: none; border-color: var(--frog); box-shadow: 0 0 0 3px rgba(124, 192, 75, .25); }
 .field [aria-invalid="true"] { border-color: #ff6b5a; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }

@@ -81,19 +81,19 @@ ul { padding: 0; list-style: none; }
 }
 .dot {
   width: .55rem; height: .55rem; border-radius: 50%;
-  background: var(--frog); box-shadow: 0 0 0 4px rgba(168, 240, 74, .2);
+  background: var(--frog); box-shadow: 0 0 0 4px rgba(124, 192, 75, .25);
 }
 
 .hl { color: var(--frog); }
 
 .script {
-  font-family: var(--font-script);
+  font-family: var(--font-serif);
   font-style: italic;
   text-transform: none;
   color: var(--frog);
 }
 
-em { font-family: var(--font-script); font-style: italic; font-size: 1.15em; color: var(--frog); }
+em { font-family: var(--font-serif); font-style: italic; font-size: 1.15em; color: var(--frog); }
 
 /* ---------- Reveal on scroll ---------- */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }

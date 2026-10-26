@@ -11,15 +11,18 @@ Landing page for **2685 Finest Barbearia** (Sacavém, Loures). Static HTML/CSS/J
 │   ├── css/
 │   │   ├── tokens.css         # Design tokens (colours, type, spacing)
 │   │   ├── base.css           # Reset, typography, layout helpers
-│   │   ├── components.css     # Buttons, nav, photo slots, form…
-│   │   └── sections.css       # Hero, services, team, gallery, reviews, contact
+│   │   ├── components.css     # Buttons, nav, photos, news pill, form…
+│   │   └── sections.css       # Hero, news, about, services, team, gallery, reviews, contact
+│   ├── data/
+│   │   └── news.js            # "Novidades" cards shown at the top of the page
 │   ├── js/
 │   │   ├── config.js          # WhatsApp number, Booksy & Instagram links
-│   │   └── main.js            # Nav, tabs, scroll reveal, contact form
+│   │   └── main.js            # Nav, news carousel, tabs, scroll reveal, contact form
 │   └── images/
-│       ├── brand/             # frog.svg (mascot), favicon.svg, logo
-│       ├── team/              # andre-simoes.jpg, ricardo.jpg
-│       └── gallery/           # interior.jpg, corte-01.jpg … corte-05.jpg
+│       ├── brand/             # logo-light/dark, frog-standing, frog-lounging, frog-cigar,
+│       │                      # frog-head, sticker-sacavem, favicon-48, apple-touch-icon
+│       ├── team/              # simoes.webp, ricardo.webp
+│       └── gallery/           # interior, exterior, corte-01, corte-02
 └── docs/
     └── design-system.md       # Colours, type, components, mascot rules
 ```
@@ -32,20 +35,17 @@ Open `index.html` in a browser, or serve the folder:
 python3 -m http.server 8000
 ```
 
-## Adding the real photos
+## Updating the news ("Novidades")
 
-Photo slots show a branded placeholder until the file exists. Drop images with these exact names:
+Edit `assets/data/news.js`. Each item has a tag, date, title, text, image and an optional button.
+The first item also shows in the green "Novidade" pill at the top of the page.
+Add, remove or reorder items freely; the carousel adapts.
 
-| File | Where it shows |
-| --- | --- |
-| `assets/images/gallery/interior.jpg` | "A casa" section |
-| `assets/images/team/andre-simoes.jpg` | André's card |
-| `assets/images/team/ricardo.jpg` | Ricardo's card |
-| `assets/images/gallery/corte-01.jpg` … `corte-05.jpg` | Gallery (01 is the large tile) |
+## Images
 
-Use JPGs around 1200px on the long side, compressed (≈200 KB each).
-
-To use the official frog, replace `assets/images/brand/frog.svg`.
+All images are WebP, resized for the web (the whole folder is about 1.4 MB).
+To add a photo, export it as WebP around 1000–1600px wide and put it in the matching folder.
+To add more cuts to the gallery, add files to `assets/images/gallery/` and a `<figure>` in the Galeria section of `index.html`.
 
 ## Contact via WhatsApp
 

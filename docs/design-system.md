@@ -6,18 +6,21 @@ All values live in [`assets/css/tokens.css`](../assets/css/tokens.css).
 
 ## Colour
 
+Taken from the shop itself: black barber capes, sage-green walls, the frog and its gold crown.
+
 | Token | Hex | Use |
 | --- | --- | --- |
-| `--ink` | `#0d0f0b` | Main background. Near-black with a green cast. |
-| `--ink-2` / `--ink-3` | `#151912` / `#1f251b` | Raised surfaces, cards, inputs. |
-| `--bone` | `#f1ece2` | Primary text on dark; background of the Services section. |
-| `--bone-dim` | `#a9a597` | Secondary text on dark. |
-| `--frog` | `#a8f04a` | Signature accent: CTAs, highlights, the frog. Use sparingly so it stays loud. |
-| `--frog-deep` | `#6fae1f` | Accent text on light (`--bone`) backgrounds. |
-| `--moss` | `#1e3a26` | Deep green panels (Reviews, join card). |
-| `--brass` | `#f2b544` | Star ratings only. |
+| `--ink` | `#0f120e` | Main background (the black capes). |
+| `--ink-2` / `--ink-3` | `#171b15` / `#21271e` | Raised surfaces, cards, inputs. |
+| `--bone` | `#f3efe6` | Primary text on dark; background of the Services section. |
+| `--bone-dim` | `#aeab9f` | Secondary text on dark. |
+| `--frog` | `#7cc04b` | Signature accent: CTAs, highlights. Matches the frog's skin. |
+| `--frog-deep` | `#4e8a2a` | Frog green on light (`--bone`) backgrounds. |
+| `--sage` | `#5f8458` | The shop's walls; hero glow. |
+| `--moss` | `#22341f` | Deep green panels (Reviews, news images, join card). |
+| `--gold` | `#f0a63a` | The crown and chain: ratings, news tags, the "Simões" signature. |
 
-Rules: one frog-green element dominates each viewport. Never put `--frog` text on `--bone` (low contrast); use `--frog-deep`.
+Rules: one frog-green element dominates each viewport; gold is for small highlights only. Never put `--frog` text on `--bone`; use `--frog-deep`.
 
 ## Typography
 
@@ -25,7 +28,8 @@ Rules: one frog-green element dominates each viewport. Never put `--frog` text o
 | --- | --- | --- |
 | Display | **Anton** | Always uppercase. Headlines, prices, numbers. |
 | Body | **Archivo** 400–800 | Paragraphs, UI, labels. |
-| Accent | **Instrument Serif** italic | One or two words per section (`em`, `.script`) for a human touch. |
+| Accent | **Instrument Serif** italic | The "&" in headings (`.script`). |
+| Signature | **Mr Dafoe** | Only the gold "Simões" in the hero, echoing the script in the logo. |
 
 Labels (`.label`) are 12px, bold, tracked `.18em`, uppercase, numbered (`01 · A casa`).
 
@@ -43,15 +47,13 @@ Labels (`.label`) are 12px, bold, tracked `.18em`, uppercase, numbered (`01 · A
 
 ## The frog
 
-The mascot appears where it adds personality without hurting clarity:
+The shop's mascot (crown, gold chain with "85") appears where it adds personality without hurting clarity:
 
-1. Logo mark in the header.
-2. Hero, with a slow "hop" animation.
-3. "Há lugar na lagoa?" recruiting card.
-4. Contact form header ("Fala com o sapo").
-5. Favicon.
-
-`assets/images/brand/frog.svg` is a **placeholder drawing**. Replace it with the shop's official frog artwork (SVG preferred, PNG with transparency is fine) and every use updates automatically.
+1. Hero: `frog-standing`, arms crossed, floating gently.
+2. News cards and the About photo: `frog-lounging`.
+3. "Há lugar na lagoa?" card and the hot towel news: `frog-cigar`.
+4. Gallery: the "Sapos a virar príncipes" Sacavém sticker, and `frog-head` on the Instagram tile and contact form.
+5. Favicon: the frog head cropped from the sticker.
 
 ## Motion
 
