@@ -169,6 +169,86 @@
     }
   });
 
+  /* ---------- Plants: a breeze where the mouse passes ----------
+     Each leaf is a damped spring. A moving pointer pushes the leaves near it in the
+     direction it travels; they swing and settle slowly. A resting pointer adds nothing. */
+  const plants = Array.from(document.querySelectorAll(".plant"));
+  const canHover = window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches;
+
+  if (plants.length && canHover) {
+    const STIFFNESS = 26;   // pull back to rest
+    const DAMPING = 4;      // lower = longer, softer settling
+    const REACH = 70;       // px around the pointer that feel the wind
+    const MAX = 22;         // degrees
+
+    const bodies = plants.map((svg) => ({
+      svg,
+      sway: { node: svg.querySelector(".sway"), a: 0, v: 0 },
+      leaves: Array.from(svg.querySelectorAll(".leaf")).map((node) => ({ node, a: 0, v: 0, gain: 0.7 + Math.random() * 0.6 })),
+    }));
+
+    let last = null;
+    let running = false;
+    let prevTime = 0;
+
+    const step = (time) => {
+      const dt = Math.min((time - prevTime) / 1000, 1 / 30);
+      prevTime = time;
+      let moving = false;
+
+      bodies.forEach((body) => {
+        [body.sway, ...body.leaves].forEach((p) => {
+          if (!p.node || (p.a === 0 && p.v === 0)) return;
+          p.v += (-STIFFNESS * p.a - DAMPING * p.v) * dt;
+          p.a = Math.max(-MAX, Math.min(MAX, p.a + p.v * dt));
+          if (Math.abs(p.a) < 0.05 && Math.abs(p.v) < 0.1) { p.a = 0; p.v = 0; }
+          else moving = true;
+          p.node.style.transform = p.a ? `rotate(${p.a.toFixed(2)}deg)` : "";
+        });
+      });
+
+      running = moving;
+      if (moving) requestAnimationFrame(step);
+    };
+
+    const kick = () => {
+      if (running) return;
+      running = true;
+      prevTime = performance.now();
+      requestAnimationFrame(step);
+    };
+
+    document.addEventListener("pointermove", (e) => {
+      const now = performance.now();
+      const prev = last;
+      last = { x: e.clientX, y: e.clientY, t: now };
+      if (!prev || now - prev.t > 100) return;
+
+      const dt = Math.max(now - prev.t, 8);
+      const vx = (e.clientX - prev.x) / dt;   // px per ms
+      const vy = (e.clientY - prev.y) / dt;
+      let pushed = false;
+
+      bodies.forEach((body) => {
+        const box = body.svg.getBoundingClientRect();
+        if (e.clientX < box.left - REACH || e.clientX > box.right + REACH ||
+            e.clientY < box.top - REACH || e.clientY > box.bottom + REACH) return;
+
+        body.leaves.forEach((leaf) => {
+          const r = leaf.node.getBoundingClientRect();
+          const d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+          if (d > REACH) return;
+          const falloff = 1 - d / REACH;
+          leaf.v += (-vx * 70 + vy * 20) * falloff * leaf.gain;
+          pushed = true;
+        });
+        if (pushed && body.sway.node) body.sway.v += -vx * 6;
+      });
+
+      if (pushed) kick();
+    }, { passive: true });
+  }
+
   /* ---------- Footer year ---------- */
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();

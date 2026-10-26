@@ -6,12 +6,12 @@
 :root {
   /* Colour */
   --paper: #ffffff;        /* page canvas */
-  --fog: #f5f5f2;          /* alternate sections, tab hover */
-  --moss-wash: #e9efe6;    /* brand-tinted cards (stats, featured) */
+  --fog: #eef2ea;          /* alternate sections: a pale wash of the wall green */
+  --moss-wash: #dfe8d8;    /* brand-tinted cards and image backgrounds */
   --cream: #f6efdc;        /* warm highlight card, used once or twice */
   --ink: #151e1b;          /* text: green-tinted near-black */
   --graphite: #4d4f4c;     /* secondary text */
-  --border: #e4e5e3;       /* hairlines: cards, inputs, dividers */
+  --border: #e0e4dd;       /* hairlines: cards, inputs, dividers */
   --forest: #2f4530;       /* primary action, headings accent, stars */
   --wall: #4d6747;         /* the shop's wall green: icons, details */
   --leaf: #3f7d22;         /* small text accents and links */
