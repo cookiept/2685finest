@@ -65,6 +65,10 @@ If it is left empty, the form points people to Booksy and the floating button sc
 - Prices follow Booksy, which differ slightly from the first Netlify site.
 - Which Instagram account is current.
 
+## Cache
+
+CSS and JS links in `index.html` end in `?v=3`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+
 ## Deploy
 
 Any static host works. Easiest: **GitHub Pages** → Settings → Pages → Deploy from branch `main`, folder `/ (root)`.
