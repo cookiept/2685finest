@@ -241,6 +241,8 @@
 .info-list > div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
 .info-list dt { font-size: var(--fs-label); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--bone-dim); padding-top: .2rem; }
 .info-list dd small { color: var(--bone-dim); }
+.hours { display: grid; grid-template-columns: auto 1fr; gap: .15rem 1.5rem; font-variant-numeric: tabular-nums; }
+.hours span:nth-child(odd) { color: var(--bone-dim); }
 .info-list a:not(.link-arrow) { color: var(--frog); }
 
 .contact-form {

@@ -57,12 +57,12 @@ Set the number in `assets/js/config.js`:
 whatsapp: "351912345678"
 ```
 
-Until it is set, the form points people to Booksy and the floating button scrolls to the contact section.
+If it is left empty, the form points people to Booksy and the floating button scrolls to the contact section.
 
 ## Content to confirm with the shop
 
-- Weekly opening hours (Booksy only showed 09:00–20:00 for one day).
-- Barber roles and bios in the Team section are drafts.
+- That 927 266 234 is on WhatsApp (it is set as the form's WhatsApp number).
+- Prices follow Booksy, which differ slightly from the first Netlify site.
 - Which Instagram account is current.
 
 ## Deploy
