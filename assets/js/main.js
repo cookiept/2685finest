@@ -76,14 +76,15 @@
     lead.append(newsMedia(first, "news__lead-media"), leadBody);
 
     const list = newsRoot.querySelector("[data-news-list]");
-    rest.forEach((item) => {
+    rest.forEach((item, i) => {
       const row = el("li", "news__item");
+      row.append(el("span", "news__num", String(i + 1).padStart(2, "0")));
       const body = el("div", "news__item-body");
       body.append(newsMeta(item), el("h3", "news__item-title", item.title));
       if (item.text) body.append(el("p", "news__item-text", item.text));
       const link = newsLink(item);
       if (link) body.append(link);
-      row.append(newsMedia(item, "news__thumb"), body);
+      row.append(body, newsMedia(item, "news__thumb"));
       list.append(row);
     });
     if (!rest.length) list.hidden = true;
