@@ -244,73 +244,48 @@
 @media (max-width: 760px) { .receipt-wrap { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .menu__more-icon { transition: none; } }
 
-/* ---------- Equipa: football-sticker cards ("cromos") ---------- */
-.team__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem clamp(1.5rem, 3vw, 2.5rem); }
-/* Every barber column is the card, its text and its link; subgrid keeps the three rows aligned
-   so the cards (and the empty slot) are exactly the same height. */
-.barber { display: grid; grid-row: span 3; grid-template-rows: subgrid; justify-items: start; row-gap: .75rem; }
-.barber__bio { max-width: 36ch; }
-.barber .cromo { height: 100%; margin-bottom: .5rem; align-content: start; }
+/* ---------- Equipa: business cards ----------
+   One card per barber, photo on the left, name, one line, bio and the booking button on the right.
+   The open spot is a slim dashed strip under them with the frog holding his CV. */
+.team__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 1.75rem); }
+.bcard {
+  display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--paper);
+  box-shadow: 0 1px 2px rgba(21, 30, 27, .05), 0 14px 30px -18px rgba(21, 30, 27, .25);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.bcard:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(21, 30, 27, .05), 0 22px 40px -20px rgba(21, 30, 27, .3); }
+.bcard__photo { margin: 0; min-height: 100%; background: var(--moss-wash); }
+.bcard__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.bcard__body { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2.5vw, 1.75rem); }
+.bcard__crest { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; }
+.bcard__house { font-size: var(--text-caption); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--wall); }
+.bcard__name { margin-top: .9rem; font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+.bcard__role { margin-top: .3rem; padding-bottom: .9rem; border-bottom: 1px solid var(--border); width: 100%; font-size: var(--text-sm); color: var(--graphite); }
+.bcard__bio { margin-top: .9rem; font-size: var(--text-sm); color: var(--graphite); max-width: 34ch; }
+.bcard__btn { margin-top: auto; }
+.bcard__bio + .bcard__btn { margin-top: 1.25rem; }
 
-.cromo {
-  position: relative; width: 100%; display: grid; gap: .6rem;
-  padding: .7rem .7rem .9rem; border-radius: var(--radius-lg);
-  background: var(--wall); color: var(--paper);
-  box-shadow: 0 1px 2px rgba(21, 30, 27, .06);
-  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+.bcard--missing {
+  grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.5rem;
+  padding: 1rem clamp(1.25rem, 3vw, 2rem) 0; border: 1.5px dashed #b9c6b2; background: var(--fog); box-shadow: none;
 }
-.cromo::after { /* faint sheen that crosses the card on hover */
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%);
-  background-size: 250% 100%; background-position: 120% 0; opacity: 0;
-  transition: background-position .9s var(--ease), opacity .3s;
-}
-.cromo__top {
-  display: flex; justify-content: space-between; padding-inline: .2rem;
-  font-family: var(--font-display); font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .85);
-}
-.cromo__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--moss-wash); }
-.cromo__photo > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-.cromo__num {
-  position: absolute; top: .6rem; left: .6rem; min-width: 2.6rem; padding: .25rem .4rem; border-radius: var(--radius-btn);
-  background: var(--paper); color: var(--forest); text-align: center;
-  font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; line-height: 1; letter-spacing: .04em;
-}
-.cromo__crest {
-  position: absolute; right: .6rem; bottom: .6rem; width: 3.5rem; height: 3.5rem; border-radius: 50%;
-  background: var(--moss-wash); border: 3px solid var(--paper);
-}
-.cromo__plate { padding: .75rem .9rem .7rem; border-radius: var(--radius); background: var(--forest); color: var(--paper); }
-.cromo__name { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
-.cromo__role { margin-top: .3rem; font-size: var(--text-caption); letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
-.cromo__stats { display: grid; grid-template-columns: 1fr 1fr; padding-inline: .2rem; }
-.cromo__stats div { display: grid; gap: .1rem; padding-top: .5rem; }
-.cromo__stats div + div { padding-left: .9rem; border-left: 1px solid rgba(255, 255, 255, .22); }
-.cromo__stats dt { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
-.cromo__stats dd { font-size: var(--text-sm); font-weight: 600; }
+.bcard--missing:hover { transform: none; box-shadow: none; }
+.bcard__frog { width: 6.5rem; height: auto; align-self: end; transition: transform .5s var(--ease); }
+.bcard--missing:hover .bcard__frog { transform: translateY(-4px) rotate(-2deg); }
+.bcard--missing .bcard__body { padding: 0 0 1rem; }
+.bcard--missing .bcard__name { margin-top: 0; font-size: 1.35rem; }
+.bcard--missing .bcard__bio { margin-top: .35rem; max-width: 52ch; }
+.bcard--missing .link { padding-bottom: 1rem; }
+@media (prefers-reduced-motion: reduce) { .bcard, .bcard__frog { transition: none; } }
 
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .barber:hover .cromo { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--shadow-photo); }
-  .barber:nth-child(2):hover .cromo { transform: translateY(-4px) rotate(1deg); }
-  .barber:hover .cromo::after { opacity: 1; background-position: -20% 0; }
-}
-
-/* The empty slot in the album: same layout as a real cromo, drawn as an outline */
-.cromo--missing { background: var(--fog); color: var(--graphite); border: 1.5px dashed #b9c6b2; box-shadow: none; }
-.cromo--missing .cromo__top { color: var(--wall); }
-.cromo--missing .cromo__photo { display: grid; place-items: end center; background: var(--moss-wash); border: 1.5px dashed #b9c6b2; }
-.cromo--missing .cromo__photo > img.cromo__ghost { width: 88%; height: 86%; margin-top: 8%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 10px 14px rgba(21, 30, 27, .2)); transition: transform .5s var(--ease); }
-.cromo--missing .cromo__num { background: var(--fog); color: var(--wall); border: 1px dashed #b9c6b2; }
-.cromo--missing .cromo__plate { background: transparent; color: var(--forest); border: 1.5px dashed #b9c6b2; }
-.cromo--missing .cromo__stats dt { color: var(--wall); }
-.cromo--missing .cromo__stats div + div { border-left-color: var(--border); }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .barber--missing:hover .cromo__ghost { transform: translateY(-4px) rotate(-2deg); }
-}
-
-@media (max-width: 1000px) { .team__grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) {
-  .team__grid { grid-template-columns: 1fr; max-width: 23rem; margin-inline: auto; }
+@media (max-width: 900px) { .team__grid { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; } }
+@media (max-width: 520px) {
+  .bcard { grid-template-columns: 1fr; }
+  .bcard__photo { aspect-ratio: 4 / 3; }
+  .bcard--missing { grid-template-columns: auto minmax(0, 1fr); gap: 1rem; }
+  .bcard__frog { width: 4.5rem; grid-row: span 2; }
+  .bcard--missing .link { grid-column: 2; }
 }
 
 /* ---------- Photo band ---------- */

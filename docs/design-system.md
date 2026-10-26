@@ -25,7 +25,7 @@ One green family only: every green on the site, plants included, is a shade or t
 
 Rules:
 - `--forest` is for actions and the hero title, never for large background blocks.
-- The wall green is the brand's surface colour: the footer, cromos and the rating card sit on it with white text. The darkest place is the photo band.
+- The wall green is the brand's surface colour: the footer and the rating card sit on it with white text. The darkest place is the photo band.
 - Stars are green, not yellow.
 
 ## Typography
@@ -47,7 +47,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 
 - **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
 - **Novidades card stack**: the news banners fanned out like a hand of cards (adapted from a React CardStack to plain JS/CSS). The active card sits in front, lifted; the others step out to each side with a small angle, pushed back in depth and tilted. Arrows + counter top right, dots below; click a card behind, drag/swipe the front one, or use the keyboard arrows. Springy 0.7s transitions. Autoplay every 5s on all screens, paused on hover/keyboard focus; a manual change restarts the count; none with reduced motion. Banners are drawn from `assets/data/news.js` (`green` or `light` theme, always a frog), or a finished image via the `banner` field.
-- **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Procura-se", Nº 03) has the same layout drawn as a dashed outline, with the frog holding a CV and pointing at you (`frog-cv`), and the text "Podes ser o cromo que nos falta". The three columns use CSS subgrid so cards, texts and links line up at the same height.
+- **Barbeiros (cartões de visita)**: one white card per barber, two side by side (one per row below 900px): photo on the left (stacked on top on phones), then "2685 Finest · Sacavém", the name, "Barbeiro · na casa há 3 anos", a hairline, the bio and a "Marcar com o …" button to their Booksy page. Small `frog-head` crest in the top corner. Under them, a slim dashed strip "Procura-se barbeiro" with the `frog-cv` frog and "Fala connosco".
 - **Plants**: hand-drawn SVG plants in the wall-green family. Each one grows from something real on the page, never from empty space: ivy draped over the top of the hero photo; a pothos in a pot hanging on cords from the header line; a Boston fern in a pot hanging from the edge of the Serviços section; eucalyptus sprigs coming in from the screen edge (A casa, Contacto). Still by default. Moving the mouse through a plant pushes nearby leaves in the direction of travel like a breeze; they settle slowly on a damped spring (in `main.js`), and a resting pointer adds nothing. Below 1280px only the ivy on the hero photo stays.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
 - **Serviços (talão)**: the price list is a till receipt (Space Mono only on the small print, prices in Manrope at 1–1.125rem so they read easily; off-white paper, dashed rules, logo and address on top, "Preços atualizados a <data>" (edit the date in index.html when prices change), a crumpled-paper crease texture (assets/images/textures/paper-crumple.webp, multiply at 10%) with soft uneven light, a few small rips cut into the edges (inline SVG masks), a torn zigzag bottom via CSS mask and a CSS barcode; no total and no button), as wide as the page under the usual heading, barely tilted with a soft shadow. Six main services show first (Skinfade with a square "★ Mais popular" tag); Combos, Kids and Extras unroll from a clear moss-wash bar with a green "+" circle, "Ver todos os preços" (becomes "Esconder preços" when open).
@@ -61,7 +61,7 @@ The shop's mascot (crown, gold chain with "85"):
 
 1. Hero: `frog-lounging`, resting on the corner of the interior photo.
 2. Novidades: every banner carries a frog (lounging, standing, cigar, the Sacavém sticker).
-3. Barber cromos: `frog-head` as the club crest. "Procura-se" slot: `frog-cv` (holding a CV, pointing at the reader).
+3. Barber cards: `frog-head` as a small crest. "Procura-se barbeiro" strip: `frog-cv` (holding a CV, pointing at the reader).
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
 5. Banners: the "Sapos a virar príncipes" Sacavém sticker. The gallery itself only shows people.
 
