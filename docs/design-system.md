@@ -55,6 +55,8 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
 - **Inputs**: hairline border that turns forest on focus. No glow.
 
+- **Galeria (parallax scroll)**: three columns of photos of people (cuts and barbers) in a window that fades at the top and bottom; outer columns rise and the middle one sinks as the page scrolls. Two columns on phones; static with reduced motion.
+
 ## The frog
 
 The shop's mascot (crown, gold chain with "85"):
@@ -63,7 +65,7 @@ The shop's mascot (crown, gold chain with "85"):
 2. Novidades: every banner carries a frog (lounging, standing, cigar, the Sacavém sticker).
 3. Barber cromos: `frog-head` as the club crest. "Cromo em falta" slot: `frog-cigar`, greyed.
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
-5. Gallery: the "Sapos a virar príncipes" Sacavém sticker.
+5. Banners: the "Sapos a virar príncipes" Sacavém sticker. The gallery itself only shows people.
 
 ## Imagery
 

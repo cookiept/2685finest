@@ -266,6 +266,29 @@
     fan.closest("section").hidden = true;
   }
 
+  /* ---------- Galeria: parallax scroll (outer columns rise, middle one sinks) ---------- */
+  const parallax = document.querySelector("[data-parallax]");
+  if (parallax && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const cols = Array.from(parallax.querySelectorAll("[data-parallax-col]"));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rect = parallax.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > vh) return;
+      const p = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+      const travel = Math.min(260, rect.height * 0.4);
+      cols.forEach((col) => {
+        const y = col.dataset.parallaxCol === "down" ? -travel + p * travel : -p * travel;
+        col.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+      });
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  }
+
   /* ---------- Service tabs (WAI-ARIA tabs pattern) ---------- */
   document.querySelectorAll("[data-tabs]").forEach((root) => {
     const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
