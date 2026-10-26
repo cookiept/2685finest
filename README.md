@@ -14,7 +14,8 @@ Landing page for **2685 Finest Barbearia** (Sacavém, Loures). Static HTML/CSS/J
 │   │   ├── components.css     # Notice bar, header, buttons, tabs, form…
 │   │   └── sections.css       # Hero, news, about, services, team, photo band, gallery, reviews, contact, footer
 │   ├── data/
-│   │   └── news.js            # "Novidades" cards shown at the top of the page
+│   │   ├── news.js            # Novidades banners
+│   │   └── gallery.js         # Galeria photos and captions
 │   ├── js/
 │   │   ├── config.js          # WhatsApp number, Booksy & Instagram links
 │   │   └── main.js            # Nav, news card stack, tabs, contact form, plant wind
@@ -39,6 +40,10 @@ python3 -m http.server 8000
 
 Edit `assets/data/news.js`. Each item becomes one banner card in the fanned card stack: tag, date, title, text, a frog image, a theme (`green` or `light`) and an optional button.
 To use a banner designed elsewhere (e.g. Canva, about 2400×1000), put the image in `assets/images/` and set `banner: "assets/images/…"` on the item.
+
+## Updating the gallery
+
+Edit `assets/data/gallery.js`: one entry per photo (image, alt, tag, title, subtitle, text, optional button). Use photos of people, ideally portrait.
 
 ## Images
 
@@ -72,7 +77,7 @@ If it is left empty, the form points people to Booksy and the floating button sc
 
 ## Cache
 
-CSS and JS links in `index.html` end in `?v=13`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
+CSS and JS links in `index.html` end in `?v=14`. After changing a CSS or JS file, bump that number so visitors' browsers load the new version instead of a cached one.
 
 ## Deploy
 

@@ -264,24 +264,82 @@
 .band__title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; max-width: 16ch; text-wrap: balance; }
 .band p { max-width: 44ch; opacity: .85; font-size: var(--text-sub); }
 
-/* ---------- Galeria: parallax scroll ----------
-   A window onto three columns of photos; the outer columns rise and the middle one
-   sinks as the section scrolls past (main.js). Edges fade out into the page. */
-.pgallery {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; align-items: start;
-  height: clamp(32rem, 52vw, 44rem); overflow: hidden;
-  -webkit-mask-image: linear-gradient(transparent, #000 10%, #000 90%, transparent);
-          mask-image: linear-gradient(transparent, #000 10%, #000 90%, transparent);
+/* ---------- Galeria: 3D coverflow ----------
+   The one deep-green room on the page: the front photo stands upright with its caption,
+   the others turn away into the dark like pictures on a wall. */
+.gallery {
+  position: relative; overflow: hidden; color: var(--paper);
+  background:
+    radial-gradient(60% 55% at 50% 45%, rgba(122, 150, 106, .22), transparent 70%),
+    linear-gradient(180deg, #1d2a1b 0%, #24331f 50%, #1b2619 100%);
 }
-.pgallery__col { display: grid; gap: 1.5rem; will-change: transform; }
-.pgallery__col--2 { transform: translateY(-14rem); }
-.pgallery img { width: 100%; height: clamp(15rem, 28vw, 26rem); object-fit: cover; object-position: 50% 30%; border-radius: var(--radius); background: var(--fog); }
+.gallery__head { display: grid; justify-items: center; gap: .75rem; text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.gallery__eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: var(--text-caption); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #b7c9ab;
+}
+.gallery__eyebrow::before, .gallery__eyebrow::after { content: ""; width: 2.5rem; height: 1px; background: currentColor; opacity: .7; }
+.gallery__title { color: var(--paper); }
+.gallery__foot { display: flex; justify-content: center; margin-top: 2rem; }
+.gallery__foot .link { color: #cfdcc5; }
+
+.coverflow { --card-w: clamp(15rem, 24vw, 21rem); --card-h: calc(var(--card-w) * 1.42); position: relative; }
+.coverflow__stage { position: relative; height: calc(var(--card-h) + 2rem); perspective: 1400px; touch-action: pan-y; outline-offset: -4px; }
+.flow-card {
+  position: absolute; left: 50%; top: 1rem; width: var(--card-w); height: var(--card-h); margin: 0;
+  border-radius: 18px; overflow: hidden; background: #2b3a27; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6);
+  transform-style: preserve-3d; will-change: transform; user-select: none;
+}
+.coverflow.is-ready .flow-card { transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .5s; }
+.flow-card.is-hidden { opacity: 0; pointer-events: none; }
+.flow-card.is-active { cursor: default; border-color: rgba(183, 201, 171, .45); box-shadow: 0 30px 70px -18px rgba(0, 0, 0, .7), 0 0 0 1px rgba(183, 201, 171, .15), 0 0 60px rgba(122, 150, 106, .25); }
+.flow-card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; -webkit-user-drag: none; }
+.flow-card::after { /* shade on the photos that turn away */
+  content: ""; position: absolute; inset: 0; background: #0f160e; opacity: var(--shade, 0); transition: opacity .6s; pointer-events: none;
+}
+
+.flow-card__tag {
+  position: absolute; top: .9rem; right: 1rem; font-size: .8rem; font-weight: 700; color: var(--paper);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .6); opacity: 0; transition: opacity .4s;
+}
+.flow-card__caption {
+  position: absolute; inset: auto 0 0 0; display: grid; justify-items: center; gap: .35rem; text-align: center;
+  padding: 5rem 1.25rem 1.4rem;
+  background: linear-gradient(0deg, rgba(16, 24, 14, .95) 0%, rgba(16, 24, 14, .75) 55%, transparent 100%);
+  opacity: 0; transform: translateY(10px); transition: opacity .45s .15s, transform .45s .15s;
+}
+.flow-card.is-active .flow-card__caption, .flow-card.is-active .flow-card__tag { opacity: 1; transform: none; }
+.flow-card__title { font-family: var(--font-display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 700; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
+.flow-card__subtitle { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.flow-card__rule { width: 2.25rem; height: 2px; margin-block: .35rem .2rem; background: #b7c9ab; }
+.flow-card__text { max-width: 26ch; font-size: var(--text-sm); opacity: .9; }
+.flow-card__btn {
+  display: inline-flex; align-items: center; gap: .4rem; margin-top: .6rem; padding: .55rem 1.1rem; border-radius: 99px;
+  background: #cfdcc5; color: var(--forest); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  box-shadow: 0 0 24px rgba(183, 201, 171, .35); transition: background-color .2s;
+}
+.flow-card__btn:hover { background: var(--paper); }
+
+.coverflow__nav {
+  position: absolute; top: 50%; z-index: 60; display: grid; place-items: center; width: 3rem; height: 3rem; padding: 0; transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, .35); border-radius: 50%; background: rgba(16, 24, 14, .55); color: var(--paper); cursor: pointer;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background-color .2s, border-color .2s;
+}
+.coverflow__nav:hover { background: rgba(16, 24, 14, .85); border-color: var(--paper); }
+.coverflow__nav--prev { left: max(1rem, calc(50% - var(--card-w) * 1.55)); }
+.coverflow__nav--next { right: max(1rem, calc(50% - var(--card-w) * 1.55)); }
+
 @media (max-width: 760px) {
-  .pgallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; height: 34rem; }
-  .pgallery__col { gap: .75rem; }
-  .pgallery__col--3 { display: none; }
-  .pgallery img { height: 13rem; }
+  .coverflow { --card-w: min(16rem, 68vw); }
+  .coverflow__nav { width: 2.6rem; height: 2.6rem; }
+  .coverflow__nav--prev { left: .5rem; }
+  .coverflow__nav--next { right: .5rem; }
+  .flow-card__caption { padding-top: 3rem; }
+  .flow-card__text { display: none; }
 }
+@media (prefers-reduced-motion: reduce) { .coverflow.is-ready .flow-card { transition: opacity .2s; } }
 
 /* ---------- Avaliações ---------- */
 .reviews__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }

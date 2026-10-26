@@ -25,7 +25,7 @@ One green family only: every green on the site, plants included, is a shade or t
 
 Rules:
 - `--forest` is for actions and the hero title, never for large background blocks.
-- The wall green is the brand's surface colour: the footer, cromos, one featured service and the rating card sit on it with white text. The only near-black section is the photo band.
+- The wall green is the brand's surface colour: the footer, cromos, one featured service and the rating card sit on it with white text. The darkest places are the photo band and the gallery, which never sit next to each other.
 - Stars are green, not yellow.
 
 ## Typography
@@ -54,7 +54,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
 - **Inputs**: hairline border that turns forest on focus. No glow.
 
-- **Galeria (parallax scroll)**: three columns of photos of people (cuts and barbers) in a window that fades at the top and bottom; outer columns rise and the middle one sinks as the page scrolls. Two columns on phones; static with reduced motion.
+- **Galeria (3D coverflow)**: the one deep-green room (`#1d2a1b`–`#24331f`, same hue as the wall) with a soft green glow. The front photo stands upright with tag, Antonio title + subtitle, a short line and a pale-green pill button; the photos on each side turn away 32° in 3D, further back and shaded. Arrows on the sides, keyboard, swipe, or click a side photo. Only photos of people, from `assets/data/gallery.js`.
 
 ## The frog
 

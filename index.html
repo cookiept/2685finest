@@ -22,10 +22,10 @@
 
   <link rel="preload" as="image" href="assets/images/gallery/interior.webp" type="image/webp">
 
-  <link rel="stylesheet" href="assets/css/tokens.css?v=13">
-  <link rel="stylesheet" href="assets/css/base.css?v=13">
-  <link rel="stylesheet" href="assets/css/components.css?v=13">
-  <link rel="stylesheet" href="assets/css/sections.css?v=13">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=14">
+  <link rel="stylesheet" href="assets/css/base.css?v=14">
+  <link rel="stylesheet" href="assets/css/components.css?v=14">
+  <link rel="stylesheet" href="assets/css/sections.css?v=14">
 
   <script type="application/ld+json">
   {
@@ -307,6 +307,16 @@
       </div>
     </section>
 
+    <!-- ============ PHOTO BAND (the one dark section) ============ -->
+    <section class="band" aria-labelledby="band-title">
+      <img class="band__img" src="assets/images/gallery/interior.webp" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+      <div class="container band__inner">
+        <h2 class="band__title" id="band-title">Onde os sapos viram príncipes.</h2>
+        <p>Mais do que um corte, uma pausa. Entras, sentas-te e sais a sentir-te outra pessoa.</p>
+        <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--light" target="_blank" rel="noopener">Marcar a minha vez</a>
+      </div>
+    </section>
+
     <!-- ============ AVALIAÇÕES ============ -->
     <section class="section section--fog reviews" id="avaliacoes">
       <div class="container reviews__grid">
@@ -338,51 +348,25 @@
       </div>
     </section>
 
-    <!-- ============ GALERIA ============ -->
-    <section class="section gallery" id="galeria">
+    <!-- ============ GALERIA: 3D coverflow, built from assets/data/gallery.js ============ -->
+    <section class="section gallery" id="galeria" aria-labelledby="gallery-title">
       <div class="container">
-        <div class="section-head section-head--split">
-          <div>
-            <p class="eyebrow">Galeria</p>
-            <h2 class="h2">Sapos a virar príncipes</h2>
-          </div>
-          <a class="link" href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">Mais no Instagram <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-
-        <!-- Parallax scroll: three columns of cuts drifting at different speeds as you scroll -->
-        <div class="pgallery" data-parallax>
-          <div class="pgallery__col pgallery__col--1" data-parallax-col="up">
-            <img src="assets/images/gallery/corte-01.webp" alt="Cabelo encaracolado com fade baixo, feito na 2685 Finest" width="1000" height="1002" loading="lazy" decoding="async">
-            <img src="assets/images/team/simoes.webp" alt="Simões, barbeiro da 2685 Finest" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-02.webp" alt="Buzz cut com fade e linhas marcadas, feito na 2685 Finest" width="1000" height="998" loading="lazy" decoding="async">
-            <img src="assets/images/team/ricardo.webp" alt="Ricardo, barbeiro da 2685 Finest" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-01.webp" alt="" width="1000" height="1002" loading="lazy" decoding="async">
-          </div>
-          <div class="pgallery__col pgallery__col--2" data-parallax-col="down">
-            <img src="assets/images/team/ricardo.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-01.webp" alt="" width="1000" height="1002" loading="lazy" decoding="async">
-            <img src="assets/images/team/simoes.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-02.webp" alt="" width="1000" height="998" loading="lazy" decoding="async">
-            <img src="assets/images/team/ricardo.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
-          </div>
-          <div class="pgallery__col pgallery__col--3" data-parallax-col="up">
-            <img src="assets/images/gallery/corte-02.webp" alt="" width="1000" height="998" loading="lazy" decoding="async">
-            <img src="assets/images/team/ricardo.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-01.webp" alt="" width="1000" height="1002" loading="lazy" decoding="async">
-            <img src="assets/images/team/simoes.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
-            <img src="assets/images/gallery/corte-02.webp" alt="" width="1000" height="998" loading="lazy" decoding="async">
-          </div>
+        <div class="gallery__head">
+          <p class="gallery__eyebrow">Galeria</p>
+          <h2 class="h2 gallery__title" id="gallery-title">Sapos a virar príncipes</h2>
         </div>
       </div>
-    </section>
-
-    <!-- ============ PHOTO BAND (the one dark section) ============ -->
-    <section class="band" aria-labelledby="band-title">
-      <img class="band__img" src="assets/images/gallery/interior.webp" alt="" width="1600" height="1200" loading="lazy" decoding="async">
-      <div class="container band__inner">
-        <h2 class="band__title" id="band-title">Onde os sapos viram príncipes.</h2>
-        <p>Mais do que um corte, uma pausa. Entras, sentas-te e sais a sentir-te outra pessoa.</p>
-        <a href="https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" class="btn btn--light" target="_blank" rel="noopener">Marcar a minha vez</a>
+      <div class="coverflow" data-coverflow role="region" aria-roledescription="carrossel" aria-labelledby="gallery-title">
+        <div class="coverflow__stage" data-coverflow-stage tabindex="0"></div>
+        <button class="coverflow__nav coverflow__nav--prev" type="button" data-coverflow-prev aria-label="Foto anterior">
+          <svg width="20" height="20" style="transform:scaleX(-1)" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </button>
+        <button class="coverflow__nav coverflow__nav--next" type="button" data-coverflow-next aria-label="Próxima foto">
+          <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </button>
+      </div>
+      <div class="container gallery__foot">
+        <a class="link" href="https://www.instagram.com/2685finest_simoes.barberhouse/" target="_blank" rel="noopener">Mais cortes no Instagram <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </section>
 
@@ -583,8 +567,9 @@
     <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
   </a>
 
-  <script src="assets/js/config.js?v=13"></script>
-  <script src="assets/data/news.js?v=13"></script>
-  <script src="assets/js/main.js?v=13" defer></script>
+  <script src="assets/js/config.js?v=14"></script>
+  <script src="assets/data/news.js?v=14"></script>
+  <script src="assets/data/gallery.js?v=14"></script>
+  <script src="assets/js/main.js?v=14" defer></script>
 </body>
 </html>
