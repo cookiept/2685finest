@@ -25,7 +25,7 @@ One green family only: every green on the site, plants included, is a shade or t
 
 Rules:
 - `--forest` is for actions and the hero title, never for large background blocks.
-- The wall green is the brand's surface colour: the footer, cromos, the rating card sit on it with white text. The darkest places are the photo band and the gallery, which never sit next to each other.
+- The wall green is the brand's surface colour: the footer, cromos and the rating card sit on it with white text. The darkest place is the photo band.
 - Stars are green, not yellow.
 
 ## Typography
