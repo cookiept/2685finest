@@ -47,7 +47,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 - **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
 - **Novidades**: one headline (large image, tag + date, title, text, link) with the other items listed beside it as rows with a small thumbnail and hairline dividers. Rendered from `assets/data/news.js`.
 - **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Cromo em falta") invites barbers to join.
-- **Plants**: hand-drawn ivy and eucalyptus SVGs in the page margins (hero, A casa, Equipa, Contacto), wall-green outline with pale leaves. Still by default; on mouse hover they sway about 2° and the leaves rustle once. No motion on touch or with reduced motion. Hidden below 1280px except one short vine in the mobile hero.
+- **Plants**: hand-drawn ivy and eucalyptus SVGs in the page margins (hero, A casa, Equipa, Contacto), full, realistic leaves in natural greens (gradients, light veins, soft shadow). Still by default; on mouse hover they sway about 2° and the leaves rustle once. No motion on touch or with reduced motion. Hidden below 1280px except one short vine in the mobile hero.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
 - **Featured service card** and **rating card** on `--moss-wash`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
