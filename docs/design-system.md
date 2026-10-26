@@ -14,7 +14,7 @@ One green family only: every green on the site, plants included, is a shade or t
 | --- | --- | --- |
 | `--paper` | `#ffffff` | Page canvas, cards. |
 | `--fog` | `#f2f4f0` | Alternate sections (Serviços, Avaliações), tab hover. A pale wash of the wall green. |
-| `--moss-wash` | `#e4eae1` | Brand-tinted cards: featured services, rating card, news image backgrounds. |
+| `--moss-wash` | `#e4eae1` | Brand-tinted cards: rating card, news image backgrounds. |
 | `--cream` | `#f6efdc` | Warm highlight card. Used once ("Há lugar na lagoa?"). |
 | `--ink` | `#151e1b` | Text. A green-tinted near-black, never pure black. |
 | `--graphite` | `#4d4f4c` | Secondary text. |
@@ -25,7 +25,7 @@ One green family only: every green on the site, plants included, is a shade or t
 
 Rules:
 - `--forest` is for actions and the hero title, never for large background blocks.
-- The wall green is the brand's surface colour: the footer, cromos, one featured service and the rating card sit on it with white text. The darkest places are the photo band and the gallery, which never sit next to each other.
+- The wall green is the brand's surface colour: the footer, cromos, the rating card sit on it with white text. The darkest places are the photo band and the gallery, which never sit next to each other.
 - Stars are green, not yellow.
 
 ## Typography
@@ -50,8 +50,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 - **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Procura-se", Nº 03) has the same layout drawn as a dashed outline, with the frog holding a CV and pointing at you (`frog-cv`), and the text "Podes ser o cromo que nos falta". The three columns use CSS subgrid so cards, texts and links line up at the same height.
 - **Plants**: hand-drawn SVG plants in the wall-green family. Each one grows from something real on the page, never from empty space: ivy draped over the top of the hero photo; a pothos in a pot hanging on cords from the header line; a Boston fern in a pot hanging from the edge of the Serviços section; eucalyptus sprigs coming in from the screen edge (A casa, Contacto). Still by default. Moving the mouse through a plant pushes nearby leaves in the direction of travel like a breeze; they settle slowly on a damped spring (in `main.js`), and a resting pointer adds nothing. Below 1280px only the ivy on the hero photo stays.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
-- **Featured service cards**; the most popular one has a forest outline and a "★ Mais popular" pill, repeated next to it in the price list.
-- **Tabs**: 8px radius, hairline; active is forest with white text.
+- **Serviços**: one white card with the six main services (Skinfade first, with a "★ Mais popular" pill). Combos, Kids and Extras sit in a `<details>` "Ver todos os preços" that opens with a click, so the section shows little at first.
 - **Inputs**: hairline border that turns forest on focus. No glow.
 
 - **Galeria (grelha simples)**: plain photos on white, 4 per row on desktop and 2 on mobile, 4:5 with rounded corners and a short caption underneath (title in bold, subtitle in grey). Hover zooms the photo slightly; a click opens it bigger in a `<dialog>` with its line of text. Kept deliberately quiet because the news fan, plants and cromos already carry the playful parts. Only photos of people, from `assets/data/gallery.js`.
