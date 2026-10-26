@@ -4,17 +4,17 @@
    See docs/design-system.md for usage guidance.
    ========================================================== */
 :root {
-  /* Colour */
+  /* Colour: one green family, all sampled from the shop's wall (hue ~109deg) */
   --paper: #ffffff;        /* page canvas */
-  --fog: #eef2ea;          /* alternate sections: a pale wash of the wall green */
-  --moss-wash: #dfe8d8;    /* brand-tinted cards and image backgrounds */
+  --fog: #f2f4f0;          /* alternate sections: a pale wash of the wall green */
+  --moss-wash: #e4eae1;    /* brand-tinted cards and image backgrounds */
   --cream: #f6efdc;        /* warm highlight card, used once or twice */
   --ink: #151e1b;          /* text: green-tinted near-black */
   --graphite: #4d4f4c;     /* secondary text */
   --border: #e0e4dd;       /* hairlines: cards, inputs, dividers */
-  --forest: #2f4530;       /* primary action, headings accent, stars */
+  --forest: #3b5236;       /* the wall green, darker: buttons, links, text on tints */
   --wall: #4d6747;         /* the shop's wall green: icons, details */
-  --leaf: #3f7d22;         /* small text accents and links */
+  --leaf: #4d6747;         /* success messages (same green as the wall) */
 
   /* Type */
   --font-display: "Antonio", "Oswald", "Arial Narrow", sans-serif;   /* hero only */

@@ -1,46 +1,54 @@
 /* ==========================================================
-   Novidades da casa
+   Novidades da casa: the banners in the news carousel
    Edit this list to update the news on the homepage.
+
    - The FIRST item also appears in the green bar at the very top (its "notice" text, or its title).
-   - image: any file in assets/images/ (photos look best at 4:3 or square).
-   - fit: "cover" for photos, "contain" for illustrations and the frog.
+   - theme: how the banner is drawn
+       "green" : shop-green background, white text, illustration on the right
+       "light" : pale green background, dark text, illustration on the right
+       "photo" : the image fills the banner, text on top of it
+   - image: the frog for this banner (assets/images/brand/frog-*.webp or sticker-sacavem.webp),
+            or a photo when theme is "photo".
+   - banner: OPTIONAL. A finished banner image (e.g. made in Canva, about 2400x1000).
+             If set, it replaces the drawn banner; title + text are still used as its description.
    - cta is optional: { label, href }.
    ========================================================== */
 window.SITE_NEWS = [
   {
     tag: "Novo",
     date: "Outubro 2026",
-    title: "O nosso site novo está no ar",
-    text: "Serviços, preços e barbeiros num só sítio. E agora podes falar connosco pelo WhatsApp diretamente daqui.",
+    title: "Site novo. Fala connosco pelo WhatsApp.",
+    text: "Serviços, preços e barbeiros num só sítio, e uma mensagem direta para a barbearia.",
     notice: "Site novo no ar: já podes falar connosco pelo WhatsApp",
+    theme: "green",
     image: "assets/images/brand/frog-lounging.webp",
-    fit: "contain",
     cta: { label: "Falar connosco", href: "#contacto" }
   },
   {
     tag: "Marcações",
-    date: "",
-    title: "Marca 24/7 no Booksy",
-    text: "Escolhe o barbeiro, o serviço e a hora em menos de um minuto, a qualquer hora do dia.",
-    image: "assets/images/gallery/interior.webp",
-    fit: "cover",
+    date: "24 horas por dia",
+    title: "Marca no Booksy, a qualquer hora.",
+    text: "Escolhe o barbeiro, o serviço e a hora em menos de um minuto.",
+    theme: "light",
+    image: "assets/images/brand/frog-standing.webp",
     cta: { label: "Marcar agora", href: "https://booksy.com/pt-pt/1257_2685-finest-barbearia_barbearia_166404_sacavem" }
   },
   {
     tag: "Ritual",
     date: "Na carta",
-    title: "Barba Hot Towel com massagem",
+    title: "Barba Hot Towel com massagem.",
     text: "Toalha quente, navalha e massagem incluída. 11€ sozinha, ou 23€ com skinfade.",
+    theme: "green",
     image: "assets/images/brand/frog-cigar.webp",
-    fit: "contain",
     cta: { label: "Ver preços", href: "#servicos" }
   },
   {
     tag: "Clientes da casa",
     date: "",
-    title: "Temos programa de fidelização",
-    text: "Quem volta, ganha. Pergunta na tua próxima visita como funciona.",
+    title: "Quem volta, ganha.",
+    text: "Temos programa de fidelização. Pergunta na tua próxima visita como funciona.",
+    theme: "light",
     image: "assets/images/brand/sticker-sacavem.webp",
-    fit: "contain"
+    cta: { label: "Ver horário", href: "#contacto" }
   }
 ];

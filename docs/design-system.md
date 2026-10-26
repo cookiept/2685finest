@@ -8,18 +8,20 @@ All values live in [`assets/css/tokens.css`](../assets/css/tokens.css).
 
 ## Colour
 
+One green family only: every green on the site, plants included, is a shade or tint of the wall green (hue ~109°). Don't introduce yellow-greens or blue-greens; the frog illustrations are the only exception.
+
 | Token | Hex | Use |
 | --- | --- | --- |
 | `--paper` | `#ffffff` | Page canvas, cards. |
-| `--fog` | `#eef2ea` | Alternate sections (Serviços, Avaliações), tab hover. A pale wash of the wall green. |
-| `--moss-wash` | `#dfe8d8` | Brand-tinted cards: featured services, rating card, news image backgrounds. |
+| `--fog` | `#f2f4f0` | Alternate sections (Serviços, Avaliações), tab hover. A pale wash of the wall green. |
+| `--moss-wash` | `#e4eae1` | Brand-tinted cards: featured services, rating card, news image backgrounds. |
 | `--cream` | `#f6efdc` | Warm highlight card. Used once ("Há lugar na lagoa?"). |
 | `--ink` | `#151e1b` | Text. A green-tinted near-black, never pure black. |
 | `--graphite` | `#4d4f4c` | Secondary text. |
 | `--border` | `#e0e4dd` | Hairlines for cards, inputs, dividers. |
-| `--forest` | `#2f4530` | Primary action, hero title, active tab, stars, links. |
+| `--forest` | `#3b5236` | The wall green, darker (same hue). Buttons, links, hero title, text on tints. |
 | `--wall` | `#4d6747` | The shop's wall green, sampled from the interior photo. Novidades section, footer, barber cromos, the "Combo da casa" card, the rating card, icons and eyebrows. |
-| `--leaf` | `#3f7d22` | Success messages. |
+| `--leaf` | `#4d6747` | Success messages. Same as the wall. |
 
 Rules:
 - `--forest` is for actions and the hero title, never for large background blocks.
@@ -45,9 +47,9 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 
 - **Notice bar**: thin green bar above the header with the latest news.
 - **Buttons**: `.btn--primary` (forest fill), `.btn--outline` (hairline), `.btn--light` (on the dark band). `.link` for text links.
-- **Novidades**: the section is the green wall (`--wall`) with ivy hanging from its top edge. The headline (large image, tag + date, title, text, link) sits on the wall in white; the other items are numbered notices (01, 02, 03 in Antonio) on white cards with a small thumbnail. Rendered from `assets/data/news.js`.
+- **Novidades carousel**: one banner per news item, full content width, the next banner peeking in from the margin (as on Apple's and other large brand sites). Banners are drawn in code from `assets/data/news.js` in two themes, `green` (wall green, white text) and `light` (pale green, dark text), always with a frog on the right; Antonio uppercase headline, short text, one button. A finished image can replace a banner (`banner` field). Controls: counter + arrows top right, filling progress pills + pause button below. Desktop autoplay every 7s, paused on hover/focus, stopped for good after any manual use; no autoplay on touch or reduced motion.
 - **Cromo** (barber card): football-sticker card. Header strip "2685 Finest · Época 2026", photo with number badge and frog-head crest, forest name plate in Antonio uppercase, two small stats. On hover it lifts and tilts by 1° with a faint sheen. The empty slot ("Cromo em falta") invites barbers to join.
-- **Plants**: hand-drawn ivy and eucalyptus SVGs in the page margins (hero, Novidades, A casa, Equipa, Contacto), full, realistic leaves in natural greens (gradients, light veins, soft shadow). Still by default. Moving the mouse through a plant pushes nearby leaves in the direction of travel like a breeze; they settle slowly on a damped spring (in `main.js`), and a resting pointer adds nothing. No motion on touch or with reduced motion. Hidden below 1280px except one short vine in the mobile hero.
+- **Plants**: hand-drawn SVG plants in the page margins, in the wall-green family: ivy (hero right), pothos (hero left, Novidades), a hanging Boston fern in a pot (Equipa), eucalyptus sprigs (A casa, Contacto). Still by default. Moving the mouse through a plant pushes nearby leaves in the direction of travel like a breeze; they settle slowly on a damped spring (in `main.js`), and a resting pointer adds nothing. Hidden below 1280px except one short vine in the mobile hero.
 - **Feature**: 28px outline icon (1.5px stroke) in `--wall`, title, short text. No card around it.
 - **Featured service card** and **rating card** on `--moss-wash`.
 - **Tabs**: 8px radius, hairline; active is forest with white text.
@@ -58,7 +60,7 @@ Eyebrows (`.eyebrow`) are 12px, 600, tracked `.14em`, uppercase, in `--wall`.
 The shop's mascot (crown, gold chain with "85"):
 
 1. Hero: `frog-lounging`, resting on the corner of the interior photo.
-2. Novidades: whatever image each news item uses.
+2. Novidades: every banner carries a frog (lounging, standing, cigar, the Sacavém sticker).
 3. Barber cromos: `frog-head` as the club crest. "Cromo em falta" slot: `frog-cigar`, greyed.
 4. Contact form: `frog-head`. Footer: `frog-standing`. Favicon: frog head from the sticker.
 5. Gallery: the "Sapos a virar príncipes" Sacavém sticker.

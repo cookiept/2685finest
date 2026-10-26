@@ -21,10 +21,13 @@
   nav.addEventListener("click", (e) => { if (e.target.closest("a")) setNav(false); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
 
-  /* ---------- Novidades: notice bar + headline + list, from assets/data/news.js ---------- */
+  /* ---------- Novidades: notice bar + banner carousel, from assets/data/news.js ----------
+     Follows the usual carousel rules: swipe/scroll and arrows always work; on desktop it
+     advances every 7s, pauses while hovered or focused, and stops for good once someone
+     uses the controls. No autoplay on touch screens or with reduced motion. */
   const news = Array.isArray(window.SITE_NEWS) ? window.SITE_NEWS : [];
   const notice = document.querySelector("[data-notice]");
-  const newsRoot = document.querySelector("[data-news]");
+  const carousel = document.querySelector("[data-carousel]");
 
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
@@ -33,63 +36,162 @@
     return node;
   };
 
-  const newsMedia = (item, className) => {
-    const media = el("div", className + (item.fit === "contain" ? " " + className + "--contain" : ""));
-    if (item.image) {
+  const ctaLink = (cta, className) => {
+    const link = el("a", className, cta.label);
+    link.href = cta.href;
+    if (/^https?:/.test(cta.href)) { link.target = "_blank"; link.rel = "noopener"; }
+    return link;
+  };
+
+  const banner = (item, i) => {
+    const slide = el("article", "banner");
+    slide.setAttribute("role", "group");
+    slide.setAttribute("aria-roledescription", "slide");
+    slide.setAttribute("aria-label", `${i + 1} de ${news.length}`);
+
+    // A finished banner image (made elsewhere) replaces the drawn banner
+    if (item.banner) {
+      slide.classList.add("banner--image");
       const img = el("img");
+      img.src = item.banner;
+      img.alt = [item.title, item.text].filter(Boolean).join(". ");
+      img.loading = i ? "lazy" : "eager";
+      if (item.cta && item.cta.href) {
+        const link = ctaLink({ href: item.cta.href, label: "" }, "banner__cover-link");
+        link.append(img);
+        slide.append(link);
+      } else {
+        slide.append(img);
+      }
+      return slide;
+    }
+
+    slide.classList.add("banner--" + (item.theme || "green"));
+    const copy = el("div", "banner__copy");
+    const kicker = [item.tag, item.date].filter(Boolean).join(" · ");
+    if (kicker) copy.append(el("p", "banner__kicker", kicker));
+    copy.append(el("h3", "banner__title", item.title));
+    if (item.text) copy.append(el("p", "banner__text", item.text));
+    if (item.cta && item.cta.href) copy.append(ctaLink(item.cta, "btn banner__btn"));
+
+    if (item.image) {
+      const img = el("img", "banner__art");
       img.src = item.image;
       img.alt = item.alt || "";
-      img.loading = "lazy";
+      img.loading = i ? "lazy" : "eager";
       img.decoding = "async";
-      media.append(img);
+      slide.append(img);
     }
-    return media;
-  };
-
-  const newsMeta = (item) => {
-    const meta = el("p", "news__meta");
-    if (item.tag) meta.append(el("span", "news__tag", item.tag));
-    if (item.date) meta.append(el("span", "", item.date));
-    return meta;
-  };
-
-  const newsLink = (item) => {
-    if (!item.cta || !item.cta.href) return null;
-    const link = el("a", "link", item.cta.label);
-    link.href = item.cta.href;
-    if (/^https?:/.test(item.cta.href)) { link.target = "_blank"; link.rel = "noopener"; }
-    link.insertAdjacentHTML("beforeend", '<svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>');
-    return link;
+    slide.append(copy);
+    return slide;
   };
 
   if (news.length && notice) notice.textContent = news[0].notice || news[0].title;
 
-  if (newsRoot && news.length) {
-    const [first, ...rest] = news;
+  if (carousel && news.length) {
+    const track = carousel.querySelector("[data-carousel-track]");
+    const dotsWrap = carousel.querySelector("[data-carousel-dots]");
+    const playBtn = carousel.querySelector("[data-carousel-play]");
+    const controls = document.querySelector("[data-carousel-controls]");
+    const prevBtn = controls.querySelector("[data-carousel-prev]");
+    const nextBtn = controls.querySelector("[data-carousel-next]");
+    const current = controls.querySelector("[data-carousel-current]");
+    controls.querySelector("[data-carousel-total]").textContent = String(news.length).padStart(2, "0");
 
-    const lead = newsRoot.querySelector("[data-news-lead]");
-    const leadBody = el("div", "news__lead-body");
-    leadBody.append(newsMeta(first), el("h3", "news__lead-title", first.title));
-    if (first.text) leadBody.append(el("p", "news__lead-text", first.text));
-    const leadLink = newsLink(first);
-    if (leadLink) leadBody.append(leadLink);
-    lead.append(newsMedia(first, "news__lead-media"), leadBody);
+    const slides = news.map(banner);
+    track.append(...slides);
 
-    const list = newsRoot.querySelector("[data-news-list]");
-    rest.forEach((item, i) => {
-      const row = el("li", "news__item");
-      row.append(el("span", "news__num", String(i + 1).padStart(2, "0")));
-      const body = el("div", "news__item-body");
-      body.append(newsMeta(item), el("h3", "news__item-title", item.title));
-      if (item.text) body.append(el("p", "news__item-text", item.text));
-      const link = newsLink(item);
-      if (link) body.append(link);
-      row.append(body, newsMedia(item, "news__thumb"));
-      list.append(row);
+    const dots = slides.map((_, i) => {
+      const dot = el("button", "carousel__dot");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Ver novidade ${i + 1}`);
+      dot.append(el("span"));
+      dot.addEventListener("click", () => { stop(); goTo(i); });
+      dotsWrap.append(dot);
+      return dot;
     });
-    if (!rest.length) list.hidden = true;
-  } else if (newsRoot) {
-    newsRoot.closest("section").hidden = true;
+
+    let index = -1;
+    const canAutoplay = news.length > 1 &&
+      window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
+    let stopped = !canAutoplay;
+
+    const setActive = (i) => {
+      if (i === index) return;
+      index = i;
+      slides.forEach((s, n) => { s.classList.toggle("is-active", n === i); s.inert = n !== i; });
+      dots.forEach((d, n) => {
+        d.classList.remove("is-active");
+        d.setAttribute("aria-current", n === i ? "true" : "false");
+      });
+      void dots[i].offsetWidth; // restart the progress fill
+      dots[i].classList.add("is-active");
+      current.textContent = String(i + 1).padStart(2, "0");
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+    };
+
+    let gliding = 0; // ignore scroll sync while we scroll the track ourselves
+    const goTo = (i) => {
+      const n = (i + slides.length) % slides.length;
+      clearTimeout(gliding);
+      gliding = setTimeout(() => { gliding = 0; }, 900);
+      track.scrollTo({ left: slides[n].offsetLeft - slides[0].offsetLeft, behavior: "smooth" });
+      setActive(n);
+    };
+
+    const stop = () => {
+      stopped = true;
+      carousel.classList.add("is-stopped");
+      playBtn.setAttribute("aria-label", "Continuar as novidades");
+    };
+    const play = () => {
+      stopped = false;
+      carousel.classList.remove("is-stopped");
+      playBtn.setAttribute("aria-label", "Pausar as novidades");
+      const i = index; index = -1; setActive(i); // restart progress
+    };
+
+    if (stopped) stop();
+    if (!canAutoplay) playBtn.hidden = true;
+    if (slides.length < 2) { controls.hidden = true; dotsWrap.hidden = true; playBtn.hidden = true; }
+
+    // Autoplay: when the active dot finishes filling, move on
+    dotsWrap.addEventListener("animationend", (e) => {
+      if (!stopped && e.target.parentElement === dots[index]) goTo(index + 1);
+    });
+
+    playBtn.addEventListener("click", () => (stopped ? play() : stop()));
+    prevBtn.addEventListener("click", () => { stop(); goTo(index - 1); });
+    nextBtn.addEventListener("click", () => { stop(); goTo(index + 1); });
+
+    const pause = (on) => carousel.classList.toggle("is-paused", on);
+    carousel.addEventListener("mouseenter", () => pause(true));
+    carousel.addEventListener("mouseleave", () => pause(false));
+    carousel.addEventListener("focusin", () => pause(true));
+    carousel.addEventListener("focusout", () => pause(false));
+
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); stop(); goTo(index + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); stop(); goTo(index - 1); }
+    });
+    ["pointerdown", "wheel", "touchstart"].forEach((type) =>
+      track.addEventListener(type, () => stop(), { passive: true }));
+
+    // Keep the active slide in sync when people swipe or scroll the track
+    let raf = 0;
+    track.addEventListener("scroll", () => {
+      if (gliding) return;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : 1;
+        setActive(Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / step))));
+      });
+    }, { passive: true });
+
+    setActive(0);
+  } else if (carousel) {
+    carousel.closest("section").hidden = true;
   }
 
   /* ---------- Service tabs (WAI-ARIA tabs pattern) ---------- */
