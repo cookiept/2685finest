@@ -100,6 +100,15 @@
     if (kicker) copy.append(el("p", "banner__kicker", kicker));
     copy.append(el("h3", "banner__title", item.title));
     if (item.text) copy.append(el("p", "banner__text", item.text));
+    if (Array.isArray(item.list)) {
+      const list = el("ul", "banner__list");
+      item.list.forEach(([name, value]) => {
+        const row = el("li");
+        row.append(el("span", "", name), el("span", "", value));
+        list.append(row);
+      });
+      copy.append(list);
+    }
     if (item.cta && item.cta.href) copy.append(ctaLink(item.cta, "btn banner__btn"));
 
     if (item.image) {

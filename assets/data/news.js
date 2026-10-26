@@ -7,12 +7,14 @@
        "light" : pale green background, dark text, illustration on the right
        "photo" : the image fills the banner, text on top of it
        "hiring": a paper job ad with a stamp and tear-off tabs (set tabs to the phone number)
+       "gym"   : a gym chalkboard; list holds the "treino do dia" rows as [name, value]
    - image: the frog for this banner (assets/images/brand/frog-*.webp or sticker-sacavem.webp),
             or a photo when theme is "photo".
    - banner: OPTIONAL. A finished banner image (e.g. made in Canva, about 2400x1000).
              If set, it replaces the drawn banner; title + text are still used as its description.
    - cta is optional: { label, href }.
    - tabs is optional (hiring theme): the text printed on each tear-off tab.
+   - list is optional: rows of [name, value], drawn in chalk on the gym board.
    ========================================================== */
 window.SITE_NEWS = [
   {
@@ -25,6 +27,17 @@ window.SITE_NEWS = [
     alt: "O sapo da 2685 Finest, de coroa, com o currículo na mão a apontar para ti",
     tabs: "927 266 234",
     cta: { label: "Quero a vaga", href: "#contacto" }
+  },
+  {
+    tag: "Parceria",
+    date: "Tonik Sacavém",
+    title: "Treina na Tonik. Corta na 2685.",
+    text: "Somos parceiros do ginásio Tonik Sacavém. Pergunta pelas vantagens na tua próxima visita.",
+    theme: "gym",
+    image: "assets/images/brand/frog-gym.webp",
+    alt: "O sapo da 2685 Finest com a t-shirt da Tonik, a levantar uma barra de pesos",
+    list: [["Agachamento", "4×8"], ["Supino", "3×10"], ["Skinfade", "1× ✓"]],
+    cta: { label: "Saber mais", href: "#contacto" }
   },
   {
     tag: "Novo",
