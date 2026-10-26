@@ -19,6 +19,7 @@
   /* Type */
   --font-display: "Antonio", "Oswald", "Arial Narrow", sans-serif;   /* hero only */
   --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Space Mono", "Courier New", monospace;   /* the services receipt */
 
   --text-caption: 0.75rem;
   --text-sm: 0.875rem;

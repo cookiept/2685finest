@@ -469,4 +469,8 @@
   /* ---------- Footer year ---------- */
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
+
+  // Today's date on the services receipt
+  const receiptDate = document.querySelector("[data-receipt-date]");
+  if (receiptDate) receiptDate.textContent = new Date().toLocaleDateString("pt-PT");
 })();
