@@ -556,6 +556,7 @@
    Nothing moves for touch or reduced-motion users. */
 .hero, .about, .team, .contact { position: relative; }
 .hero, .about, .team, .contact { overflow-x: clip; }
+.about, .contact { overflow: clip; } /* the sprigs grow up from behind the bottom edge */
 
 .plant { position: absolute; z-index: 2; height: auto; overflow: visible; pointer-events: none; filter: drop-shadow(0 6px 8px rgba(24, 48, 22, .18)); }
 .plant .sway { pointer-events: visiblePainted; }
@@ -566,7 +567,8 @@
 .plant .fr--a { fill: url(#g-ivy-a); }
 .plant .fr--b { fill: url(#g-ivy-b); }
 .plant .fr--c { fill: url(#g-ivy-d); }
-.plant .cord { fill: none; stroke: #8b8170; stroke-width: 1.2; }
+.plant .cord { fill: none; stroke: #6f6556; stroke-width: 1.5; }
+.plant .hook { fill: #5d5447; } /* the ceiling plate the cords hang from */
 .plant .pot { fill: var(--forest); }
 .plant .pot-rim { fill: var(--wall); }
 .plant use { stroke: rgba(30, 44, 27, .3); stroke-width: .5; stroke-linejoin: round; }
@@ -585,9 +587,9 @@
 
 .plant--hero   { top: -.4rem; right: -3.25rem; width: 9.5rem; } /* draped over the hero photo */
 .plant--hero-l { top: 0; left: max(.5rem, calc(50% - 600px - 9rem)); width: 8.5rem; } /* hangs from the header line */
-.plant--about  { top: 1.5rem; right: max(-4rem, calc(50% - 600px - 14rem)); width: 15rem; transform: scaleX(-1); }
+.plant--about  { bottom: -2.25rem; right: max(-3rem, calc(50% - 600px - 13rem)); width: 15rem; transform: scaleX(-1); } /* grows from the floor of A casa */
 .plant--team   { top: 0; right: max(-2rem, calc(50% - 600px - 2rem)); width: 17rem; } /* hangs from the edge of the Serviços section */
-.plant--contact{ bottom: 1rem; left: max(-4rem, calc(50% - 600px - 14rem)); width: 15rem; }
+.plant--contact{ bottom: -2.25rem; left: max(-3rem, calc(50% - 600px - 13rem)); width: 15rem; } /* grows from behind the footer */
 
 /* Wind on hover is driven by assets/js/main.js (spring physics: leaves near the
    moving pointer get a push and settle slowly; nothing moves while the pointer rests). */
